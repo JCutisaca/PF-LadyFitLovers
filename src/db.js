@@ -51,6 +51,8 @@ Product.belongsToMany(User, { through: 'FavoriteProduct', as: 'FavoritedBy' });
 Order.belongsTo(User);
 User.hasMany(Order);
 
+User.belongsTo(Product, { foreignKey: 'productId' });
+Category.belongsTo(Product, { foreignKey: 'categoryId' }); // Una categoría puede tener muchos productos
 
 module.exports = {
   ...sequelize.models,
