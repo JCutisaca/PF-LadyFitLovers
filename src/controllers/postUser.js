@@ -1,6 +1,6 @@
 const { User } = require('../db')
 
-const postUser = async (name, surname, email, phone, password, address, typeUser) => {
+const postUser = async ({name, surname, email, phone, password, address, typeUser}) => {
     if (!(name || surname || email || password)) throw Error("Faltan datos")
     const [user, created] = await User.findOrCreate({
         where: {
