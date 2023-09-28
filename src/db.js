@@ -26,12 +26,11 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { User, Product } = sequelize.models;
-<<<<<<< HEAD
-=======
+const { User, Product, Category } = sequelize.models;
 
->>>>>>> 0f651a9002bebc61fe7d761b4a14a4b0a563bb17
 
+// User.belongsTo(Product);
+// Category.belongsTo(Product); 
 
 module.exports = {
     ...sequelize.models,
