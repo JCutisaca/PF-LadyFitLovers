@@ -1,4 +1,4 @@
-const { User } = require('../db')
+const { User } = require('../../db')
 
 const postUser = async (name, surname, email, phone, password, address, typeUser) => {
     if (!(name || surname || email || password)) throw Error("Faltan datos")

@@ -1,4 +1,6 @@
-const postUser = require("../controllers/postUser");
+const { getUser } = require("../controllers/UserController/getUser");
+const { getUSerByID } = require("../controllers/UserController/getUserById");
+const postUser = require("../controllers/UserController/postUser");
 
 
 const postUserHandler = async (req, res) => {
@@ -11,6 +13,31 @@ const postUserHandler = async (req, res) => {
     }
 }
 
+const getUserHandler = async(req, res) => {
+    try {
+        const allUser = await getUser()
+        res.status(201).json(allUser)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+        
+    }
+}
+
+const getUserByIDHandler = async(req, res) => {
+    try {
+
+        const userBYId = await getUSerByID(req.params)
+        res.status(201).json(userBYId)
+
+    } catch (error) {
+        res.status(400).json({error: error.message})
+        
+    }
+}
+
+
 module.exports = {
-    postUserHandler
+    postUserHandler,
+    getUserHandler,
+    getUserByIDHandler
 }
