@@ -27,10 +27,6 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 const { User, Product } = sequelize.models;
-<<<<<<< HEAD
-=======
-
->>>>>>> 0f651a9002bebc61fe7d761b4a14a4b0a563bb17
 
 
 module.exports = {
