@@ -1,4 +1,3 @@
-const { default: deleteProduct } = require("../controllers/ProductController/deleteProduct")
 const { getProduct } = require("../controllers/ProductController/getProduct")
 const { getProductById } = require("../controllers/ProductController/getProductById")
 const { createProduct } = require("../controllers/ProductController/postProduct")

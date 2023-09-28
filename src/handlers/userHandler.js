@@ -1,3 +1,4 @@
+const { deleteUser } = require("../controllers/UserController/deleteUser");
 const { getUser } = require("../controllers/UserController/getUser");
 const { postUser } = require("../controllers/UserController/postUser");
 const { updateUser } = require("../controllers/UserController/updateUser");
@@ -77,6 +78,7 @@ const updateUserHandler = async (req, res) => {
     }
 
 }
+
 
 
 module.exports = {
