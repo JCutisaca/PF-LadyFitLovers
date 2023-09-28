@@ -31,6 +31,9 @@ module.exports = (sequelize) => {
         allownull: false,
         defaultValue: [],
       },
+      priceOfert: {
+        type: DataTypes.FLOAT,
+      },
     },
     { timestamps: true }
   );
