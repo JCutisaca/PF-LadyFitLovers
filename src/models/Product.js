@@ -12,23 +12,23 @@ module.exports = (sequelize) => {
       },
       name: {
         type: DataTypes.STRING,
-        allowNul: false,
+        allownull: false,
       },
       image: {
         type: DataTypes.STRING,
-        allowNul: false,
+        allownull: false,
       },
       price: {
         type: DataTypes.FLOAT,
-        allowNul: false,
+        allownull: false,
       },
       sales: {
         type: DataTypes.INTEGER,
-        allowNul: false,
+        allownull: false,
       },
       stock: {
         type: DataTypes.ARRAY(DataTypes.JSONB),
-        allowNul: false,
+        allownull: false,
         defaultValue: [],
       },
     },
