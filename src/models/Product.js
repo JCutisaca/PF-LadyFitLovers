@@ -31,7 +31,7 @@ module.exports = (sequelize) => {
         allownull: false,
         defaultValue: [],
       },
-      priceOfert: {
+      onSale: {
         type: DataTypes.FLOAT,
       },
     },
