@@ -1,6 +1,7 @@
 const { getUser } = require("../controllers/UserController/getUser");
 const { getUSerByID } = require("../controllers/UserController/getUserById");
-const postUser = require("../controllers/UserController/postUser");
+const { postUser } = require("../controllers/UserController/postUser");
+const {deleteUser}= require("../controllers/UserController/deleteUser")
 
 
 const postUserHandler = async (req, res) => {
@@ -29,10 +30,21 @@ const getUserByIDHandler = async(req, res) => {
         res.status(400).json({error: error.message})    
     }
 }
+const deleteUserHandler = async (req, res) => {
+    try {
+        const { id } = req.params;
+        await deleteUser(id);
+
+        res.status(200).send("User  has deleted💥💥")
+    } catch (error) {
+        res.status(400).json({error: error.message})   
+    }
+}
 
 
 module.exports = {
     postUserHandler,
     getUserHandler,
-    getUserByIDHandler
+    getUserByIDHandler,
+    deleteUserHandler
 }

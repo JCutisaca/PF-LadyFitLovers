@@ -17,4 +17,6 @@ const postUser = async ({name, surname, email, phone, password, address, typeUse
     return user;
 }
 
-module.exports = postUser;
+module.exports = {
+     postUser
+     };
