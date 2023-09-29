@@ -1,26 +1,37 @@
 const { Product, Category } = require("../../db");
 
-const createProduct = async ({ name, image, price, sales, stock, priceOfOffert, category }) => {
-  if (!(name || image || price || sales || stock || category)) throw Error("Faltan datos")
+const createProduct = async (productsArray) => {
 
-  const findCategory = await Category.findOne({where: {
-    name: category
-  }})
+  const createdProducts = [];
+  for (const productData of productsArray) {
+    const { name, image, price, unitsSold, stock, priceOnSale, category } = productData;
 
-  if(!findCategory) throw Error('Falta seleccionar la categoria')
-  
-  const create = await Product.create({
-    name: name,
-    image: image,
-    price: price,
-    sales: sales,
-    stock: stock,
-    priceOfOffert: priceOfOffert? priceOfOffert : null
-  });
+    if (!(name || image || price || unitsSold || stock || category)) {
+      throw Error("Faltan datos");
+    }
+    const findCategory = await Category.findOne({
+      where: {
+        name: category
+      }
+    });
 
-  await create.setCategory(findCategory);
+    if (!findCategory) {
+      throw Error('Falta seleccionar la categoría');
+    }
+    const create = await Product.create({
+      name: name,
+      image: image,
+      price: price,
+      unitsSold: unitsSold,
+      stock: stock,
+      priceOnSale: priceOnSale ? priceOnSale : null
+    });
 
-  return create;
+    await create.setCategory(findCategory);
+
+    createdProducts.push(create);
+  }
+  return "Se craron los productos";
 };
 
 module.exports = {
