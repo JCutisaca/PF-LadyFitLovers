@@ -17,6 +17,7 @@ const postProductHandler = async(req, res) => {
 
 const getProductHandler = async(req, res) => {
     try {
+        
         const allProduct = await getProduct()
         res.status(201).json(allProduct)
     } catch (error) {
