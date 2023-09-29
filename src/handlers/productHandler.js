@@ -3,6 +3,7 @@ const { getProductById } = require("../controllers/ProductController/getProductB
 const { createProduct } = require("../controllers/ProductController/postProduct")
 const { deleteProduct } = require("../controllers/ProductController/deleteProduct")
 const postCategory = require("../controllers/ProductController/postCategory")
+const getProductsFilter = require("../controllers/ProductController/getProductsFilter")
 
 const postProductHandler = async(req, res) => {
     try {
@@ -55,10 +56,20 @@ const postCategoryHandler = async (req, res) => {
     }
 }
 
+const getProductFilterHandler = async (req, res) => {
+    try {
+        const filterProducts = await getProductsFilter(req.body)
+        res.status(200).json(filterProducts);
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}
+
 module.exports = {
     postProductHandler,
     getProductHandler,
     getProductByIdHandler,
     deleteProductHandler,
-    postCategoryHandler
+    postCategoryHandler,
+    getProductFilterHandler
 }
