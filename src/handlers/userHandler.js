@@ -42,9 +42,10 @@ const deleteUserHandler = async (req, res) => {
     }
 }
 
-const updateUserHandler = async(req, res) =>{
+const updateUserHandler = async(req,res) =>{
     try {
-        const respuesta = await updateUser(req.params, req.body)
+        const {id} = req.params
+        const respuesta = await updateUser(id, req.body)
         res.status(200).json(respuesta)
     } catch (error) {
         

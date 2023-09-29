@@ -1,21 +1,19 @@
 const { User } = require('../../db')
 
-const updateUser = async({id}, {name, surname , email ,phone ,password, address }) => {
-    console.log(id);
-    console.log(name);
-    const userEncontrado = await User.findByPk(id) 
-    if(!name?.length|| !surname?.length|| !email?.length||!phone?.length||!password?.length|| !address?.length) {
-        console.log("No se pueden guardar vacios");
-        return "No se pueden guardar vacios"
-    }  else {
+const updateUser = async(id, body) => {
 
-            await userEncontrado.update({name, surname, email, phone, password,address}) 
-            // await userEncontrado.save()
-            return userEncontrado
-    
+    const userEncontrado = await User.findByPk(id) 
+
+    let valores = Object.values(body)
+    for (let i = 0; i< valores.length; i++) {
+        if(!valores[i].length) {
+            return "No puedne estar vacios"
+        }
     }
 
-    // console.log(userEncontrado);
+    await userEncontrado.update(body)
+    
+    return userEncontrado
 }
 
 
