@@ -1,6 +1,7 @@
 const { getProduct } = require("../controllers/ProductController/getProduct")
 const { getProductById } = require("../controllers/ProductController/getProductById")
 const { createProduct } = require("../controllers/ProductController/postProduct")
+const { deleteProduct } = require("../controllers/ProductController/deleteProduct")
 
 const postProductHandler = async(req, res) => {
     try {
@@ -33,9 +34,20 @@ const getProductByIdHandler = async(req, res) => {
         
     }
 }
+const deleteProductHandler = async (req,res) => {
+    try {
+        const { id } = req.params
+        const deleted = await deleteProduct(+id)
+        
+        res.status(200).send("Product  has deleted💥💥")
+    } catch (error) {
+        res.status(400).json({error: error.message})   
+    }
+}
 
 module.exports = {
     postProductHandler,
     getProductHandler,
-    getProductByIdHandler
+    getProductByIdHandler,
+    deleteProductHandler
 }

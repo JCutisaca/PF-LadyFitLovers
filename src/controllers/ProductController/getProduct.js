@@ -2,7 +2,11 @@ const { Product } = require('../../db')
 
 const getProduct = async() => {
     const allProduct = await Product.findAll()
-    console.log("esto", allProduct);
+    
+    if (!allProduct) {
+        throw new Error("there are no products");
+      }
+
     return allProduct
 }
 
