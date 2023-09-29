@@ -2,12 +2,27 @@ const { getUser } = require("../controllers/UserController/getUser");
 const { getUSerByID } = require("../controllers/UserController/getUserById");
 const { postUser } = require("../controllers/UserController/postUser");
 const {deleteUser}= require("../controllers/UserController/deleteUser")
+require("dotenv").config();
+const { JWT_SECRET } = process.env;
+const jwt = require("jsonwebtoken");
+
+
+//Generar el TOKEN
+function generateToken(user) {
+    const token = jwt.sign({ userId: user.id }, JWT_SECRET, {
+      expiresIn: "1h",
+    });
+    return token;
+  }
 
 
 const postUserHandler = async (req, res) => {
     try {
         const user = await postUser(req.body);
-        res.status(201).json(user)
+        // Generar un token JWT para el usuario
+        const token = generateToken(user);
+
+        res.status(201).json({ message: `User Created: ${user.name}`, token });
     } catch (error) {
         res.status(400).json({error: error.message})
     }
