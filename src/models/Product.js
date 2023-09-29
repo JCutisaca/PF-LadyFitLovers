@@ -22,16 +22,17 @@ module.exports = (sequelize) => {
         type: DataTypes.FLOAT,
         allownull: false,
       },
-      sales: {
+      unitsSold: {
         type: DataTypes.INTEGER,
         allownull: false,
+        defaultValue: 0
       },
       stock: {
         type: DataTypes.ARRAY(DataTypes.JSONB),
         allownull: false,
         defaultValue: [],
       },
-      onSale: {
+      priceOnSale: {
         type: DataTypes.FLOAT,
       },
     },

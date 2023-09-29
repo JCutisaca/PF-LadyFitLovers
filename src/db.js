@@ -28,9 +28,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 const { User, Product, Category } = sequelize.models;
 
-
-// User.belongsTo(Product);
-// Category.belongsTo(Product); 
+Product.belongsTo(Category);
+Category.hasMany(Product);
 
 module.exports = {
     ...sequelize.models,
