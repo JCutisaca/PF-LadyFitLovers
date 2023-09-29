@@ -48,8 +48,8 @@ const deleteProductHandler = async (req,res) => {
 
 const postCategoryHandler = async (req, res) => {
     try {
-        const category = await postCategory(req.body)
-        res.status(201).json(category)
+        const newCategory = await postCategory(req.body)
+        res.status(201).json(newCategory)
     } catch (error) {
         res.status(400).json({error: error.message})
     }
