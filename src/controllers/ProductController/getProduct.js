@@ -1,8 +1,12 @@
 const { Product } = require('../../db')
 
 const getProduct = async() => {
-    const allProduct = await Product.findAll({attributes: { exclude: ['onSale'] },})
-    console.log("esto", allProduct);
+    const allProduct = await Product.findAll()
+    
+    if (!allProduct) {
+        throw new Error("there are no products");
+      }
+
     return allProduct
 }
 

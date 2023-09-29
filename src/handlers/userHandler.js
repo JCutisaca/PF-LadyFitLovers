@@ -1,6 +1,8 @@
 const { getUser } = require("../controllers/UserController/getUser");
 const { getUSerByID } = require("../controllers/UserController/getUserById");
-const postUser = require("../controllers/UserController/postUser");
+const { postUser } = require("../controllers/UserController/postUser");
+const {deleteUser}= require("../controllers/UserController/deleteUser");
+// const { updateProduct } = require("../controllers/ProductController/updateProduct");
 
 
 const postUserHandler = async (req, res) => {
@@ -29,10 +31,29 @@ const getUserByIDHandler = async(req, res) => {
         res.status(400).json({error: error.message})    
     }
 }
+const deleteUserHandler = async (req, res) => {
+    try {
+        const { id } = req.params;
+        await deleteUser(id);
 
+        res.status(200).send("User  has deleted💥💥")
+    } catch (error) {
+        res.status(400).json({error: error.message})   
+    }
+}
+
+// const updateProductHandler = async (req, res) =>{
+//     try {
+//         const {name} = req.body
+//         await updateProduct(req.params, name)
+//     } catch (error) {
+        
+//     }
+// } 
 
 module.exports = {
     postUserHandler,
     getUserHandler,
-    getUserByIDHandler
+    getUserByIDHandler,
+    deleteUserHandler,
 }
