@@ -31,7 +31,7 @@ const createProduct = async (productsArray) => {
 
     createdProducts.push(create);
   }
-  return "Se craron los productos";
+  return "Se crearon los productos";
 };
 
 module.exports = {
