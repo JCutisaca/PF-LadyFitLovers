@@ -6,7 +6,7 @@ const getProductByName = async ({ name }) => {
   const resultados = await Product.findAll({
     where: {
       name: {
-        [Op.like]: `${name}%`,
+        [Op.iLike]: `${name}%`,
       },
     },
     include: [{ model: Category, attributes: { exclude: ['CategoryId'] } }],
