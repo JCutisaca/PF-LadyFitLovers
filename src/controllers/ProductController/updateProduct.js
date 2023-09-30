@@ -12,7 +12,7 @@ const updateProduct = async ({ id, name, image, price, unitsSold, stock, priceOn
             exclude: ['CategoryId']
         }
     })
-    // if (!product) throw Error('No se encontro el producto')
+    if (!product) throw Error('No se encontro el producto')
 
     const updateFields = await Product.update({
         name: name ? name : product.name,
