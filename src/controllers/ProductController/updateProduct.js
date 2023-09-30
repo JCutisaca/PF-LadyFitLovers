@@ -1,35 +1,45 @@
-const { Product, Category } = require('../../db')
+const { Product, Category } = require('../../db');
+const { getProductById } = require('./getProductById');
 
-const updateProduct = async(id, body) => {
-    // console.log("aca", id);
-    // console.log("por body", name);
-    const productByID = await Product.findOne({
+const updateProduct = async ({ id, name, image, price, unitsSold, stock, priceOnSale, category }) => {
+
+    if (!id) throw Error("Es necesario el id")
+
+    if (!(name || image || price || unitsSold || stock)) throw Error("Faltan datos");
+
+    const product = await Product.findOne({
+        where: { id }, include: [Category], attributes: {
+            exclude: ['CategoryId']
+        }
+    })
+    // if (!product) throw Error('No se encontro el producto')
+
+    const updateFields = await Product.update({
+        name: name ? name : product.name,
+        image: image ? image : product.image,
+        price: price ? price : product.price,
+        unitsSold: unitsSold ? unitsSold : product.unitsSold,
+        stock: stock ? stock : product.stock,
+        priceOnSale: priceOnSale ? priceOnSale : null
+    },
+        { where: { id: id } }
+    )
+
+    if (category) {
+        const newCategory = await Category.findOne({ where: { id: category.id } })
+        if (!newCategory) throw Error('No existe la categoria seleccionada')
+        await product.setCategory(newCategory);
+    }
+
+    await product.update(updateFields);
+
+    const newProductUpdate = await Product.findOne({
         where: { id }, include: [Category], attributes: {
             exclude: ['CategoryId']
         }
     })
 
-    // console.log(body.category);
-        const category = await Category.findOne({where: {name: body.category.name}})
-        console.log(category);
-
-    await productByID.setCategorie(category)
-
-    // console.log(body.category);
-    // let productModificado 
-    // if(body.category) {
-    //     delete productByID.Category
-    //     // console.log("entre");
-    //     // productModificado = await productByID.update(category)
-    // }
-    return productByID
-
-
-
-if(body.Cartegory) {
-}
-
-    // console.log(productByID);
+    return newProductUpdate;
 }
 
 module.exports = {

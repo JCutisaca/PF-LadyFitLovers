@@ -68,16 +68,11 @@ const getProductFilterHandler = async (req, res) => {
     }
 }
 
-const updateProductHandler = async(req, res) => {
+const updateProductHandler = async (req, res) => {
     try {
-        const { id } = req.params
-        const respuesta = await updateProduct(id, req.body)
-        res.status(200).json(respuesta);
-        
-        
-        
+        const response = await updateProduct(req.body)
+        res.status(200).json(response); 
     } catch (error) {
-        
         res.status(400).json({error: error.message})
     }
 }

@@ -8,7 +8,7 @@ productRouter.post("/create", postProductHandler)
 productRouter.get("/allProducts", getProductHandler)
 productRouter.get("/filter", getProductFilterHandler)
 productRouter.get("/name", getProductByNameHandler)
-productRouter.put("/update/:id", updateProductHandler)
+productRouter.put("/update", updateProductHandler)
 productRouter.get("/:id", getProductByIdHandler)
 productRouter.delete("/delete/:id", deleteProductHandler)
 
