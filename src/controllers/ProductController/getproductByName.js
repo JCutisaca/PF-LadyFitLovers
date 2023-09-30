@@ -7,7 +7,7 @@ const getProductByName = async ({ name }) => {
     where: {
       name: {
         [Op.iLike]: `${name}%`,
-      },
+      }
     },
     include: [{ model: Category, attributes: { exclude: ['CategoryId'] } }],
     attributes: { exclude: ['CategoryId'] },

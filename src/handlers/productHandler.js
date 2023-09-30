@@ -82,9 +82,9 @@ const updateProductHandler = async(req, res) => {
     }
 }
 
-const getProductByNameHandler = (req, res) => {
+const getProductByNameHandler = async (req, res) => {
     try {
-        const respuesta = getProductByName(req.query)
+        const respuesta = await getProductByName(req.query)
         res.status(200).json(respuesta)
     } catch (error) {
         res.status(400).json({error: error.message})
