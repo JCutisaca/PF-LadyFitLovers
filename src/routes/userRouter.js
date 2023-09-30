@@ -7,6 +7,5 @@ userRouter.get("/allUsers", getUserHandler)
 userRouter.put("/update/:id", updateUserHandler)
 userRouter.get("/:id", getUserByIDHandler)
 userRouter.delete("/delete/:id", deleteUserHandler)
-// userRouter.put("/:id", updateUserHandler)
 
 module.exports = userRouter
