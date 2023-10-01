@@ -1,11 +1,9 @@
 const { User } = require('../../db')
 
-const getUSerByID = async({id}) => {
+const getUserByID = async({id}) => {
     if(!id) throw Error("Please provide a valid ID.")
     const userById = await User.findOne({where: {id}})
     return userById
 }
 
-module.exports = {
-    getUSerByID
-}
+module.exports = getUserByID;

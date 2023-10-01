@@ -5,7 +5,7 @@ const userRouter = Router()
 userRouter.post("/login", loginUserHandler)
 userRouter.post("/create", postUserHandler)
 userRouter.get("/allUsers", getUserHandler)
-userRouter.put("/update/:id", updateUserHandler)
+userRouter.put("/update", updateUserHandler)
 userRouter.get("/:id", getUserByIDHandler)
 userRouter.delete("/delete/:id", deleteUserHandler)
 
