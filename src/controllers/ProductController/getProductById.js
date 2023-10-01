@@ -1,6 +1,7 @@
 const { Product, Category } = require('../../db')
 
 const getProductById = async ({ id }) => {
+    if(!id) throw Error("Please provide a valid ID.")
     const productByID = await Product.findOne({
         where: { id }, include: [Category], attributes: {
             exclude: ['CategoryId']
@@ -8,7 +9,7 @@ const getProductById = async ({ id }) => {
     })
 
     if (!productByID) {
-        throw new Error("Product no encontrado");
+        throw new Error("Product not found.");
     }
     return productByID
 }

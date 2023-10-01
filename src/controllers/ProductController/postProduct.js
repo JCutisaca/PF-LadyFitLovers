@@ -7,7 +7,7 @@ const createProduct = async (productsArray) => {
     const { name, image, price, unitsSold, stock, priceOnSale, category } = productData;
 
     if (!(name || image || price || unitsSold || stock || category)) {
-      throw Error("Faltan datos");
+      throw Error("Data is missing for some products.");
     }
     const findCategory = await Category.findOne({
       where: {
@@ -16,7 +16,7 @@ const createProduct = async (productsArray) => {
     });
 
     if (!findCategory) {
-      throw Error('Falta seleccionar la categoría');
+      throw Error("Category selection is missing.");
     }
     const create = await Product.create({
       name: name,
@@ -31,7 +31,7 @@ const createProduct = async (productsArray) => {
 
     createdProducts.push(create);
   }
-  return "Se crearon los productos";
+  return "Products have been created.";
 };
 
 module.exports = {

@@ -2,7 +2,7 @@ const { Op } = require('sequelize');
 const { Product, Category } = require('../../db');
 
 const getProductByName = async ({ name }) => {
-  if (!name) throw Error('No se recibió ningún parámetro');
+  if (!name) throw Error('Name parameter is required.');
   const resultados = await Product.findAll({
     where: {
       name: {
