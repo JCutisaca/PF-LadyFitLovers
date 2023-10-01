@@ -3,16 +3,16 @@ const { getProductById } = require('./getProductById');
 
 const updateProduct = async ({ id, name, image, price, unitsSold, stock, priceOnSale, category }) => {
 
-    if (!id) throw Error("Es necesario el id")
+    if (!id) throw Error("Please provide a valid ID.")
 
-    if (!(name || image || price || unitsSold || stock)) throw Error("Faltan datos");
+    if (!(name || image || price || unitsSold || stock)) throw Error("Data is missing for updating the product.");
 
     const product = await Product.findOne({
         where: { id }, include: [Category], attributes: {
             exclude: ['CategoryId']
         }
     })
-    if (!product) throw Error('No se encontro el producto')
+    if (!product) throw Error("Product not found.")
 
     const updateFields = await Product.update({
         name: name ? name : product.name,
@@ -27,7 +27,7 @@ const updateProduct = async ({ id, name, image, price, unitsSold, stock, priceOn
 
     if (category) {
         const newCategory = await Category.findOne({ where: { id: category.id } })
-        if (!newCategory) throw Error('No existe la categoria seleccionada')
+        if (!newCategory) throw Error("Selected category does not exist.")
         await product.setCategory(newCategory);
     }
 

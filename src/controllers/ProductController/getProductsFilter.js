@@ -2,7 +2,7 @@ const { Product, Category } = require('../../db');
 const { getProduct } = require('./getProduct');
 
 const getProductsFilter = async (size, color, sort) => {
-    if(size || color || sort) throw Error('Se requieren parametos')
+    if(size || color || sort) throw Error('Parameters are required for filtering.')
     let allProducts = await getProduct()
     if (size) {
       allProducts = allProducts.filter(product => {

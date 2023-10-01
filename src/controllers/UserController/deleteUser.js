@@ -2,14 +2,15 @@ const { where } = require('sequelize');
 const { User } = require('../../db')
 
 const deleteUser = async (id) => {
+    if(!id) throw Error("Please provide a valid ID.")
     const userFound = await User.findOne({ where: { id } })
     if (!userFound) {
-        throw new Error("Usuario no encontrado");
-      }
-     
-   await User.destroy({ where: { id } });
+        throw new Error("User not found.");
+    }
 
-return 
+    await User.destroy({ where: { id } });
+
+    return "User has been deleted successfully.";
 }
 
 module.exports = {

@@ -6,7 +6,7 @@ const { JWT_SECRET } = process.env;
 
 const postUser = async ({ name, surname, email, phone, password, address, typeUser }) => {
 
-  if (!(name || surname || email || password)) throw Error("Faltan datos")
+  if (!(name || surname || email || password)) throw Error("Required data is missing. Please provide name, surname, email, and password.")
 
   const hashedPassword = await bcrypt.hash(password, 10);
   const [user, created] = await User.findOrCreate({
@@ -20,7 +20,7 @@ const postUser = async ({ name, surname, email, phone, password, address, typeUs
       address: address ? address : null
     }
   })
-  if (!created) throw Error("Ya existe xd")
+  if (!created) throw Error("User with the provided information already exists.")
   const {id} = user.dataValues;
   const token = jwt.sign({id}, JWT_SECRET )
   return ({ message: `User Created: ${user.name}`, token });

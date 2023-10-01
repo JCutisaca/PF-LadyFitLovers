@@ -6,7 +6,7 @@ const getProduct = async() => {
       }})
     
     if (!allProduct) {
-        throw new Error("there are no products");
+        throw new Error("There are no products");
       }
 
     return allProduct
