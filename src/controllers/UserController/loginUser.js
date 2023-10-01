@@ -5,7 +5,7 @@ const { JWT_SECRET } = process.env;
 
 const loginUser = async ({ email, password }) => {
     const findUser = await User.findOne({ where: { email } })
-    if (!findUser) throw Error("User not found")
+    if (!findUser) throw Error("User not found.")
     const { id } = findUser.dataValues;
     const validatePass = await bcrypt.compare(password, findUser.dataValues.password)
     if (!validatePass) throw Error("Invalid password. Please check your password and try again.")

@@ -3,10 +3,6 @@ const { getUSerByID } = require("../controllers/UserController/getUserById");
 const { postUser } = require("../controllers/UserController/postUser");
 const { updateUser } = require("../controllers/UserController/updateUser");
 const {deleteUser}= require("../controllers/UserController/deleteUser")
-
-require("dotenv").config();
-const { JWT_SECRET } = process.env;
-const jwt = require("jsonwebtoken");
 const loginUser = require("../controllers/UserController/loginUser");
 
 // function generateToken(user) {
