@@ -11,7 +11,8 @@ const updateCategoryName = async ({ id, name }) => {
     },
         { where: { id } }
     )
-    return updateCategory;
+    const newCategory = await Category.findOne({ where: { id } })
+    return newCategory;
 }
 
 module.exports = updateCategoryName;
