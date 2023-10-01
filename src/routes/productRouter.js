@@ -1,8 +1,9 @@
 const { Router } = require("express");
-const { postProductHandler, getProductHandler, getProductByIdHandler, deleteProductHandler, postCategoryHandler, getProductFilterHandler, updateProductHandler, getProductByNameHandler } = require("../handlers/productHandler");
+const { postProductHandler, getProductHandler, getProductByIdHandler, deleteProductHandler, postCategoryHandler, getProductFilterHandler, updateProductHandler, getProductByNameHandler, getAllCategoriesHandler } = require("../handlers/productHandler");
 const productRouter = Router()
 
 productRouter.post("/category", postCategoryHandler)
+productRouter.get("/allCategories", getAllCategoriesHandler)
 
 productRouter.post("/create", postProductHandler)
 productRouter.get("/allProducts", getProductHandler)
