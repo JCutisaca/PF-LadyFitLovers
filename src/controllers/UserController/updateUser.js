@@ -7,7 +7,7 @@ const updateUser = async ({ id, name, surname, email, phone, password, address, 
     if (!id) throw Error("Please provide a valid ID.")
     if (!(name || surname || email || phone || password || address || typeUser)) throw Error("Please specify the information you want to update.")
     const findUser = await User.findOne({ where: { id } })
-    if (!findUser) throw Error("USer not found.")
+    if (!findUser) throw Error("User not found.")
     const update = await User.update({
         name: name ? name : findUser.name,
         surname: surname ? surname : findUser.surname,
