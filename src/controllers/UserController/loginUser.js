@@ -10,7 +10,7 @@ const loginUser = async ({ email, password }) => {
     const validatePass = await bcrypt.compare(password, findUser.dataValues.password)
     if (!validatePass) throw Error("Invalid password. Please check your password and try again.")
     const token = jwt.sign({ id, email }, JWT_SECRET)
-    return ({message: token})
+    return ({idUser: id, token})
 }
 
 module.exports = loginUser;
