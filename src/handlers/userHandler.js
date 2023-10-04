@@ -4,6 +4,7 @@ const { updateUser } = require("../controllers/UserController/updateUser");
 const { deleteUser } = require("../controllers/UserController/deleteUser")
 const loginUser = require("../controllers/UserController/loginUser");
 const getUserByID = require("../controllers/UserController/getUserById");
+const userLoginGoogle = require("../controllers/UserController/userLoginGoogle");
 
 // function generateToken(user) {
 //     const token = jwt.sign({ userId: user.id }, JWT_SECRET, {
@@ -24,6 +25,15 @@ const postUserHandler = async (req, res) => {
 const loginUserHandler = async (req, res) => {
     try {
         const user = await loginUser(req.body)
+        res.status(200).json(user)
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+}
+
+const userLoginGoogleHandler = async (req, res) => {
+    try {
+        const user = await userLoginGoogle(req.body)
         res.status(200).json(user)
     } catch (error) {
         res.status(400).json({ error: error.message })
@@ -75,5 +85,6 @@ module.exports = {
     getUserByIDHandler,
     deleteUserHandler,
     updateUserHandler,
-    loginUserHandler
+    loginUserHandler,
+    userLoginGoogleHandler
 }
