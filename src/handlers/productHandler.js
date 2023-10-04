@@ -9,6 +9,7 @@ const { getProductByName } = require("../controllers/ProductController/getproduc
 const getAllCategories = require("../controllers/ProductController/getAllCategories")
 const updateCategoryName = require("../controllers/ProductController/updateCategoryName")
 
+
 const postProductHandler = async (req, res) => {
     try {
         const product = await createProduct(req.body)
@@ -21,7 +22,7 @@ const postProductHandler = async (req, res) => {
 
 const getProductHandler = async (req, res) => {
     try {
-
+        
         const allProduct = await getProduct()
         res.status(201).json(allProduct)
     } catch (error) {
@@ -46,7 +47,7 @@ const deleteProductHandler = async (req, res) => {
         const { id } = req.params
         const deleted = await deleteProduct(+id)
 
-        res.status(200).send("Product  has deleted💥💥")
+        res.status(200).send("💥Product has been deleted💥")
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
