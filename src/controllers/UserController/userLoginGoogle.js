@@ -33,7 +33,7 @@ const userLoginGoogle = async ({ accessToken, profileObj }) => {
         })
         const { id } = newUser.dataValues;
         const token = jwt.sign({ id }, JWT_SECRET)
-        return ({ message: `User Created: ${newUser.name}`, token });
+        return ({ message: `User Created: ${newUser.name}`, token, idUser: id });
     }
     const { id, email } = findUser.dataValues;
     const token = jwt.sign({ id, email }, JWT_SECRET)
