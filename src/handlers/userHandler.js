@@ -2,7 +2,6 @@ const { deleteUser } = require("../controllers/UserController/deleteUser");
 const { getUser } = require("../controllers/UserController/getUser");
 const { postUser } = require("../controllers/UserController/postUser");
 const { updateUser } = require("../controllers/UserController/updateUser");
-const { deleteUser } = require("../controllers/UserController/deleteUser")
 const loginUser = require("../controllers/UserController/loginUser");
 const getUserByID = require("../controllers/UserController/getUserById");
 const userLoginGoogle = require("../controllers/UserController/userLoginGoogle");
