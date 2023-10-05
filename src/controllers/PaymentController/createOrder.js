@@ -29,10 +29,9 @@ const createOrder = async (products) => {
         },
         notification_url: "https://9197-190-122-197-186.ngrok-free.app/payment/webhook"
     }
-
     const order = await mercadopago.preferences.create(preference);
-    console.log(order);
-    return {order, products};
+
+    return order;
 }
 
 module.exports = createOrder;

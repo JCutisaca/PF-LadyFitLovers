@@ -16,7 +16,7 @@ const successHandler = async (req, res) => {
         console.log(req.body);
         // const products = req.query.products;
 
-        return res.status(200).send(req.body)
+        return res.status(200).send(req.query)
     } catch (error) {
         res.status(404).json({error: error.message})
     }
@@ -34,7 +34,7 @@ const updateStockHandler = async (req, res) => {
 const webhookHandler = async (req, res) => {
     try {
         console.log(req.query);
-        res.status(200).send("Procesando pago.")
+        res.status(200).send(req.query)
     } catch (error) {
         res.status(404).json({error: error.message})
     }
