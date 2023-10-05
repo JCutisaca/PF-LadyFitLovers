@@ -12,11 +12,11 @@ const createOrderHandler = async (req, res) => {
 
 const successHandler = async (req, res) => {
     try {
-        // console.log(req.query);
-        console.log(req.body);
-        // const products = req.query.products;
-
-        return res.status(200).send(req.query)
+        console.log(req.query);
+        // console.log(req.body);
+        const response = res;
+        res.status(200).json(response)
+        // res.redirect('http://localhost:5173/')
     } catch (error) {
         res.status(404).json({error: error.message})
     }
