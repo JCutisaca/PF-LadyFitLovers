@@ -29,6 +29,7 @@ const userLoginGoogle = async ({ accessToken, profileObj }) => {
             phone: null,
             password: hashedPassword,
             typeUser: "User",
+            userBan: false,
             address: null
         })
         const { id } = newUser.dataValues;

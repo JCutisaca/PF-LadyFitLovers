@@ -1,11 +1,11 @@
 const { Product, Category } = require('../../db');
 const { getProductById } = require('./getProductById');
 
-const updateProduct = async ({ id, name, image, price, unitsSold, stock, priceOnSale, category }) => {
+const updateProduct = async ({ id, name, image, price, unitsSold, stock, priceOnSale, category, active }) => {
 
     if (!id) throw Error("Please provide a valid ID.")
 
-    if (!(name || image || price || unitsSold || stock)) throw Error("Data is missing for updating the product.");
+    if (!(name || image || price || unitsSold || stock, active)) throw Error("Data is missing for updating the product.");
 
     const product = await Product.findOne({
         where: { id }, include: [Category], attributes: {
@@ -20,6 +20,7 @@ const updateProduct = async ({ id, name, image, price, unitsSold, stock, priceOn
         price: price ? price : product.price,
         unitsSold: unitsSold ? unitsSold : product.unitsSold,
         stock: stock ? stock : product.stock,
+        active: active? active : product.active,
         priceOnSale: priceOnSale ? priceOnSale : null
     },
         { where: { id: id } }

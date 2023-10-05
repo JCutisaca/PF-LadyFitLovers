@@ -27,6 +27,10 @@ module.exports = (sequelize) => {
         allownull: false,
         defaultValue: 0
       },
+      active: {
+        type: DataTypes.BOOLEAN,
+        allownull: false
+      },
       stock: {
         type: DataTypes.ARRAY(DataTypes.JSONB),
         allownull: false,
