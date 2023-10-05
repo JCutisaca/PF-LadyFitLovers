@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
         },
         name: {
             type: DataTypes.STRING,
-            allownull: false, 
+            allownull: false,
         },
         surname: {
             type: DataTypes.STRING,
@@ -30,6 +30,10 @@ module.exports = (sequelize) => {
         },
         typeUser: {
             type: DataTypes.ENUM("Admin", "Moderator", "User"),
+            allownull: false
+        },
+        userBan: {
+            type: DataTypes.BOOLEAN,
             allownull: false
         },
         address: {

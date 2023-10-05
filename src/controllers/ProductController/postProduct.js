@@ -23,6 +23,7 @@ const createProduct = async (productsArray) => {
       image: image,
       price: price,
       unitsSold: unitsSold,
+      active: true,
       stock: stock,
       priceOnSale: priceOnSale ? priceOnSale : null
     });
