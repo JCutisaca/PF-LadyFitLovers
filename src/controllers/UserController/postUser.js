@@ -18,6 +18,7 @@ const postUser = async ({ name, surname, email, phone, password, address, typeUs
       password: hashedPassword,
       typeUser: typeUser ? typeUser : "User",
       userBan: false,
+      image: null,
       address: address ? address : null
     }
   })

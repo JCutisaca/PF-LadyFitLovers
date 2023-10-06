@@ -1,11 +1,10 @@
 const { User } = require('../../db');
-const getUserByID = require('./getUserById');
 const bcrypt = require('bcryptjs')
 
-const updateUser = async ({ id, name, surname, email, phone, password, address, typeUser, userBan }) => {
+const updateUser = async ({ id, name, surname, email, phone, password, address, typeUser, userBan, image }) => {
 
     if (!id) throw Error("Please provide a valid ID.")
-    if (!(name || surname || email || phone || password || address || typeUser || userBan !== undefined)) throw Error("Please specify the information you want to update.")
+    if (!(name || surname || email || phone || password || address || typeUser || image || userBan !== undefined)) throw Error("Please specify the information you want to update.")
     const findUser = await User.findOne({ where: { id } })
     if (!findUser) throw Error("User not found.")
     const updatedUserBan = userBan !== undefined ? userBan : findUser.userBan;
@@ -17,6 +16,7 @@ const updateUser = async ({ id, name, surname, email, phone, password, address, 
         password: password ? await bcrypt.hash(password, 10) : findUser.password,
         address: address ? address : findUser.address,
         userBan: updatedUserBan,
+        image: image ? image : findUser.image,
         typeUser: typeUser ? typeUser : "User"
     },
         { where: { id } }

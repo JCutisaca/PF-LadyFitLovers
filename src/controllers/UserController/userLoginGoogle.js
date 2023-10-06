@@ -30,6 +30,7 @@ const userLoginGoogle = async ({ accessToken, profileObj }) => {
             password: hashedPassword,
             typeUser: "User",
             userBan: false,
+            image: null,
             address: null
         })
         const purchaseHistory = await PurchaseHistory.create({});
