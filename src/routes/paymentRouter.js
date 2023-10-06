@@ -6,7 +6,6 @@ const paymentRouter = Router()
 
 paymentRouter.post("/createOrder", createOrderHandler)
 paymentRouter.get("/success", successHandler)
-// paymentRouter.post("/success", updateStockHandler)
 paymentRouter.post("/webhook", webhookHandler)
 
 

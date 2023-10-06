@@ -1,5 +1,5 @@
 const mercadopago = require('mercadopago')
-const { PROD_ACCESS_TOKEN } = process.env
+const { PROD_ACCESS_TOKEN, URL_SV } = process.env
 const axios = require('axios')
 
 
@@ -23,11 +23,11 @@ const createOrder = async (products) => {
     let preference = {
         items,
         back_urls: {
-            success: "http://localhost:3001/payment/success",
-            failure: "http://localhost:3001/payment/webhook",
-            pending: "http://localhost:3001/payment/pending"
+            success: `${URL_SV}/payment/success`,
+            failure: `${URL_SV}/payment/webhook`,
+            pending: `${URL_SV}/payment/pending`
         },
-        notification_url: "https://9197-190-122-197-186.ngrok-free.app/payment/webhook"
+        notification_url: `${URL_SV}/payment/webhook`
     }
     const order = await mercadopago.preferences.create(preference);
 
