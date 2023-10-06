@@ -1,4 +1,5 @@
 const addProductFav = require("../controllers/FavController/addProductFav")
+const removeProductFav = require("../controllers/FavController/removeProductFav")
 
 
 const addProductFavHandler = async (req, res) => {
@@ -10,6 +11,16 @@ const addProductFavHandler = async (req, res) => {
     }
 }
 
+const removeProductFavHandler = async (req, res) => {
+    try {
+        const remove = await removeProductFav(req.body)
+        res.status(200).json(remove)
+    } catch (error) {
+        res.status(404).json({ error: error.message })
+    }
+}
+
 module.exports = {
-    addProductFavHandler
+    addProductFavHandler,
+    removeProductFavHandler
 }
