@@ -42,6 +42,8 @@ Category.hasMany(Product);
 User.hasOne(PurchaseHistory);
 PurchaseHistory.belongsTo(User);
 
+User.belongsToMany(Product, { through: 'FavoriteProduct', as: 'FavoriteProducts' });
+Product.belongsToMany(User, { through: 'FavoriteProduct', as: 'FavoritedBy' });
 
 
 module.exports = {
