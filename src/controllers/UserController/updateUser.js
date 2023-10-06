@@ -17,7 +17,7 @@ const updateUser = async ({ id, name, surname, email, phone, password, address, 
         address: address ? address : findUser.address,
         userBan: updatedUserBan,
         image: image ? image : findUser.image,
-        typeUser: typeUser ? typeUser : "User"
+        typeUser: typeUser ? typeUser : findUser.typeUser
     },
         { where: { id } }
     )
