@@ -5,7 +5,7 @@ const updateProduct = async ({ id, name, image, price, unitsSold, stock, priceOn
 
     if (!id) throw Error("Please provide a valid ID.")
 
-    if (!(name || image || price || unitsSold || stock, active)) throw Error("Data is missing for updating the product.");
+    if (!(name || image || price || unitsSold || stock || active !== undefined)) throw Error("Data is missing for updating the product.");
 
     const product = await Product.findOne({
         where: { id }, include: [Category], attributes: {
@@ -13,14 +13,14 @@ const updateProduct = async ({ id, name, image, price, unitsSold, stock, priceOn
         }
     })
     if (!product) throw Error("Product not found.")
-
+    const updatedActive = active !== undefined ? active : product.active;
     const updateFields = await Product.update({
         name: name ? name : product.name,
         image: image ? image : product.image,
         price: price ? price : product.price,
         unitsSold: unitsSold ? unitsSold : product.unitsSold,
         stock: stock ? stock : product.stock,
-        active: active? active : product.active,
+        active: updatedActive,
         priceOnSale: priceOnSale ? priceOnSale : null
     },
         { where: { id: id } }

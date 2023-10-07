@@ -1,4 +1,4 @@
-const { User, PurchaseHistory } = require('../../db')
+const { User, PurchaseHistory, Cart } = require('../../db')
 const bcrypt = require("bcryptjs");
 const jwt = require('jsonwebtoken')
 const { JWT_SECRET } = process.env;
@@ -25,6 +25,8 @@ const postUser = async ({ name, surname, email, phone, password, address, typeUs
   if (!created) throw Error("User with the provided information already exists.")
   const purchaseHistory = await PurchaseHistory.create({});
   await user.setPurchaseHistory(purchaseHistory);
+  const cartUser = await Cart.create({});
+  await user.setCart(cartUser);
   const {id} = user.dataValues;
   const token = jwt.sign({id}, JWT_SECRET )
   return ({ message: `User Created: ${user.name}`, token });
