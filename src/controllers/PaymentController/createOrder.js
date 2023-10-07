@@ -7,7 +7,7 @@ mercadopago.configure({
     access_token: PROD_ACCESS_TOKEN
 })
 
-const createOrder = async (products) => {
+const createOrder = async ({ products }) => {
     const items = products.map(product => {
         return {
             id: product.id,
