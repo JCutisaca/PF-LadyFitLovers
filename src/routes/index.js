@@ -5,9 +5,11 @@ const paymentRouter = require('./paymentRouter');
 const purchaseHistoryRouter = require('./purchaseHistoryRouter');
 const favoriteRouter = require('./favoriteRouter');
 const cartRouter = require('./cartRouter');
+const reviewRouter = require('./reviewRouter');
 
 const router = Router()
 
+router.use("/review", reviewRouter)
 router.use("/user", userRouter)
 router.use("/product", productRouter)
 router.use("/purchase", purchaseHistoryRouter)
