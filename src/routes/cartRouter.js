@@ -5,6 +5,6 @@ const cartRouter = Router();
 
 cartRouter.put("/clean", cleanProductsCartHandler)
 cartRouter.put("/add", postProductsCartHandler)
-cartRouter.put("/user", getCartByUserIdHandler)
+cartRouter.get("/user/:userId", getCartByUserIdHandler)
 
 module.exports = cartRouter;

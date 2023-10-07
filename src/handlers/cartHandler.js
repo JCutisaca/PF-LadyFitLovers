@@ -5,7 +5,7 @@ const postProductsCart = require("../controllers/CartController/postProdutcsCart
 
 const cleanProductsCartHandler = async (req, res) => {
     try {
-        const cleanCart = await cleanProductsCart()
+        const cleanCart = await cleanProductsCart(req.body)
         res.status(200).json(cleanCart)
     } catch (error) {
         res.status(404).json({error: error.message})
@@ -13,8 +13,8 @@ const cleanProductsCartHandler = async (req, res) => {
 }
 const getCartByUserIdHandler = async (req, res) => {
     try {
-        const cartUser = await getCartByUserId(req.body)
-        return cartUser;
+        const cartUser = await getCartByUserId(req.params)
+        res.status(200).json(cartUser)
     } catch (error) {
         res.status(404).json({error: error.message})
     }
