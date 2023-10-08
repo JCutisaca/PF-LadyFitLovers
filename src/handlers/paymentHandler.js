@@ -20,6 +20,26 @@ const successHandler = async (req, res) => {
         res.status(404).json({ error: error.message })
     }
 }
+const failureHandler = async (req, res) => {
+    try {
+        const info = req.query;
+        const infoJSON = JSON.stringify(info);
+        // res.status(200).redirect(`https://frontend-ladyfitlovers.vercel.app/paymentState/?data=${encodeURIComponent(infoJSON)}`);
+        res.status(200).redirect(`http://localhost:5173/paymentState/?data=${encodeURIComponent(infoJSON)}`);
+    } catch (error) {
+        res.status(404).json({ error: error.message })
+    }
+}
+const pendingHandler = async (req, res) => {
+    try {
+        const info = req.query;
+        const infoJSON = JSON.stringify(info);
+        // res.status(200).redirect(`https://frontend-ladyfitlovers.vercel.app/paymentState/?data=${encodeURIComponent(infoJSON)}`);
+        res.status(200).redirect(`http://localhost:5173/paymentState/?data=${encodeURIComponent(infoJSON)}`);
+    } catch (error) {
+        res.status(404).json({ error: error.message })
+    }
+}
 
 const updateStockHandler = async (req, res) => {
     try {
@@ -32,17 +52,18 @@ const updateStockHandler = async (req, res) => {
 
 const webhookHandler = async (req, res) => {
     try {
-        console.log(req.body);
         const transactionId = req.query.id;
-
         res.status(200).json({ message: 'Pago aprobado exitosamente', transactionId });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 }
+
 module.exports = {
     createOrderHandler,
     successHandler,
     webhookHandler,
-    updateStockHandler
+    updateStockHandler,
+    failureHandler,
+    pendingHandler
 }
