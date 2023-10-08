@@ -31,7 +31,7 @@ const createOrder = async ({ products }) => {
         items,
         back_urls: {
             success: `${URL_SV}/payment/success`,
-            failure: `${URL_SV}/payment/webhook`,
+            failure: `${URL_SV}/payment/failure`,
             pending: `${URL_SV}/payment/pending`
         },
         notification_url: `${URL_SV}/payment/webhook`
