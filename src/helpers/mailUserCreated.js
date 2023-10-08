@@ -4,11 +4,12 @@ const { google } = require('googleapis')
 
 const OAuth2 = google.auth.OAuth2
 
-const oAuth2Client = new OAuth2(
-  process.env.NODE_CLIENT_ID,
-  process.env.CLIENT_SECRET,
-  'https://developers.google.com/oauthplayground'
-)
+const mailUserCreated = async (email) => {
+    const oAuth2Client = new OAuth2(
+    process.env.NODE_CLIENT_ID,
+    process.env.CLIENT_SECRET,
+    'https://developers.google.com/oauthplayground'
+    )
 
 oAuth2Client.setCredentials({
   refresh_token: process.env.REFRESH_TOKEN,
@@ -17,7 +18,7 @@ oAuth2Client.setCredentials({
   },
 })
 
-const accessToken = oAuth2Client.getAccessToken()
+const accessToken = await oAuth2Client.getAccessToken()
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -36,5 +37,22 @@ const transporter = nodemailer.createTransport({
 });
 ;
 
+const mailObject = {
+    from: process.env.EMAIL,
+    to: email,
+    subject: 'Bienvenido',
+    text: 'Bienvenido a LadyFitLovers' // Cambiado 'body' a 'text'
+};
 
-module.exports = transporter
+const result = await transporter.sendMail(mailObject, function(err, data) {
+    if (err) {
+      console.log("Error " + err);
+    } else {
+      console.log("Email sent successfully");
+    }
+  })
+  
+  return result 
+}
+
+module.exports = mailUserCreated
