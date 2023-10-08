@@ -1,6 +1,6 @@
 const mercadopago = require('mercadopago')
 const { PROD_ACCESS_TOKEN, URL_SV } = process.env
-const axios = require('axios')
+const { getProductById } = require('../ProductController/getProductById')
 
 
 mercadopago.configure({
@@ -8,6 +8,13 @@ mercadopago.configure({
 })
 
 const createOrder = async ({ products }) => {
+
+    for (const product of products) {
+        const productDB = await getProductById({id: product.id})
+        if (!productDB) throw Error(`Product with ID ${product.id} not found.`)
+        if(product.price !== productDB.price) throw Error(`Price mismatch for product ${product.name}. Please verify the prices.`)
+      }
+
     const items = products.map(product => {
         return {
             id: product.id,

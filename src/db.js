@@ -5,18 +5,18 @@ const fs = require('fs');
 const path = require('path');
 const { DB_DEPLOY } = process.env;
 
-const sequelize = new Sequelize(DB_DEPLOY, {
-    logging: false,
-    native: false,
-});
-// const {
-//   DB_USER, DB_PASSWORD, DB_HOST,
-// } = process.env;
-
-// const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/prueba`, {
-//   logging: false,
-//   native: false,
+// const sequelize = new Sequelize(DB_DEPLOY, {
+//     logging: false,
+//     native: false,
 // });
+const {
+  DB_USER, DB_PASSWORD, DB_HOST,
+} = process.env;
+
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/prueba`, {
+  logging: false,
+  native: false,
+});
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -34,7 +34,7 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { User, Product, Category, PurchaseHistory, Cart } = sequelize.models;
+const { User, Product, Category, PurchaseHistory, Cart, Order } = sequelize.models;
 
 Product.belongsTo(Category);
 Category.hasMany(Product);
@@ -47,6 +47,9 @@ User.hasOne(Cart)
 
 User.belongsToMany(Product, { through: 'FavoriteProduct', as: 'FavoriteProducts' });
 Product.belongsToMany(User, { through: 'FavoriteProduct', as: 'FavoritedBy' });
+
+Order.belongsTo(User); // Una orden pertenece a un usuario
+User.hasMany(Order); // Un usuario puede tener muchas órdenes
 
 
 module.exports = {
