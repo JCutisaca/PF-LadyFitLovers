@@ -1,6 +1,7 @@
 const createOrder = require("../controllers/OrderController/createOrder")
 const getAllOrders = require("../controllers/OrderController/getAllOrders")
 const getAllOrdersByUserId = require("../controllers/OrderController/getAllOrdersByUserId")
+const getOrderById = require("../controllers/OrderController/getOrderById")
 const updateOrderById = require("../controllers/OrderController/updateOrderById")
 
 
@@ -40,9 +41,19 @@ const updateOrderByIdHandler = async (req, res) => {
     }
 }
 
+const getOrderByIdHandler = async (req, res) => {
+    try {
+        const order = await getOrderById(req.params)
+        res.status(200).json(order)
+    } catch (error) {
+        res.status(404).json({ error: error.message })
+    }
+}
+
 module.exports = {
     createOrderHandler,
     getAllOrdersByUserIdHandler,
     getAllOrdersHandler,
-    updateOrderByIdHandler
+    updateOrderByIdHandler,
+    getOrderByIdHandler
 }
