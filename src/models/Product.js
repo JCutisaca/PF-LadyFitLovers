@@ -6,21 +6,21 @@ module.exports = (sequelize) => {
     {
       id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allownull: false,
         primaryKey: true,
         autoIncrement: true,
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allownull: false,
       },
       image: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allownull: false,
       },
       price: {
         type: DataTypes.FLOAT,
-        allowNull: false,
+        allownull: false,
       },
       unitsSold: {
         type: DataTypes.INTEGER,
@@ -33,14 +33,12 @@ module.exports = (sequelize) => {
       },
       stock: {
         type: DataTypes.ARRAY(DataTypes.JSONB),
-        allowNull: false,
+        allownull: false,
         defaultValue: [],
       },
       priceOnSale: {
         type: DataTypes.FLOAT,
-        allowNull: false
       },
-
     },
     { timestamps: true }
   );
