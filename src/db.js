@@ -3,20 +3,14 @@ const { Sequelize } = require("sequelize");
 
 const fs = require('fs');
 const path = require('path');
-const { DB_DEPLOY } = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST} = process.env;
 
 const sequelize = new Sequelize(DB_DEPLOY, {
+//const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/pf`, {
     logging: false,
     native: false,
 });
-// const {
-//   DB_USER, DB_PASSWORD, DB_HOST,
-// } = process.env;
 
-// const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/prueba`, {
-//   logging: false,
-//   native: false,
-// });
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -51,6 +45,8 @@ Product.belongsToMany(User, { through: 'FavoriteProduct', as: 'FavoritedBy' });
 Order.belongsTo(User);
 User.hasMany(Order);
 
+// User.belongsTo(Product, { foreignKey: 'productId' });
+// Category.belongsTo(Product, { foreignKey: 'categoryId' }); // Una categoría puede tener muchos productos
 
 module.exports = {
   ...sequelize.models,
