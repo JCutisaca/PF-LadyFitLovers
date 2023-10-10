@@ -5,10 +5,18 @@ const fs = require('fs');
 const path = require('path');
 const { DB_DEPLOY } = process.env;
 
-const sequelize = new Sequelize(DB_DEPLOY, {
-    logging: false,
-    native: false,
-});
+
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+{ logging: false, native: false, native: false }
+);
+
+
+// const sequelize = new Sequelize(DB_DEPLOY, {
+//     logging: false,
+//     native: false,
+// });
+
 // const {
 //   DB_USER, DB_PASSWORD, DB_HOST,
 // } = process.env;
@@ -34,7 +42,16 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { User, Product, Category, PurchaseHistory } = sequelize.models;
+const { User, Product, Category, PurchaseHistory, Review } = sequelize.models;
+
+
+User.belongsToMany(Review, { through: "userreview", as: "Reviews" });
+Review.belongsToMany(User, { through: "userreview", as: "User" });
+
+Product.belongsToMany(Review, { through: "productreview", as: "Reviews" });
+Review.belongsToMany(Product, { through: "productreview", as: "Product" });
+
+
 
 Product.belongsTo(Category);
 Category.hasMany(Product);
