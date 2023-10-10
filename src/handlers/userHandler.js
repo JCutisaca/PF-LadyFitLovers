@@ -45,30 +45,6 @@ const userLoginGoogleHandler = async (req, res) => {
 const getUserHandler = async (req, res) => {
     try {
         const allUser = await getUser()
-       /*  const result = await transporter.sendMail({
-            from: EMAIL,
-            to: "mati_gochez@hotmail.com",
-            subject: 'Hola!',
-            text: 'Olavarria como estas?'
-        })
-        console.log(result) */
-
-        const mailOptions = {
-            from: EMAIL,
-            to: "mati_gochez@hotmail.com",
-            subject: 'Hola!',
-            text: 'Olavarria como estas?' // Cambiado 'body' a 'text'
-        };
-
-        const result = await transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.error('Error al enviar el correo electrónico:', error);
-            } else {
-                console.log('Correo electrónico de bienvenida enviado:', info.response);
-            }
-        });
-        console.log(result);
-
         res.status(200).json(allUser)
     } catch (error) {
         res.status(400).json({ error: error.message })
