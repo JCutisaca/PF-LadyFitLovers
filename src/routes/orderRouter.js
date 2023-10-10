@@ -4,7 +4,7 @@ const { createOrderHandler, getAllOrdersByUserIdHandler, getAllOrdersHandler, up
 const orderRouter = Router();
 
 orderRouter.post("/create", createOrderHandler)
-orderRouter.get("/allOrders", getAllOrdersHandler)
+orderRouter.get("/allOrders", getAllOrdersHandler) // ruta solo admin
 orderRouter.put("/update", updateOrderByIdHandler)
 orderRouter.get("/id/:id", getOrderByIdHandler)
 orderRouter.get("/user/:userId", getAllOrdersByUserIdHandler)
