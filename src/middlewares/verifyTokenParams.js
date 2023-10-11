@@ -13,7 +13,7 @@ const verifyTokenParams = async (req, res, next) => {
             return next()
         }
         if (req.params && req.params.id !== undefined) {
-            if (tokenVerified.id !== req.params.userId) throw Error('Params ID in the JWT token does not match the requested user ID.')
+            if (tokenVerified.id !== req.params.id) throw Error('Params ID in the JWT token does not match the requested user ID.')
         }
         if (req.params && req.params.userId !== undefined) {
             if (tokenVerified.id !== req.params.userId) throw Error('Params ID in the JWT token does not match the requested user ID.')
