@@ -40,7 +40,7 @@ let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].s
 sequelize.models = Object.fromEntries(capsEntries);
 
 
-const { User, Product, Category, PurchaseHistory, Cart, Order } = sequelize.models;
+const { User, Product, Category, PurchaseHistory, Cart, Order, Review } = sequelize.models;
 
 
 User.belongsToMany(Review, { through: "userreview", as: "Reviews" });
