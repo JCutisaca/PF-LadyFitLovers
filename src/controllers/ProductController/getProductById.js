@@ -9,7 +9,7 @@ const getProductById = async ({ id }) => {
             {
             model: Review,
             as: 'Reviews',
-          attributes: ['id','reviewText'], 
+          attributes: ['id','reviewText', 'rating'], 
         }
       ]
     })
