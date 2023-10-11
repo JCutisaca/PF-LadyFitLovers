@@ -1,5 +1,6 @@
 const getUserByID = require('../UserController/getUserById');
-const { User, Order } = require('../../db')
+const { User, Order } = require('../../db');
+const updateStock = require('./updateStock');
 
 const createOrder = async ({ userId, products, mpId, totalAmount }) => {
     if (!userId || !products.length || !mpId) throw Error('Required data is missing to create the order.')
@@ -18,6 +19,8 @@ const createOrder = async ({ userId, products, mpId, totalAmount }) => {
     })
     await findUser.addOrder(order)
     const userOrder = await Order.findOne({ where: { id: order.dataValues.id } })
+    const update = await updateStock(products)
+    console.log(update);
     return userOrder;
 }
 
