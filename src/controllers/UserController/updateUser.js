@@ -8,10 +8,10 @@ const updateUser = async ({ id, name, surname, email, phone, password, newPasswo
     const findUser = await User.findOne({ where: { id } })
     if (!findUser) throw Error("User not found.")
     const updatedUserBan = userBan !== undefined ? userBan : findUser.userBan;
-    let updatePassword = ""
     if (password && newPassword) {
         const verifyPassword = await bcrypt.compare(password, findUser.dataValues.password)
         if(!verifyPassword) throw Error('Password does not match')
+        if(newPassword.length < 6 || newPassword.length > 10) throw Error('New password must be between 6 and 10 characters in length.')
     }
     const update = await User.update({
         name: name ? name : findUser.name,
