@@ -2,8 +2,8 @@ const getUserByID = require('../UserController/getUserById');
 const { User, Order } = require('../../db');
 const updateStock = require('./updateStock');
 
-const createOrder = async ({ userId, products, mpId, totalAmount }) => {
-    if (!userId || !products.length || !mpId) throw Error('Required data is missing to create the order.')
+const createOrder = async ({ userId, products, mpId, totalAmount, shippingCost, shippingType }) => {
+    if (!userId || !products.length || !mpId || !shippingCost || !shippingType) throw Error('Required data is missing to create the order.')
     const findUser = await getUserByID({ id: userId })
     if (!findUser) throw Error('User not found.')
 
@@ -15,6 +15,8 @@ const createOrder = async ({ userId, products, mpId, totalAmount }) => {
         totalAmount,
         orderDate,
         status: "En proceso",
+        shippingCost, 
+        shippingType,
         mercadopagoTransactionId: mpId
     })
     await findUser.addOrder(order)
