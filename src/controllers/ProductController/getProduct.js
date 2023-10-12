@@ -7,7 +7,9 @@ const getProduct = async () => {
       include: [
         {
           model: Category,
-          as: 'Category',
+          attributes: {
+            exclude: ['CategoryId']
+          }
         },
         {
           model: Review,
