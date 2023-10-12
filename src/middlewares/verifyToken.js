@@ -13,8 +13,11 @@ const verifyToken = async (req, res, next) => {
         if(findUser.typeUser === "Admin") {
             return next()
         }
-        if (req.body && Object.keys(req.body)) {
+        if (req.body.userId) {
             if (tokenVerified.id !== req.body.userId) throw Error('User ID in the JWT token does not match the requested user ID.')
+        }
+        if (req.body.id) {
+            if (tokenVerified.id !== req.body.id) throw Error('The ID in the JWT token does not match the requested user ID.')
         }
         req.user = tokenVerified.id
         next()
