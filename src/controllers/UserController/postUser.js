@@ -7,8 +7,7 @@ const mailUserCreated = require('../../helpers/mailUserCreated')
 const postUser = async ({ name, surname, email, phone, password, address, typeUser }) => {
 
   if (!(name || surname || email || password)) throw Error("Required data is missing. Please provide name, surname, email, and password.")
-
-  
+  if(password.length < 6 || password.length > 10) throw Error('Password must be between 6 and 10 characters in length.')
   const hashedPassword = await bcrypt.hash(password, 10);
   const [user, created] = await User.findOrCreate({
     where: {
