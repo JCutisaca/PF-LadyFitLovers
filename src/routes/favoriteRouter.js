@@ -5,7 +5,7 @@ const { addProductFavHandler, removeProductFavHandler, getFavByUserHandler } = r
 const favoriteRouter = Router()
 
 favoriteRouter.post("/add", addProductFavHandler)
-favoriteRouter.delete("/remove", removeProductFavHandler)
+favoriteRouter.put("/remove", removeProductFavHandler)
 favoriteRouter.get("/:id", getFavByUserHandler)
 
 

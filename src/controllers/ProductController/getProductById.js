@@ -1,4 +1,4 @@
-const { Product, Category, Review } = require('../../db')
+const { Product, Category, Review, User } = require('../../db')
 
 const getProductById = async ({ id }) => {
     if(!id) throw Error("Please provide a valid ID.")
@@ -8,6 +8,10 @@ const getProductById = async ({ id }) => {
         }, include: [
             {
             model: Review,
+            include:[{
+                model: User,
+                as: 'User',
+            }],
             as: 'Reviews',
           attributes: ['id','reviewText', 'rating'], 
         }
