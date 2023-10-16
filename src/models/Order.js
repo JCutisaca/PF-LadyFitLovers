@@ -27,7 +27,7 @@ module.exports = (sequelize) => {
         defaultValue: "En proceso"
       },
       shippingType: {
-        tipe: DataTypes.ENUM("Envío a domicilio", "Retiro en punto de entrega"),
+        type: DataTypes.ENUM("Envío a domicilio", "Retiro en punto de entrega"),
         allowNull: false
       },
       shippingCost: {
