@@ -7,7 +7,7 @@ const removeProductFav = async ({ productId, userId }) => {
     const findProduct = await Product.findOne({ where: { id: productId } })
     if (!findProduct) throw Error('Product not found.')
     await findUser.removeFavoriteProduct(findProduct);
-    return "Product removed from favorites successfully."
+    return findProduct;
 }
 
 module.exports = removeProductFav;
