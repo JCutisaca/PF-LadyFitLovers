@@ -7,13 +7,13 @@ mercadopago.configure({
     access_token: PROD_ACCESS_TOKEN
 })
 
-const createOrder = async ({ products }) => {
-
+const createOrder = async ({ products, shippingCost }) => {
+    if(!products.length || !shippingCost) throw Error('No products in the order or missing shipping cost.')
     for (const product of products) {
-        const productDB = await getProductById({id: product.id})
+        const productDB = await getProductById({ id: product.id })
         if (!productDB) throw Error(`Product with ID ${product.id} not found.`)
-        if(product.price !== productDB.price) throw Error(`Price mismatch for product ${product.name}. Please verify the prices.`)
-      }
+        if (product.price !== productDB.price) throw Error(`Price mismatch for product ${product.name}. Please verify the prices.`)
+    }
 
     const items = products.map(product => {
         return {
@@ -25,6 +25,12 @@ const createOrder = async ({ products }) => {
             picture_url: product.image,
             description: product.name
         }
+    });
+    items.push({
+        title: 'Costo de envio',
+        quantity: 1,
+        unit_price: shippingCost,
+        currency_id: 'ARS',
     });
 
     let preference = {

@@ -26,6 +26,14 @@ module.exports = (sequelize) => {
         allowNull: false,
         defaultValue: "En proceso"
       },
+      shippingType: {
+        type: DataTypes.ENUM("Envío a domicilio", "Retiro en punto de entrega"),
+        allowNull: false
+      },
+      shippingCost: {
+        type: DataTypes.FLOAT,
+        allowNull: false
+      },
       mercadopagoTransactionId: {
         type: DataTypes.STRING,
         allowNull: true,

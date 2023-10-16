@@ -11,6 +11,7 @@ const getProductById = async ({ id }) => {
             include:[{
                 model: User,
                 as: 'User',
+                attributes: ['name','image'], 
             }],
             as: 'Reviews',
           attributes: ['id','reviewText', 'rating'], 
