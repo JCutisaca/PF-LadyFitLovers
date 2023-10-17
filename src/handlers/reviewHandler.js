@@ -12,7 +12,7 @@ const postReviewHandler = async (req, res) => {
     await createReview(req.body);
     return res.status(201).json(review);
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    return res.status(400).json({ error: error.message });
   }
 };
 
@@ -21,7 +21,7 @@ const getReviewsHandler = async (req, res) => {
     await getAllReviews(req, res);
     res.status(201).json(reviews)
   } catch (error) {
-    return res.status(500).json({ error: message.error });
+    return res.status(400).json({ error: message.error });
   }
 };
 

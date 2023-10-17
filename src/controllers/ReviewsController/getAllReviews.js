@@ -1,7 +1,6 @@
 const { Review, User, Product } = require('../../db');
 
 const getAllReviews = async (req, res) => {
-  try {
 
     const reviews = await Review.findAll({
       include: [
@@ -19,9 +18,6 @@ const getAllReviews = async (req, res) => {
 
   });
     return reviews;
-  } catch (error) {
-    throw error;
-  }
 };
 
 
