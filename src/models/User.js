@@ -42,7 +42,7 @@ module.exports = (sequelize) => {
         defaultValue: null
         },
         address: {
-            type: DataTypes.STRING,
+            type: DataTypes.JSONB,
             allownull: true
         },
     }, {
