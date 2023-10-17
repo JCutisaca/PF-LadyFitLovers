@@ -9,7 +9,7 @@ const getReviewsByUserId = require("../controllers/ReviewsController/getReviewBy
 
 const postReviewHandler = async (req, res) => {
   try {
-    await createReview(req.body);
+    const review = await createReview(req.body);
     return res.status(201).json(review);
   } catch (error) {
     return res.status(400).json({ error: error.message });
@@ -18,10 +18,10 @@ const postReviewHandler = async (req, res) => {
 
 const getReviewsHandler = async (req, res) => {
   try {
-    await getAllReviews(req, res);
+    const reviews =  await getAllReviews();
     res.status(201).json(reviews)
   } catch (error) {
-    return res.status(400).json({ error: message.error });
+    return res.status(400).json({ error: error.message });
   }
 };
 

@@ -1,6 +1,6 @@
 const { Review, User, Product } = require('../../db');
 
-const getAllReviews = async (req, res) => {
+const getAllReviews = async () => {
 
     const reviews = await Review.findAll({
       include: [
