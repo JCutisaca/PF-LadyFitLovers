@@ -23,7 +23,7 @@ const createReview = async (req, res) => {
     await user.addReview(review);
     await product.addReview(review);
 
-    return res.status(201).json(review);
+    return review;
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }

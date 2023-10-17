@@ -18,9 +18,9 @@ const getAllReviews = async (req, res) => {
       ],
 
   });
-    return res.status(200).json(reviews);
+    return reviews;
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    throw error;
   }
 };
 

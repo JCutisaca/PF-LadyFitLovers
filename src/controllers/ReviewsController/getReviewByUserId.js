@@ -1,6 +1,7 @@
 const { Review, User, Product } = require('../../db');
 
 const getReviewsByUserId = async ({ userId }) => {
+   try {
     if (!userId) throw Error("Please provide a valid ID.");
     const reviews = await Review.findAll({
         include: [
@@ -20,6 +21,9 @@ const getReviewsByUserId = async ({ userId }) => {
         ]
     });
     return reviews;
+   } catch (error) {
+    throw error;
+   }
 };
 
 module.exports = getReviewsByUserId;
