@@ -7,20 +7,11 @@ const { DB_USER, DB_PASSWORD, DB_HOST} = process.env;
 const { DB_DEPLOY } = process.env;
 
 
-// const sequelize = new Sequelize(DB_DEPLOY, {
-//   //const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/pf`, {
-//       logging: false,
-//       native: false,
-//   });
-
 const sequelize = new Sequelize(DB_DEPLOY, {
-    logging: false,
-    native: false,
+//const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/pf`, {
+  logging: false,
+  native: false,
 });
-
-// const {
-//   DB_USER, DB_PASSWORD, DB_HOST,
-// } = process.env;
 
 const basename = path.basename(__filename);
 
