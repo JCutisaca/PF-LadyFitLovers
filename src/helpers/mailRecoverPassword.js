@@ -1,11 +1,10 @@
-/* const { google } = require('googleapis'); */
 const nodemailer = require('nodemailer');
 const { google } = require('googleapis');
-const welcome = require("./mailUserCreatedHTML")
+const recover = require('./mailRecoverPasswordHTML');
 
 const OAuth2 = google.auth.OAuth2
 
-const mailUserCreated = async (email) => {
+const mailRecoverPassword = async (email, recoveryCode ) => {
   const oAuth2Client = new OAuth2(
   process.env.NODE_CLIENT_ID,
   process.env.CLIENT_SECRET,
@@ -36,12 +35,13 @@ const mailUserCreated = async (email) => {
     tls: { rejectUnauthorized: false},}
   );
 
-  const HTML = welcome()
+  const HTML = recover(recoveryCode)
+  
 
   const mailObject = {
-      from: process.env.EMAIL,
+      from: `Lady Fit Lovers ${process.env.EMAIL}`,
       to: email,
-      subject: 'Bienvenido',
+      subject: 'Recuperación de contraseña',
       html: HTML
   };
 
@@ -56,4 +56,4 @@ const mailUserCreated = async (email) => {
   return result 
 }
 
-module.exports = mailUserCreated
+module.exports = mailRecoverPassword

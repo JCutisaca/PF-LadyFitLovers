@@ -1,5 +1,5 @@
 /* const { google } = require('googleapis'); */
-const nodemailer = require('nodemailer');
+/* const nodemailer = require('nodemailer');
 const { google } = require('googleapis')
 
 const OAuth2 = google.auth.OAuth2
@@ -38,3 +38,4 @@ const transporter = nodemailer.createTransport({
 
 
 module.exports = transporter
+ */

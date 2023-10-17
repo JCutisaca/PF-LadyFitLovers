@@ -1,11 +1,13 @@
 /* const { google } = require('googleapis'); */
 const nodemailer = require('nodemailer');
 const { google } = require('googleapis');
-const welcome = require("./mailUserCreatedHTML")
+const order = require('./mailOrderHTML')
+
+
 
 const OAuth2 = google.auth.OAuth2
 
-const mailUserCreated = async (email) => {
+const mailOrder = async (name, email, products, totalAmount) => {
   const oAuth2Client = new OAuth2(
   process.env.NODE_CLIENT_ID,
   process.env.CLIENT_SECRET,
@@ -36,13 +38,25 @@ const mailUserCreated = async (email) => {
     tls: { rejectUnauthorized: false},}
   );
 
-  const HTML = welcome()
+  const productHTML = products.map(product => `
+    <div>
+      <h4>${product.name}</h4>
+      <img src="${product.image}" alt="Imagen de ${product.name}">
+      <h5>Price: $${product.price}</h5>
+      <h5>Color: ${product.color}</h5>
+      <h5>Quantity: ${product.quantity}</h5>
+      <h5>Size: ${product.size}</h5>
+    </div>
+  `).join('');
+
+  const html = order(name, productHTML, totalAmount)
+  
 
   const mailObject = {
-      from: process.env.EMAIL,
+      from: `Lady Fit Lovers ${process.env.EMAIL}`,
       to: email,
-      subject: 'Bienvenido',
-      html: HTML
+      subject: '¡Gracias por tu compra!',
+      html: html
   };
 
   const result = await transporter.sendMail(mailObject, function(err, data) {
@@ -56,4 +70,4 @@ const mailUserCreated = async (email) => {
   return result 
 }
 
-module.exports = mailUserCreated
+module.exports = mailOrder

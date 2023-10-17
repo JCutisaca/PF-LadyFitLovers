@@ -49,8 +49,6 @@ Review.belongsToMany(User, { through: "userreview", as: "User" });
 Product.belongsToMany(Review, { through: "productreview", as: "Reviews" });
 Review.belongsToMany(Product, { through: "productreview", as: "Product" });
 
-
-
 Product.belongsTo(Category);
 Category.hasMany(Product);
 
