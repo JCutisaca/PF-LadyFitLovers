@@ -1,16 +1,14 @@
 const { Review, User, Product } = require("../../db");
 
-const createReview = async (req, res) => {
-  const { userId, productId, rating,  reviewText } = req.body;
+const createReview = async ({userId, productId, rating,  reviewText }) => {
 
-  try {
     const user = await User.findByPk(userId);
     if (!user) {
-      return res.status(404).json({ error: "User not found" });
+      throw Error("Required data is missing. Please provide userId")
     }
     const product = await Product.findByPk(productId);
     if (!product) {
-      return res.status(404).json({ error: "Product not found" });
+      throw Error("Required data is missing. Please provide productId")
     }
 
     const review = await Review.create({
@@ -24,9 +22,6 @@ const createReview = async (req, res) => {
     await product.addReview(review);
 
     return review;
-  } catch (error) {
-    return res.status(500).json({ error: error.message });
-  }
 };
 
 module.exports = {

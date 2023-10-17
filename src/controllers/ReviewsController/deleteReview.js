@@ -3,7 +3,6 @@ const { Review } = require('../../db')
 
 
 const deleteReview = async (id) => {
-console.log(  `soy el id ${id}` );
 
     const reviewFound = await Review.findOne({ where: { id } })
     if (!reviewFound) {
