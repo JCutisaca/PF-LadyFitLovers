@@ -42,10 +42,10 @@ const mailOrder = async (name, email, products, totalAmount) => {
     <div>
       <h4>${product.name}</h4>
       <img src="${product.image}" alt="Imagen de ${product.name}">
-      <h5>Price: $${product.price}</h5>
+      <h5>Precio: $${product.price}</h5>
       <h5>Color: ${product.color}</h5>
-      <h5>Quantity: ${product.quantity}</h5>
-      <h5>Size: ${product.size}</h5>
+      <h5>Cantidad: ${product.quantity}</h5>
+      <h5>Talle: ${product.size}</h5>
     </div>
   `).join('');
 
