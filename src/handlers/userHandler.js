@@ -2,18 +2,12 @@ const { deleteUser } = require("../controllers/UserController/deleteUser");
 const { getUser } = require("../controllers/UserController/getUser");
 const { postUser } = require("../controllers/UserController/postUser");
 const { updateUser } = require("../controllers/UserController/updateUser");
+const { passwordRecovery } = require("../controllers/UserController/passwordRecovery");
+const { updatePassword } = require("../controllers/UserController/updatePassword")
 const loginUser = require("../controllers/UserController/loginUser");
 const getUserByID = require("../controllers/UserController/getUserById");
 const userLoginGoogle = require("../controllers/UserController/userLoginGoogle");
-const  transporter  = require("../helpers/transporter")
-const EMAIL = process.env
-
-// function generateToken(user) {
-//     const token = jwt.sign({ userId: user.id }, JWT_SECRET, {
-//       expiresIn: "1h",
-//     });
-//     return token;
-//   }
+const mailRecoverPassword = require("../helpers/mailRecoverPassword")
 
 const postUserHandler = async (req, res) => {
     try {
@@ -80,6 +74,25 @@ const updateUserHandler = async (req, res) => {
 
 }
 
+const userPasswordRecovery = async (req, res) => {
+    try {
+        const createOrCheckRecoveryCode = await passwordRecovery(req.body)
+        res.status(200).json({success: true})
+    } catch (error) {
+        res.status(400).json({success: false, error: error.message})
+    }
+}
+
+
+const updateUserPassword= async (req,res) => {
+    try {
+        const newPassword = updatePassword(req.body);
+        res.status(200).json({success:true}) 
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}
+
 
 
 module.exports = {
@@ -89,5 +102,7 @@ module.exports = {
     deleteUserHandler,
     updateUserHandler,
     loginUserHandler,
-    userLoginGoogleHandler
+    userLoginGoogleHandler,
+    userPasswordRecovery,
+    updateUserPassword,
 }

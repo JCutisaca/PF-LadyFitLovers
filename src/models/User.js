@@ -37,14 +37,22 @@ module.exports = (sequelize) => {
             allownull: false
         },
         image: {
-        type: DataTypes.STRING,
-        allownull: true,
-        defaultValue: null
+            type: DataTypes.STRING,
+            allownull: true,
+            defaultValue: null
         },
         address: {
             type: DataTypes.JSONB,
             allownull: true
         },
+        recoveryCode: {
+            type: DataTypes.STRING,
+            allownull: true
+        },
+        recoveryTimer: {
+            type: DataTypes.DATE,
+            allownull: true
+        }
     }, {
         timestamps: false
     })
