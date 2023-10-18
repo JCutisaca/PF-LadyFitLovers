@@ -14,8 +14,8 @@ const successHandler = async (req, res) => {
     try {
         const info = req.query;
         const infoJSON = JSON.stringify(info);
-        // res.status(200).redirect(`https://frontend-ladyfitlovers.vercel.app/paymentState/?data=${encodeURIComponent(infoJSON)}`);
-        res.status(200).redirect(`http://localhost:5173/paymentState/?data=${encodeURIComponent(infoJSON)}`);
+        res.status(200).redirect(`https://frontend-ladyfitlovers.vercel.app/paymentState/?data=${encodeURIComponent(infoJSON)}`);
+        // res.status(200).redirect(`http://localhost:5173/paymentState/?data=${encodeURIComponent(infoJSON)}`);
     } catch (error) {
         res.status(404).json({ error: error.message })
     }
@@ -24,8 +24,8 @@ const failureHandler = async (req, res) => {
     try {
         const info = req.query;
         const infoJSON = JSON.stringify(info);
-        // res.status(200).redirect(`https://frontend-ladyfitlovers.vercel.app/paymentState/?data=${encodeURIComponent(infoJSON)}`);
-        res.status(200).redirect(`http://localhost:5173/paymentState/?data=${encodeURIComponent(infoJSON)}`);
+        res.status(200).redirect(`https://frontend-ladyfitlovers.vercel.app/paymentState/?data=${encodeURIComponent(infoJSON)}`);
+        // res.status(200).redirect(`http://localhost:5173/paymentState/?data=${encodeURIComponent(infoJSON)}`);
     } catch (error) {
         res.status(404).json({ error: error.message })
     }
@@ -34,8 +34,8 @@ const pendingHandler = async (req, res) => {
     try {
         const info = req.query;
         const infoJSON = JSON.stringify(info);
-        //res.status(200).redirect(`https://frontend-ladyfitlovers.vercel.app/paymentState/?data=${encodeURIComponent(infoJSON)}`);
-        res.status(200).redirect(`http://localhost:5173/paymentState/?data=${encodeURIComponent(infoJSON)}`);
+        res.status(200).redirect(`https://frontend-ladyfitlovers.vercel.app/paymentState/?data=${encodeURIComponent(infoJSON)}`);
+        // res.status(200).redirect(`http://localhost:5173/paymentState/?data=${encodeURIComponent(infoJSON)}`);
     } catch (error) {
         res.status(404).json({ error: error.message })
     }
