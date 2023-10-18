@@ -7,16 +7,15 @@ const updatePassword = async ({email, password}) => {
     if (!email) throw Error("There is no email submitted.")
     if (!email && !password) throw Error("Nothing was submitted.")
     const findUser = await User.findOne({ where: { email } })
-    if (!findUser) throw Error("User not found.")
-    
-    const hashedPassword = await bcrypt.hash(password, 10)
-
-    const update = await User.update({
+    if (findUser){
+        const hashedPassword = await bcrypt.hash(password, 10)
+        const update = await User.update({
         password: hashedPassword
     }, 
         {where: { email } }
     )
     mailUpdatedPassword(email)
+    } else if (!findUser){throw new Error("User not found.")}
 }
 
 module.exports = {

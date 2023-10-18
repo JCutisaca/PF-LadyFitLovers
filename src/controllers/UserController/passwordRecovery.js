@@ -11,9 +11,12 @@ const passwordRecovery = async ({ email, code }) => {
 
     if (code && Number(code) && isEmail(email)) {
         const findUser = await User.findOne({ where: {email} })
-        if (!findUser) throw Error("User not found")
-       
-        const validateCode = await bcrypt.compare(code, findUser.dataValues.recoveryCode)
+        if (!findUser) throw new Error("User not found")
+
+        dbCode = findUser.dataValues.recoveryCode
+        parsedCode = dbCode.toString()
+
+        const validateCode = await bcrypt.compare(code, parsedCode)
         if (!validateCode) throw new Error("El codigo no coincide/no existe")
 
     } else if (!code && isEmail(email)) {
