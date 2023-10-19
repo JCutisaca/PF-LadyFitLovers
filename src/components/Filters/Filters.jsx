@@ -130,7 +130,7 @@ const Filters = () => {
   return (
     <div className={style.containerFilter}>
       <div className={style.subcontainer}>
-        <Button onClick={()=>handleClick()}><ReloadOutlined /></Button>
+        <Button className={style.buttonReload} onClick={()=>handleClick()}><ReloadOutlined /></Button>
         <div className={style.contenselect}>
         <Select 
           defaultValue={"CATEGORIA"}
@@ -154,7 +154,7 @@ const Filters = () => {
           defaultValue={"TA"}
           value={!uniqueFilters.selectSize? "TALLA": uniqueFilters.selectSize}
           options={sizeOptions}
-          style={{ width: "120%" }}
+          style={{ width: "100%" }}
           onChange={handleSize}
           />
           

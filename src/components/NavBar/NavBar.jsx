@@ -144,14 +144,24 @@ const NavBar = () => {
       visible={visible}
       onVisibleChange={(v) => setVisible(v)}
     >
-      <Button
+      {user.image ? <Button
         shape="circle"
         size="large"
         className="buttonNavAccess"
-
+        style={{
+          backgroundImage: `url(${user.image})`,
+          backgroundSize: 'cover'
+        }}
       >
-        <UserOutlined />
       </Button>
+        :
+        <Button
+          shape="circle"
+          size="large"
+          className="buttonNavAccess"
+        >
+          <UserOutlined />
+        </Button>}
     </Dropdown>
   );
 
@@ -169,9 +179,6 @@ const NavBar = () => {
         shape="circle"
         size="large"
         className="buttonNavAccess"
-      // style={{
-      //   border: "none",
-      // }}
       >
         <Link to="/products">
           <button
@@ -240,85 +247,87 @@ const NavBar = () => {
               Contacto
             </button>
           </Link>
-          {/* <Link to="/crear-producto">
-            <button
-              className={
-                location.pathname === "/crear-producto"
-                  ? "buttonLinkActive"
-                  : "navBarButton"
-              }
-              title="Crear producto"
-            >
-              Crear
-            </button>
-          </Link> */}
         </div>
-        {!location.pathname.includes("admin") && (
-          <div className="searchBarDiv">
-            <SearchBar />
-          </div>
-        )}
+        <div className="containerSearchAndUser">
+          {!location.pathname.includes("admin") && (
+            <div className="searchBarDiv">
+              <SearchBar />
+            </div>
+          )}
 
-        {/* informacion del usuario */}
-        {!location.pathname.includes("User") && user.email && (
-          <div className="userInfo">
-            <p>Hola, {user.name} </p>
-            {/* {user.surname} */}
-            {userDropdown}
-          </div>
-        )}
-        {!location.pathname.includes("admin") && (
-          <>
-            <Link to="/perfil/favoritos">
+          {/* informacion del usuario */}
+          {!location.pathname.includes("User") && user.email && (
+            <div className="userInfo">
+              <p>Hola, {user.name} </p>
+              {/* {user.surname} */}
+              {userDropdown}
+            </div>
+          )}
+          {!location.pathname.includes("admin") && (
+            <>
+              <Link to="/perfil/favoritos">
+                <Button
+                  shape="circle"
+                  size="large"
+                  className="buttonNavAccess"
+                >
+                  <HeartOutlined />
+                </Button>
+              </Link>
+
               <Button
                 shape="circle"
                 size="large"
                 className="buttonNavAccess"
+                onClick={handle}
+
               >
-                <HeartOutlined />
+                <ShoppingCartOutlined />
+                {totalProducts > 0 && (
+                  <sup
+                    data-show="true"
+                    className="ant-scroll-number ant-badge-count"
+                    title="1"
+                    style={{
+                      position: "absolute",
+                      top: "0",
+                      right: "0",
+                      transform: "translate(50%, -50%)",
+                      backgroundColor: "#ba338a",
+                      color: "white",
+                      borderRadius: "50%",
+                      width: "20px",
+                      height: "20px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    {totalProducts}
+                  </sup>
+                )}
               </Button>
-            </Link>
+            </>
+          )}
 
-            <Button
-              shape="circle"
-              size="large"
-              className="buttonNavAccess"
-              onClick={handle}
-
-            >
-              <ShoppingCartOutlined />
-              {totalProducts > 0 && (
-                <sup
-                  data-show="true"
-                  className="ant-scroll-number ant-badge-count"
-                  title="1"
-                  style={{
-                    position: "absolute",
-                    top: "0",
-                    right: "0",
-                    transform: "translate(50%, -50%)",
-                    backgroundColor: "#ba338a",
-                    color: "white",
-                    borderRadius: "50%",
-                    width: "20px",
-                    height: "20px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  {totalProducts}
-                </sup>
-              )}
-            </Button>
-          </>
-        )}
-
-        {!user.email && (
-          <div>
-            <ButtonPrimary title="Iniciar Sesión" onClick={openLoginModal} />
-          </div>
-        )}
+          {!user.email && (
+            <div className="loginModal">
+              <ButtonPrimary title="Iniciar Sesión" onClick={openLoginModal} />
+            </div>
+          )}
+          {!user.email && (
+            <div className="loginResponsive">
+              <Button
+                shape="circle"
+                size="large"
+                onClick={openLoginModal}
+                className="buttonNavAccessUser"
+              >
+                <UserOutlined />
+              </Button>
+            </div>
+          )}
+        </div>
       </div>
 
       <LoginModal

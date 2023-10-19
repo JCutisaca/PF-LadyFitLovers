@@ -5,10 +5,23 @@
 }
 .subcontainer{
     display: flex;
-    width: 700px;
+    gap: 10px;
+    width: 40rem;
     justify-content: space-between;
 }
 .contenselect{
-	width: 130px;
+	width: 100%;
 	position: relative;
+}
+
+@media (max-width: 800px) {
+    .subcontainer {
+        width: auto;
+    }
+    .contenselect {
+        padding: inherit;
+    }
+    .buttonReload {
+        padding: revert;
+    }
 }
