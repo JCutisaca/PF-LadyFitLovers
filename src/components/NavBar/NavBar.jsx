@@ -26,6 +26,7 @@ import {
 import CreateAcountModal from "../CreateAcountModal/CreateAcountModal";
 import postCart from "../../redux/Actions/ShoppingCart/postCart";
 import cleanCartReducer from "../../redux/Actions/ShoppingCart/cleanCartReducer";
+import setMenuBurger from "../../redux/Actions/MenuBurger/setMenuBurger";
 
 const NavBar = () => {
   const location = useLocation();
@@ -34,7 +35,7 @@ const NavBar = () => {
   const products = useSelector((state) => state.cart)
   const userId = useSelector((state) => state.user.id)
   const accessToken = useSelector((state) => state.accessToken)
-
+  const menuBurger = useSelector(state => state.menuBurger)
   // logout
   const handleLogout = () => {
     dispatch(postCart({ userId, products, accessToken }))
@@ -203,11 +204,24 @@ const NavBar = () => {
     <>
       {openDrawer && (
         <DrawerCart
+          style={{
+            width: '10rem'
+          }}
           openDrawer={openDrawer}
           onClose={onClose}
         />
       )}
       <div className="navBarContainer">
+        <div className="responsive">
+          <div onClick={() => {
+            dispatch(setMenuBurger())
+            return;
+          }} className={`imagesButton ${menuBurger ? 'open' : ''}`}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
         <div className="navBarLinksContainer">
           <Link to="/">
             <img src={logo} />
@@ -265,7 +279,7 @@ const NavBar = () => {
           )}
           {!location.pathname.includes("admin") && (
             <>
-              <Link to="/perfil/favoritos">
+              {user.id ? <Link to="/perfil/favoritos">
                 <Button
                   shape="circle"
                   size="large"
@@ -273,7 +287,7 @@ const NavBar = () => {
                 >
                   <HeartOutlined />
                 </Button>
-              </Link>
+              </Link> : null}
 
               <Button
                 shape="circle"

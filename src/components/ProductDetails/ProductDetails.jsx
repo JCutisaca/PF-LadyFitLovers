@@ -15,12 +15,13 @@ import ReviewForm from "./ReviewForm/ReviewForm";
 import getOrdersByUser from "../../redux/Actions/Order/getOrdersByUser";
 //react router dom
 import { useParams } from "react-router-dom";
+import MenuBurger from "../MenuBurger/MenuBurger";
 
 const ProductDetails = ({ productData }) => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const userId = useSelector((state) => state.user.id);
-  console.log(productData);
+  const menuBurger = useSelector(state => state.menuBurger)
   useEffect(() => {
     // saveCartLocal()
   }, []);
@@ -181,9 +182,7 @@ const ProductDetails = ({ productData }) => {
         productData.Reviews.some((review) => review.User[0].id === userId);
       setHasAlreadyReviewed(hasAlreadyReviewed);
     }
-    // }, [userId, accessToken, currentProductId, dispatch]);
   }, []);
-  // console.log(userHasPurchased);
 
   return (
     <div>
@@ -192,9 +191,9 @@ const ProductDetails = ({ productData }) => {
         <DrawerCart
           openDrawer={openDrawer}
           onClose={onClose}
-          // saveCartLocal={saveCartLocal}
         />
       )}
+      {menuBurger ? <MenuBurger></MenuBurger> : null}
       <div className="productDetailContainer">
         <div className="productDetailContainerTop">
           <div className="productDetailImageContainer">
@@ -206,9 +205,9 @@ const ProductDetails = ({ productData }) => {
           </div>
           <div className="productDetailInfoContainer">
             <div className="butonant">
-              <Link to="/products">
+              {/* <Link to="/products">
                 <ButtonSecondary title="volver" />
-              </Link>
+              </Link> */}
             </div>
             <h1 className="productDetailTitle">{productData.name}</h1>
             <p className="productDetailPrice">Precio: ${productData.price}</p>

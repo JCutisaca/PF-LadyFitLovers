@@ -4,7 +4,7 @@ import "./carouselStyle.css";
 
 const Carrousel = () => {
   return (
-    <Carousel autoplay dotPosition='bottom'>
+    <Carousel style={{zIndex: '0', marginTop: '80px'}} autoplay dotPosition='bottom'>
       <div>
         <img className='carouselSlide' src='https://res.cloudinary.com/dv7kzlqy6/image/upload/v1696224356/slide_yyk6fv.svg' />
       </div>

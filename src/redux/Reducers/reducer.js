@@ -42,6 +42,7 @@ import {
   //purchase
   //reviews
   GET_REVIEW_BY_USERID,
+  MENU_BURGER
 } from "../Actions/actionTypes";
 
 const initialState = {
@@ -83,6 +84,7 @@ const initialState = {
   //purchase
   //reviews
   reviewsByUser: null,
+  menuBurger: false
 };
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -133,8 +135,8 @@ const reducer = (state = initialState, action) => {
           action.payload === "TA"
             ? state.saveProducts
             : state.saveProducts.filter(
-                (product) => product.Category.name === action.payload
-              ),
+              (product) => product.Category.name === action.payload
+            ),
 
         savePivot: state.saveProducts.filter(
           (product) => product.Category.name === action.payload
@@ -150,27 +152,27 @@ const reducer = (state = initialState, action) => {
         filteredProducts =
           state.savePivot.length > 0
             ? state.savePivot.filter((product) =>
-                product.stock.some(
-                  (stockItem) => stockItem.color === action.payload
-                )
+              product.stock.some(
+                (stockItem) => stockItem.color === action.payload
               )
+            )
             : state.saveProducts.filter((product) =>
-                product.stock.some(
-                  (stockItem) => stockItem.color === action.payload
-                )
-              );
+              product.stock.some(
+                (stockItem) => stockItem.color === action.payload
+              )
+            );
         filteredColor =
           state.savePivot.length > 0
             ? state.savePivot.filter((product) =>
-                product.stock.some(
-                  (stockItem) => stockItem.color === action.payload
-                )
+              product.stock.some(
+                (stockItem) => stockItem.color === action.payload
               )
+            )
             : state.saveProducts.filter((product) =>
-                product.stock.some(
-                  (stockItem) => stockItem.color === action.payload
-                )
-              );
+              product.stock.some(
+                (stockItem) => stockItem.color === action.payload
+              )
+            );
       }
       return {
         ...state,
@@ -450,6 +452,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         favorites: state.favorites.filter((e) => e.id !== action.payload.id),
       };
+    case MENU_BURGER:
+      return {
+        ...state,
+        menuBurger: !state.menuBurger
+      }
     default:
       return {
         ...state,

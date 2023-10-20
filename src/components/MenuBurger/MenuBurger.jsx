@@ -1,10 +1,10 @@
 import style from './MenuBurger.module.css'
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import setMenuBurger from '../../redux/Actions/MenuBurger/setMenuBurger';
 
 const MenuBurger = () => {
-
+    const user = useSelector(state => state.user)
     const navigate = useNavigate()
     const handleChange = (event) => {
     }
@@ -20,6 +20,10 @@ const MenuBurger = () => {
                         dispatch(setMenuBurger())
                         return;
                     }} className={style.tags}><h3>Inicio</h3></NavLink>
+                    {user.id ? <NavLink to={"/"} onClick={() => {
+                        dispatch(setMenuBurger())
+                        return;
+                    }} className={style.tags}><h3>Favoritos</h3></NavLink> : null}
                     <NavLink to={"/products"} onClick={() => {
                         dispatch(setMenuBurger())
                         return;

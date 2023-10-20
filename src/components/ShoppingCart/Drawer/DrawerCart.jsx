@@ -20,6 +20,7 @@ import LoginModal from "../../LoginModal/LoginModal";
 import EmptyCart from "../emptyCart/emptyCart";
 import { useNavigate } from "react-router";
 import Checkout from "../Checkout/Checkout";
+import style from './DrawerCart.module.css'
 
 const DrawerCart = ({ openDrawer, onClose }) => {
   const allProductsAdmin = useSelector((state) => state.allProductsAdmin);
@@ -40,11 +41,11 @@ const DrawerCart = ({ openDrawer, onClose }) => {
   const showDefaultDrawer = () => {
     setOpen(openDrawer);
   };
-  const style = {
-    padding: "8px 0",
-    width: 20,
-    height: 20,
-  };
+  // const style = {
+  //   padding: "8px 0",
+  //   width: 20,
+  //   height: 20,
+  // };
 
   const prices = cart.map((prod) => prod.price);
 
@@ -125,7 +126,7 @@ const DrawerCart = ({ openDrawer, onClose }) => {
   };
   console.log(openCheckout);
   return (
-    <>
+    <div style={{ width: '30rem' }} className={style.cartContainer}>
       <LoginModal
         visible={loginModalVisible}
         onClose={() => setLoginModalVisible(false)}
@@ -139,17 +140,15 @@ const DrawerCart = ({ openDrawer, onClose }) => {
         onClose={() => onClose(false)}
         open={open}
         onClick={(e) => handleCard(e)}
-        // extra={
-        // }
       >
         {total === 0 && (
           <Card
             bordered={false}
             style={{
               backgroundColor: "#FFFFFF",
-              // width: 655,
-              // height:200,
-              // margin:15,
+              width: '40rem',
+              margin: '15px',
+              textAlign: 'center'
             }}
           >
             <EmptyCart />
@@ -163,31 +162,33 @@ const DrawerCart = ({ openDrawer, onClose }) => {
                   bordered={false}
                   hoverable={true}
                   style={{
-                    width: 655,
-                    height: 120,
-                    margin: 15,
+                    width: '100%',
+                    margin: '15px',
+                    textAlign: 'center',
+                    position: 'relative',
+                    left: '-1rem'
                   }}
                   id={id}
                   name={size}
                 >
-                  <Row justify="center">
-                    <Col span={4}>
+                  <Row gutter={16}>
+                    <Col span={24} md={12} lg={8}>
                       <div>
                         Nombre<br></br> {name}{" "}
                       </div>
                     </Col>
-                    <Col span={4}>
+                    <Col span={24} md={12} lg={8}>
                       <div>
                         <Image alt={name} src={image && image} width={35} />
                       </div>
                     </Col>
-                    <Col span={3}>
+                    <Col span={24} md={12} lg={8}>
                       <div>
                         Color<br></br>
                         {getColorName(color)}
                       </div>
                     </Col>
-                    <Col span={4}>
+                    <Col span={24} md={12} lg={8}>
                       <div>
                         Cant.<br></br>
                         <Button
@@ -215,20 +216,25 @@ const DrawerCart = ({ openDrawer, onClose }) => {
                         </Button>
                       </div>
                     </Col>
-                    <Col span={4}>
+                    <Col span={24} md={12} lg={8}>
                       <div>
                         Precio x unidad<br></br>
                         {price}
                       </div>
                     </Col>
-                    <Col span={4}>
+                    <Col span={24} md={12} lg={8}>
                       <div>
                         Total<br></br>
                         {price * quantity}
                       </div>
                     </Col>
-                    <Col span={1}>
-                      <Button id={i} shape="circle" size="small">
+                    <Col span={24} md={12} lg={8}>
+                      <Button
+                        id={i}
+                        shape="circle"
+                        size="small"
+                        className={style.buttonRemove}
+                      >
                         x
                       </Button>
                     </Col>
@@ -255,7 +261,6 @@ const DrawerCart = ({ openDrawer, onClose }) => {
             disabled={total === 0}
             onClick={handleCheckout}
           >
-            {/* // /payment/createOrder   window.location.href = response.data.response.body.init_point; */}
             Comprar
           </Button>
         </Space>
@@ -266,7 +271,7 @@ const DrawerCart = ({ openDrawer, onClose }) => {
           onCloseCheckout={onCloseCheckout}
         />
       )}
-    </>
+    </div>
   );
 };
 export default DrawerCart;

@@ -1,13 +1,4 @@
-/* .seccionContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    min-height: 1200px;
-    padding: 2rem 0;
-    background-color: #E0B3D3;
-} */
+
 .center {
     height: auto;
     overflow: auto;
@@ -29,11 +20,13 @@
     padding: 10px;
   }
  
-.gallery .image:hover {
+@media (min-width: 731px) {
+  .gallery .image:hover {
     transform: scale(0.95);
     filter: blur(2px) grayscale(1);
     transition-property: transform, filter;
     transition-duration: 1.5s;
+}
 }
 
   .gallery .image {
@@ -84,6 +77,13 @@
     opacity: 0.9;
     will-change: opacity;
     transition: all 0.3s;
+  }
+
+  @media (max-width: 730px) {
+    .gallery {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
     

@@ -28,18 +28,18 @@ import CodeRequirer from "./views/CodeRequierer/CodeRequirer";
 import UserBanError from "./components/UserBanError/UserBanError";
 import ProductsByCategory from "./components/ProductsByCategory/ProductsByCategory";
 import Checkout from "./components/ShoppingCart/Checkout/Checkout";
+import setMenuBurger from "./redux/Actions/MenuBurger/setMenuBurger";
 
 const App = () => {
-  // dispatch to get all products globally
-  const allProducts = useSelector((state) => state.allProducts);
-  const filteredProducts = useSelector((state) => state.products);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const location = useLocation();
   const navigate = useNavigate();
-
+  const menuBurger = useSelector(state => state.menuBurger)
   //condiction para que no se vuelva a cargar los productso si el estado
   useEffect(() => {
+    if(menuBurger) {
+      dispatch(setMenuBurger())
+    }
     dispatch(getAllProducts());
     dispatch(getAllCategories());
 

@@ -137,7 +137,7 @@ const Product = ({ id, name, image, price, unitsSold, color, stock, priceOnSale 
       {
         hasSale && (
           <Row>
-            <Col className={style.offert} style={colStyle} span={24}>`${priceOnSale}`</Col>
+            <Col className={style.offert} style={colStyle} span={24}>$ {priceOnSale}</Col>
           </Row>
         )
       }

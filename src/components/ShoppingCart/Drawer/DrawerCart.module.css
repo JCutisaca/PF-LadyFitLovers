@@ -2,3 +2,24 @@
     background: none;
     border: none;
 }
+
+.buttonRemove {
+    position: absolute;
+    top: -6.5rem;
+    right: -27rem;
+}
+
+@media (max-width: 992px) {
+    .buttonRemove {
+        position: absolute;
+        top: -8.5rem;
+        right: -20rem;
+    }
+}
+@media (max-width: 767px) {
+    .buttonRemove {
+        position: absolute;
+        top: -17rem;
+        right: 0rem;
+    }
+}

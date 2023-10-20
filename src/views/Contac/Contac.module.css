@@ -1,6 +1,6 @@
 .continer{
-    width: 100vw;
-    height: 79vh;
+    /* width: 100vw; */
+    min-height: 71.4vh;
     display: grid;
     place-items: center;
 }
@@ -36,6 +36,10 @@
    position: relative;
    width: 100%;
 }
+.messageInput{ 
+   position: relative;
+   width: 100%;
+}
 .message1{
    width: 100%;
    position: relative;
@@ -44,11 +48,24 @@
     position: absolute;
     font-size: 0.8rem;
     color: red;
-    top: 5px;
+    top: 20px;
 }
 .editinput{
 width: 100%;
 }
 .editinput2{
 width: 100%;
+}
+
+@media (max-width: 768px) {
+    .continercontac {
+        width: inherit;
+        height: inherit;
+    }
+    .continercontac>div {
+        width: 90%;
+    }
+    .messageInput {
+        top: 1rem;
+    }
 }
