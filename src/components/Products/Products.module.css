@@ -6,7 +6,7 @@
   padding: 1rem;
   gap: 2rem;
   /* min-height: 100vh; */
-  width: 100%;
+  width: 75%;
 }
 
 /* .Cards {
@@ -19,3 +19,10 @@
 .Card {
   margin: 20px;
 } */
+
+
+@media (max-width: 768px) {
+  .cardsContainer {
+    width: 100%;
+  }
+}

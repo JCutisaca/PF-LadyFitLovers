@@ -18,3 +18,11 @@
 .containerOrder {
     justify-content: end;
 }
+.shoppingClientContainer a{
+    color:#BA338A;
+
+}
+.shoppingClientContainer a:hover{
+    color:#BA338A;
+    text-decoration: underline;
+}

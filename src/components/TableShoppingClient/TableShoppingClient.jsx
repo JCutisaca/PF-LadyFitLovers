@@ -1,14 +1,12 @@
-
 import { useSelector } from "react-redux";
 import { Table, Tag, Button } from "antd";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import ShoppingClient from "../ShoppingClient/ShoppingClient";
 import getOrdersByUser from "../../redux/Actions/Order/getOrdersByUser";
-import style from './TableShoppingClient.module.css'
+import style from "./TableShoppingClient.module.css";
 
 const TableShoppingClient = () => {
-
   const ordersUser = useSelector((state) => state.ordersUser);
   const accessToken = useSelector((state) => state.accessToken);
   const userId = useSelector((state) => state.user.id);
@@ -18,7 +16,7 @@ const TableShoppingClient = () => {
   useEffect(() => {
     dispatch(getOrdersByUser({ userId, accessToken }));
   }, [dispatch]);
-  const tableOrders = ordersUser.map((order) => {
+  const tableOrders = ordersUser?.map((order) => {
     return {
       ...order,
       key: order.id,
@@ -31,19 +29,6 @@ const TableShoppingClient = () => {
       value: order.mercadopagoTransactionId,
     };
   });
-
-  const colorStatus = (status) => {
-    switch (status) {
-      case "En proceso":
-        return "blue";
-      case "Cancelada":
-        return "red";
-      case "Entregada":
-        return "green";
-      default:
-        return "blue";
-    }
-  };
 
   const columns = [
     {
@@ -113,8 +98,6 @@ const TableShoppingClient = () => {
     // },
   ];
 
-
-
   return (
     // <div className={style.container}>
     <Table
@@ -124,13 +107,12 @@ const TableShoppingClient = () => {
         expandedRowRender: (record) => (
           <ShoppingClient products={record.products} />
         ),
-
       }}
       style={{
         overflowX: "scroll",
-        width: '90%',
-        position: 'relative',
-        height: '100%'
+        width: "90%",
+        position: "relative",
+        height: "100%",
       }}
     />
     // </div>

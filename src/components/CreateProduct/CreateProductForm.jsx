@@ -8,14 +8,16 @@ import ButtonSecondary from "../ButtonSecondary/ButtonSecondary";
 import ButtonTertiary from "../ButtonTertiary/ButtonTertiary";
 import postProduct from "../../redux/Actions/Product/postProduct";
 import CreateCategoryModal from "../CreateCategoryModal/CreateCategoryModal";
-import "./createProductForm.css";
 import updateProduct from "../../redux/Actions/Product/updateProduct";
+import { useNavigate } from "react-router-dom";
+import "./createProductForm.css";
 
 const CreateProductForm = ({ errors, isEditing }) => {
+  const navigate = useNavigate();
   const categories = useSelector((state) => state.allCategories);
   const accessToken = useSelector((state) => state.accessToken);
-  const { values, setFieldValue, resetForm } = useFormikContext();
-  const [errorColor, setErrorColor] = useState(false);
+  const { values, setFieldValue, resetForm } = useFormikContext({});
+  const [errorColor, setErrorColor] = useState("");
   const [showCreateCategoryModal, setShowCreateCategoryModal] = useState(false);
   const dispatch = useDispatch();
 
@@ -46,53 +48,59 @@ const CreateProductForm = ({ errors, isEditing }) => {
     const urlImage = await saveImage(values.image); //values es de formik
     try {
       const response = await dispatch(
-        postProduct({
-          name: values.name,
-          price: values.price,
-          priceOnSale: values.priceOnSale,
-          unitsSold: values.unitsSold,
-          image: urlImage,
-          category: values.category,
-          stock: values.stock,
-        },
-        accessToken)
+        postProduct(
+          {
+            name: values.name,
+            price: values.price,
+            priceOnSale: values.priceOnSale,
+            unitsSold: values.unitsSold,
+            image: urlImage,
+            category: values.category,
+            stock: values.stock,
+          },
+          accessToken
+        )
       );
+      console.log(response.message);
 
-      message.success(response.message, [2], onClose());
-
-      resetForm();
-    } catch {
-      message.error("Error al crear producto", [2], onClose());
+      if (response.message === "Products have been created.") {
+        message.success("Producto creado exitosamente", [2]);
+        navigate("/admin/productos");
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
   const handleEdit = async () => {
     try {
       const response = await dispatch(
-        updateProduct({
-          id: values.id,
-          name: values.name,
-          price: values.price,
-          priceOnSale: values.priceOnSale,
-          unitsSold: values.unitsSold,
-          image: values.image,
-          category: values.category,
-          stock: values.stock,
-          active: values.active,
-        }, accessToken)
+        updateProduct(
+          {
+            id: values.id,
+            name: values.name,
+            price: values.price,
+            priceOnSale: values.priceOnSale,
+            unitsSold: values.unitsSold,
+            image: values.image,
+            category: values.category,
+            stock: values.stock,
+            active: values.active,
+          },
+          accessToken
+        )
       );
-
-      message.success(response.message, [2], onClose());
-
-      resetForm();
-    } catch {
-      message.error("Error al crear producto", [2], onClose());
+      if (response.message === "Producto editado correctamente") {
+        message.success(response.message, [2]);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
   const onChange = (value, index) => {
     if (values.stock.some((element) => element.color === value)) {
       setErrorColor({
-        index: index,
+        indice: index,
         message: "Ya has seleccionado este color",
       });
     }
@@ -212,7 +220,7 @@ const CreateProductForm = ({ errors, isEditing }) => {
                                 options={colorOptions}
                                 onChange={(value) => onChange(value, index)}
                               />
-                              {errorColor.index === index && (
+                              {errorColor?.indice == index && (
                                 <p className="createProductError">
                                   {errorColor.message}
                                 </p>
