@@ -10,11 +10,18 @@
     border-radius: 10px;
     overflow: auto;
 }
+.layaout1::-webkit-scrollbar {
+    width: 4px; /* Grosor del scrollbar */
+}
+  
+.layaout1::-webkit-scrollbar-thumb {
+    background-color: #dd7fc2; /* Color del scrollbar */
+}
 .formSetting{
     width: 60%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     height: 600px;
-    
+    padding: 10px;
 }

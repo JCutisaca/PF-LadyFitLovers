@@ -1,13 +1,8 @@
-/* .contianerProfiler{
-    
-    height: 80vh;
-    width: 80vw;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 40px;
+.containerProfiler{
+    overflow: hidden;
+    border-Radius: 3em 0 3em 0 ;
 }
-.subcontainer{
+/*.subcontainer{
    height: 60vh; 
    width: 50%;
    display: flex;
@@ -90,3 +85,20 @@ label {
     background-color: none;
     font-size: 0.7rem;
 } */
+.ant{
+    width:  50vw;
+    height: 35vw;
+    border: solid 3px #e2a6d1;
+    border-Radius: 3em 0 3em 0 ;
+    overflow: auto;
+    display: grid;
+    place-items: center;
+
+}
+.ant::-webkit-scrollbar {
+    width: 4px; 
+}
+  
+.ant::-webkit-scrollbar-thumb {
+    background-color: #dd7fc2; 
+}

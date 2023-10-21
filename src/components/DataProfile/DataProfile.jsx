@@ -15,25 +15,19 @@ const Profile = () => {
     <div className={style.containerProfiler}>
       <Card
         hoverable
-        style={{
-          maxWidth:600,
-          border: "solid 3px #E0B3D3",
-          borderRadius: "3em 0 3em 0 ",
-          padding:"1em",
-        }}
+        className={style.ant}
+       
       >
         <Space direction="vertical" align="center">
           {infouser.image ? (
             <Avatar
-              size={200}
               src={infouser.image}
-              style={{ margin: "12px 12px" }}
+              style={{ margin: "12px 12px", height: "17vh", width: "auto" }}
             />
           ) : (
             <Avatar
-              size={200}
               src="../../assets/img/user.png"
-              style={{ margin: "12px 12px" }}
+              style={{ margin: "12px 12px", height: "17vh", width: "auto" }}
             />
           )}
           <Space direction="vertical" align="start">
@@ -94,8 +88,6 @@ const Profile = () => {
             <Row>
               <Col>
                 <Text strong>Dirección:</Text>
-              </Col>
-              <Col>
                 <Text
                   className={style.dataaddres}
                   style={{ margin: "12px 12px" }}
@@ -105,6 +97,7 @@ const Profile = () => {
                     : "No definido"}
                 </Text>
               </Col>
+
             </Row>
           </Space>
         </Space>

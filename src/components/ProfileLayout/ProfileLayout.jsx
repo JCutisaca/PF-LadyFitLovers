@@ -69,7 +69,7 @@ const ProfileLayout = ({ profileKey }) => {
     setSelectKey(key);
   };
   return (
-    <Layout>
+    <Layout style={{marginTop:80}}>
       <Sider>
         <div className="demo-logo-vertical" />
         <Menu
