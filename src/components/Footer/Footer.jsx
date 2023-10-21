@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { InstagramOutlined, WhatsAppOutlined } from "@ant-design/icons";
+import { InstagramOutlined, MailOutlined, WhatsAppOutlined } from "@ant-design/icons";
 import "./footer.css";
 
 const Footer = () => {
@@ -25,7 +25,13 @@ const Footer = () => {
           </a>
 
           <h3 className="h3footer">Contactanos</h3>
-          <p style={{ color: "#ba338a" }}>ladyfitlovers@gmail.com</p>
+          <a href="mailto:ladyfitlovers@gmail.com" style={{ color: "#ba338a" }}>
+            <Link>
+          <MailOutlined></MailOutlined> LadyFitLovers@gmail.com
+          </Link>
+          </a>
+          <br></br>
+          <br></br>
           <Link to="https://chat.whatsapp.com/LijG0wDr4ytLMZvYiU1dra">
             <WhatsAppOutlined /> Whatsapp
           </Link>

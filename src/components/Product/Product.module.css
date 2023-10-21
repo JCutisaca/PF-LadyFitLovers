@@ -136,6 +136,7 @@
   background: #e0b3cd;
 }
 .container .card .contentBx .color span {
+  border: 2px solid white;
   width: 20px;
   height: 20px;
   background: #ff0;

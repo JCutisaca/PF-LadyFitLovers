@@ -37,6 +37,7 @@ const DrawerCart = ({ openDrawer, onClose }) => {
   const [openCheckout, setOpenCheckout] = useState(false);
   const onCloseCheckout = (boolean) => {
     setOpenCheckout(boolean);
+    console.log(openCheckout);
   };
   const showDefaultDrawer = () => {
     setOpen(openDrawer);
@@ -124,7 +125,7 @@ const DrawerCart = ({ openDrawer, onClose }) => {
       onClose(false);
     }
   };
-  console.log(openCheckout);
+ 
   return (
     <div style={{ width: '30rem' }} className={style.cartContainer}>
       <LoginModal
@@ -146,7 +147,7 @@ const DrawerCart = ({ openDrawer, onClose }) => {
             bordered={false}
             style={{
               backgroundColor: "#FFFFFF",
-              width: '40rem',
+              // width: '40rem',
               margin: '15px',
               textAlign: 'center'
             }}

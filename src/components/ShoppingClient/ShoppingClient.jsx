@@ -7,7 +7,6 @@ import { getColorName } from "../../utils/getColorName";
 
 const ShoppingClient = ({ products }) => {
 
- console.log(products);
   return (
     <div className={style.shoppingClientContainer}>
       

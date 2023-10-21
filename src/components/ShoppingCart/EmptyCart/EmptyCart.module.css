@@ -5,6 +5,7 @@
     justify-content: center;
     color: #BA338A;
     /* width: 600px; */
+    width: 100%;
     height: 500px;
 }
 .imgNoFound{

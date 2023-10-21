@@ -13,8 +13,6 @@ const TableShoppingClient = () => {
   const accessToken = useSelector((state) => state.accessToken);
   const userId = useSelector((state) => state.user.id);
 
-  console.log(accessToken, "accessToken")
-
   const dispatch = useDispatch();
 
   useEffect(() => {

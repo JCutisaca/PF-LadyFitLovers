@@ -29,7 +29,7 @@
   .footerTop a:hover {
     color: #f6f1f5;
     font-size: 16px;
-    font-weight: 700;
+    /* font-weight: 700; */
   }
   
   .footerTopLeftWrapper {
@@ -61,4 +61,6 @@
       margin-left: 0;
     }
   }
+
+  
   

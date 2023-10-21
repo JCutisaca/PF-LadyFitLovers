@@ -99,7 +99,7 @@ const Product = ({ id, name, image, price, unitsSold, color, stock, priceOnSale 
             {!productWithoutStock ? <div className={style.contentBx}>
               <div className={style.size}>
 
-                <h3>Talle :</h3>
+                {/* <h3>Talle :</h3> */}
 
                 {stock?.map(({ sizeAndQuantity }) => {
                   return sizeAndQuantity.map((sizeInfo, index) => {
@@ -116,7 +116,7 @@ const Product = ({ id, name, image, price, unitsSold, color, stock, priceOnSale 
                 })}
               </div>
               <div className={style.color}>
-                <h3>Color :</h3>
+                {/* <h3>Color :</h3> */}
                 {stock ? stock.map((color, index) => {
                   return (
                     <span key={index} style={{ background: color.color }}></span>

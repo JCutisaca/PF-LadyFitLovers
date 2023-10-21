@@ -4,12 +4,14 @@ import { useParams } from "react-router-dom";
 import Product from "../Product/Product";
 import NoFoundScreen from "../NoFoundScreen/NoFoundScreen";
 import "./productsByCategory.css";
+import MenuBurger from "../MenuBurger/MenuBurger";
 
 const ProductsByCategory = () => {
   const { category } = useParams();
   const allProducts = useSelector((state) => state.saveProducts);
   const [productsToShow, setProductsToShow] = useState([]);
   const [loading, setLoading] = useState(true);
+  const menuBurger = useSelector(state => state.menuBurger)
 
   useEffect(() => {
     setProductsToShow(
@@ -21,7 +23,8 @@ const ProductsByCategory = () => {
 
   return (
     <div className="productsByCategoryContainer">
-      <h3>Categoría: {category}</h3>
+      {menuBurger ? <MenuBurger></MenuBurger> : null}
+      <h3 className="categoryProduct">Categoría: {category}</h3>
       <div className="productsCardsCategoryContainer" >           
         {
          productsToShow?.length ?  productsToShow?.map(
