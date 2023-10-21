@@ -21,7 +21,7 @@ const ProductDetails = ({ productData }) => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const userId = useSelector((state) => state.user.id);
-  const menuBurger = useSelector(state => state.menuBurger)
+  const menuBurger = useSelector((state) => state.menuBurger);
   useEffect(() => {
     // saveCartLocal()
   }, []);
@@ -171,7 +171,7 @@ const ProductDetails = ({ productData }) => {
                   )
                 )
               : false;
-          console.log(ordersByUser)
+          console.log(ordersByUser);
           console.log(hasPurchased, "hasPurchased");
           setUserHasPurchased(hasPurchased);
         }
@@ -187,12 +187,7 @@ const ProductDetails = ({ productData }) => {
   return (
     <div>
       {contextHolder}
-      {openDrawer && (
-        <DrawerCart
-          openDrawer={openDrawer}
-          onClose={onClose}
-        />
-      )}
+      {openDrawer && <DrawerCart openDrawer={openDrawer} onClose={onClose} />}
       {menuBurger ? <MenuBurger></MenuBurger> : null}
       <div className="productDetailContainer">
         <div className="productDetailContainerTop">
