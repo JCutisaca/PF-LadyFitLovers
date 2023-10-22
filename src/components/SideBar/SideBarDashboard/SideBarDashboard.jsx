@@ -4,12 +4,17 @@ import {
   ShoppingCartOutlined,
   UploadOutlined,
   LineChartOutlined,
+  CustomerServiceOutlined,
 } from "@ant-design/icons";
 import { Divider, Menu, Switch } from "antd";
 import { useNavigate } from "react-router";
+import { useMediaQuery } from "react-responsive";
+import { FloatButton } from "antd";
 
 const SideBarDashboard = () => {
   const navigate = useNavigate();
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isLatop = useMediaQuery({ minWidth: 769 });
 
   function getItem(label, key, icon, children) {
     return {
@@ -20,16 +25,43 @@ const SideBarDashboard = () => {
     };
   }
   const items = [
-    getItem("Usuarios", "1", <UserOutlined />),
-    getItem("Productos", "2", <ShopOutlined />),
-    getItem("Ordenes de compra", "3", <ShoppingCartOutlined />),
-    getItem("Crear producto", "4", <UploadOutlined />),
-    getItem("Resumen", "5", <LineChartOutlined />),
+
+    {
+      key: "1",
+      icon: <UserOutlined />,
+      label: "Usuarios",
+    },
+    {
+      key: "2",
+      icon: <ShopOutlined />,
+      label: "Productos",
+    },
+    {
+      key: "3",
+      icon: <ShoppingCartOutlined  />,
+      label: "Ordenes de compra",
+    },
+    {
+      key: "4",
+      icon: <UploadOutlined />,
+      label: "Crear producto",
+    },
+    {
+      key: "5",
+      icon: <LineChartOutlined />,
+      label: "Resumen",
+    },
  
     
   ];
-  const handleMenu = ({ item, key, keyPath, selectedKeys, domEvent }) => {
-    switch (key) {
+  const handleMenu = (keySelect) => {
+    let selectedKey = keySelect;
+
+  if (typeof keySelect === "object") {
+    selectedKey = keySelect.key;
+  }
+
+  switch (selectedKey) {
       case "1":
         navigate("/admin/usuarios");
         break;
@@ -59,6 +91,7 @@ const SideBarDashboard = () => {
       <Menu
         style={{
           width: 256,
+          display: isMobile ? "none" : "block",
         }}
         defaultSelectedKeys={[""]}
         //defaultOpenKeys={['sub1']}
@@ -67,6 +100,20 @@ const SideBarDashboard = () => {
         items={items}
         onSelect={handleMenu}
       />
+      <FloatButton.Group
+      trigger="click"
+      type="primary"
+      style={{ right: 24,display: isLatop ? 'none' : 'block' }}
+      icon={<CustomerServiceOutlined />}
+
+    >
+      {items.map(item => (
+        <FloatButton key={item.key} icon={item.icon} label={item.label} onClick={() => handleMenu(item.key)}>
+        
+        </FloatButton>
+      ))}
+     
+    </FloatButton.Group>
       {/* <Switch onChange={changeMode} /> Change Mode
         <Divider type="vertical" />
         <Switch onChange={changeTheme} /> Change Style */}

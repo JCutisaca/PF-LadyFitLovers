@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import getAllUsers from "../../../redux/Actions/User/getAllUsers";
 import { Button, Switch, Table, Tag, message } from "antd";
+import { useMediaQuery } from "react-responsive";
 import {
   CheckOutlined,
   CloseOutlined,
@@ -12,6 +13,7 @@ import CreateAcountModal from "../../../components/CreateAcountModal/CreateAcoun
 import userBan from "../../../redux/Actions/User/banUser";
 
 const UsersTable = () => {
+  const isMobile = useMediaQuery({ maxWidth: 768 });
   const dispatch = useDispatch();
   const [showEditModal, setShowEditModal] = useState(false);
   const [showBanModal, setShowBanModal] = useState(false);
@@ -41,30 +43,13 @@ const UsersTable = () => {
       key: "name",
       render: (text) => <p>{text}</p>,
     },
-    {
-      title: "Apellido",
-      dataIndex: "surname",
-      key: "surname",
-      render: (text) => <p>{text}</p>,
-    },
+
     {
       title: "Email",
       dataIndex: "email",
       sorter: (a, b) => a.email.localeCompare(b.email),
       key: "email",
-      render: (text) => <p>{text}</p>,
-    },
-    {
-      title: "Telefono",
-      dataIndex: "phone",
-      key: "phone",
-      render: (text) => <p>{text  || "No definido"}</p>,
-    },
-    {
-      title: "Dirección",
-      dataIndex: "address",
-      key: "address",
-      render: (value) => <p>{value !== null ? `${value?.calle} ${value?.numero} ${value?.dpto} ${value?.entreCalles} ${value?.localidad} ${value?.provincia} ${value?.codigoPostal}` : "No definido"}</p>,
+      render: (text) => <p style={{width: "60%"}}>{text}</p>,
     },
     {
       title: "Rol",
@@ -80,25 +65,6 @@ const UsersTable = () => {
           <Tag color={record.typeUser === "Admin" ? "green" : "blue"}>
             {text}
           </Tag>
-        );
-      },
-    },
-    {
-      title: "Acciones",
-      dataIndex: "",
-      key: "action",
-      render: (text, record) => {
-        return (
-          <div>
-            <Button
-              type="primary"
-              icon={<EditOutlined />}
-              size="small"
-              onClick={() => {
-                setShowEditModal(true), setUser(record);
-              }}
-            />
-          </div>
         );
       },
     },
@@ -121,6 +87,55 @@ const UsersTable = () => {
     },
   ];
 
+  if (!isMobile) {
+    // Si no es un dispositivo móvil, agregamos las columnas de "Apellido", "Telefono", "Acciones" y "Dirección"
+    columns.splice(1, 0, {
+      title: "Apellido",
+      dataIndex: "surname",
+      key: "surname",
+      render: (text) => <p>{text}</p>,
+    });
+    columns.splice(3, 0, {
+      title: "Telefono",
+      dataIndex: "phone",
+      key: "phone",
+      render: (text) => <p>{text || "No definido"}</p>,
+    });
+    columns.push(
+      {
+        title: "Acciones",
+        dataIndex: "",
+        key: "action",
+        render: (text, record) => {
+          return (
+            <div>
+              <Button
+                type="primary"
+                icon={<EditOutlined />}
+                size="small"
+                onClick={() => {
+                  setShowEditModal(true), setUser(record);
+                }}
+              />
+            </div>
+          );
+        },
+      },
+      {
+        title: "Dirección",
+        dataIndex: "address",
+        key: "address",
+        render: (value) => (
+          <p>
+            {value !== null
+              ? `${value?.calle} ${value?.numero} ${value?.dpto} ${value?.entreCalles} ${value?.localidad} ${value?.provincia} ${value?.codigoPostal}`
+              : "No definido"}
+          </p>
+        ),
+      }
+    );
+  }
+
   useEffect(() => {
     dispatch(getAllUsers(accessToken));
   }, []);
@@ -135,7 +150,7 @@ const UsersTable = () => {
           user={user}
         />
       )}
-      <Table dataSource={allUsers} columns={columns} />
+      <Table  dataSource={allUsers} columns={columns} />
     </div>
   );
 };

@@ -23,7 +23,7 @@ const Resumen = ({ allOrders }) => {
       <div className="resumenContainer">
         <Card
           title="Total de ordenes :"
-          style={{ width: "300%" }}
+          className="CardResumen"
           hoverable={true}
           bordered={false}
           headStyle={{ backgroundColor: "#F5F5F5" }}
@@ -36,7 +36,7 @@ const Resumen = ({ allOrders }) => {
 
         <Card
           title="Total recaudado :"
-          style={{ width: "300%" }}
+          className="CardResumen"
           hoverable={true}
           bordered={false}
           headStyle={{ backgroundColor: "#F5F5F5" }}
@@ -44,7 +44,7 @@ const Resumen = ({ allOrders }) => {
         >
           <div className="resumenInfo">
             <p style={{ margin: 0 }}>
-             
+
               {formatCurrency(allOrders.reduce(
                 (acc, order) => acc + Number(order.totalAmount),
                 0
@@ -54,16 +54,16 @@ const Resumen = ({ allOrders }) => {
         </Card>
         <Card
           title="Ordenes de hoy :"
-          style={{ width: "300%" }}
+          className="CardResumen"
           hoverable={true}
           bordered={false}
           headStyle={{ backgroundColor: "#F5F5F5" }}
           bodyStyle={{ backgroundColor: "#F5F5F5" }}
         >
-            <div className="resumenInfo">
+          <div className="resumenInfo">
             <p style={{ margin: 0 }}>{todayOrders?.length}</p>
           </div>
-          
+
         </Card>
 
       </div>

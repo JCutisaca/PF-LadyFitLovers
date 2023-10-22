@@ -34,7 +34,7 @@ const Panel = () => {
 
   return (
     <div>
-        <Resumen allOrders={allOrders}/>
+        <Resumen  allOrders={allOrders}/>
         <Chart months={months} allOrders={allOrders}/>
 
       {/* <h1>Ventas por mes</h1>
