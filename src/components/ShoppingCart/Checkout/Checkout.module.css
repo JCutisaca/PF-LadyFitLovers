@@ -70,21 +70,20 @@
 @media (max-width: 515px) {
     .containerShipping {
         display: flex;
-        flex-direction: column;
+        flex-direction: revert;
         width: 100%;
         align-items: center;
+        padding: 0 20px;
     }
 
-    .containerShipping label {
+    /* .containerShipping label {
         margin-bottom: 5px;
         border-radius: 1rem;
         background-color: inherit;
         border-start-start-radius: 1rem !important;
         border-end-start-radius: 1rem !important;
-    }
+    } */
     .buttonShipping {
-        border-radius: 1rem;
-        border-start-start-radius: 1rem !important;
-        border-end-start-radius: 1rem !important;
-      }
+        height: 4rem;
+      } 
 }
