@@ -51,6 +51,7 @@ const CreateProductForm = ({ errors, isEditing }) => {
         postProduct(
           {
             name: values.name,
+            description: values.description,
             price: values.price,
             priceOnSale: values.priceOnSale,
             unitsSold: values.unitsSold,
@@ -78,6 +79,7 @@ const CreateProductForm = ({ errors, isEditing }) => {
           {
             id: values.id,
             name: values.name,
+            description: values.description,
             price: values.price,
             priceOnSale: values.priceOnSale,
             unitsSold: values.unitsSold,
@@ -130,6 +132,18 @@ const CreateProductForm = ({ errors, isEditing }) => {
                 <Input {...field} placeholder="Nombre" autoComplete="off" />
                 {errors.name && (
                   <p className="createProductError">{errors.name}</p>
+                )}
+              </div>
+            );
+          }}
+        </Field>
+        <Field id="description" name="description">
+          {({ field, form, meta, error }) => {
+            return (
+              <div className="fieldAndError">
+                <Input {...field} placeholder="Descripcion" autoComplete="off" />
+                {errors.description && (
+                  <p className="createProductError">{errors.description}</p>
                 )}
               </div>
             );
@@ -310,6 +324,7 @@ const CreateProductForm = ({ errors, isEditing }) => {
           onClick={isEditing ? handleEdit : handleSubmit}
           disabled={
             errors.name ||
+            errors.description ||
             errors.price ||
             errors.category ||
             errors.image ||
