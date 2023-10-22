@@ -7,6 +7,7 @@ import './createProduct.css'
 const CreateProduct = () => {
 const initialValues = {
     name: '',
+    description: '',
     price: '',
     priceOnSale: '',
     unitsSold: 0,
