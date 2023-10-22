@@ -11,8 +11,10 @@ import "./productsTable.css";
 import EditProductModal from "../../../components/EditPorductModal/EditPorductModal";
 import updateProduct from "../../../redux/Actions/Product/updateProduct";
 import getAllProducts from "../../../redux/Actions/Product/getAllProducts";
+import { useMediaQuery } from "react-responsive";
 
 const ProductsTable = () => {
+  const isMobile = useMediaQuery({ maxWidth: 769 });
   const dispatch = useDispatch();
   const products = useSelector((state) => state.allProductsAdmin);
   const allCatgories = useSelector((state) => state.allCategories);
@@ -75,27 +77,6 @@ const ProductsTable = () => {
       render: (text) => <p>{text.toUpperCase()}</p>,
     },
     {
-      title: "Categoria",
-      dataIndex: "Category",
-      filters: categoriesFilterOptions,
-      onFilter: (value, record) => record.Category.name === value,
-      key: "Category",
-      render: (category) => <p>{category.name}</p>,
-    },
-    {
-      title: "Precio",
-      dataIndex: "price",
-      key: "price",
-      sorter: (a, b) => a.price - b.price,
-      render: (price) => <p>${price}</p>,
-    },
-    {
-      title: "Unidades Vendidas",
-      dataIndex: "unitsSold",
-      key: "unitsSold",
-      render: (stock) => <p>{stock}</p>,
-    },
-    {
       title: "Acciones",
       dataIndex: "",
       key: "action",
@@ -132,6 +113,34 @@ const ProductsTable = () => {
       },
     },
   ];
+  
+  if (!isMobile) {
+    // Si no es un dispositivo móvil, agregamos las columnas "Categoria", "Precio" y "Unidades Vendidas"
+    columns.splice(2, 0, {
+      title: "Categoria",
+      dataIndex: "Category",
+      filters: categoriesFilterOptions,
+      onFilter: (value, record) => record.Category.name === value,
+      key: "Category",
+      render: (category) => <p>{category.name}</p>,
+      responsive: ["lg"], 
+    });
+    columns.splice(3, 0, {
+      title: "Precio",
+      dataIndex: "price",
+      key: "price",
+      sorter: (a, b) => a.price - b.price,
+      render: (price) => <p>${price}</p>,
+      responsive: ["lg"], 
+    });
+    columns.splice(4, 0, {
+      title: "Unidades Vendidas",
+      dataIndex: "unitsSold",
+      key: "unitsSold",
+      render: (stock) => <p>{stock}</p>,
+      responsive: ["lg"], 
+    });
+  }
   return (
     <div>
       {productUpdate && showEditModal && (
@@ -141,7 +150,7 @@ const ProductsTable = () => {
           product={productUpdate}
         />
       )}
-      <Table dataSource={sortedProducts} columns={columns} />
+      <Table  dataSource={sortedProducts} columns={columns} />
     </div>
   );
 };

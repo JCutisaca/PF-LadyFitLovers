@@ -5,8 +5,10 @@ import {
   EditOutlined,
   StarOutlined,
   HeartOutlined,
+  CommentOutlined, CustomerServiceOutlined 
 } from "@ant-design/icons";
-import { Layout, Menu, Button, theme, Table } from "antd";
+import { Layout, Menu, Button, theme, Table, FloatButton } from "antd";
+import {useMediaQuery} from 'react-responsive'
 import DataProfile from "../DataProfile/DataProfile";
 import CreateAcountForm from "../CreateAcountModal/CreateAcountForm";
 import ShoppingClient from "../ShoppingClient/ShoppingClient";
@@ -24,6 +26,8 @@ import ProductFavs from "../ProductFavs/ProductFavs";
 
 const { Header, Sider, Content } = Layout;
 const ProfileLayout = ({ profileKey }) => {
+  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isLatop = useMediaQuery({ minWidth: 769 });
   const navigate = useNavigate();
   const infouser = useSelector((state) => state.user);
   const [dataUser, setFormData] = useState({
@@ -65,49 +69,59 @@ const ProfileLayout = ({ profileKey }) => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-  const keySelect = ({ key }) => {
-    setSelectKey(key);
+  const keySelect = ( access ) => {
+    console.log(access);
+    if (typeof access === "object") {
+      const {key}=access
+      navigate(`/perfil/${key}`)
+      setSelectKey(key);
+    } else {
+      setSelectKey(access);
+      navigate(`/perfil/${access}`)
+    }
   };
+  const items = [
+    {
+      key: "perfil",
+      icon: <UserOutlined />,
+      label: "Perfil",
+    },
+    {
+      key: "editar",
+      icon: <EditOutlined />,
+      label: "Editar Perfil",
+    },
+    {
+      key: "compras",
+      icon: <ShoppingOutlined />,
+      label: "Mis Compras",
+    },
+    {
+      key: "opiniones",
+      icon: <StarOutlined />,
+      label: "Opiniones",
+    },
+    {
+      key: "favoritos",
+      icon: <HeartOutlined />,
+      label: "Favoritos",
+    },
+  ];
   return (
-    <Layout>
-      <Sider>
+    
+    <Layout className={style.containerInfo} style={{marginTop:80 }}>
+      <Sider style={{ display: isMobile ? 'none' : 'block' }}>
         <div className="demo-logo-vertical" />
         <Menu
           theme="light"
           mode="inline"
-          style={{ height: "80vh" }}
+          style={{ height: "80vh"}}
           defaultSelectedKeys={profileKey}
           onSelect={keySelect}
-          items={[
-            {
-              key: "perfil",
-              icon: <UserOutlined />,
-              label: "Perfil",
-            },
-            {
-              key: "editar",
-              icon: <EditOutlined />,
-              label: "Editar Perfil",
-            },
-            {
-              key: "compras",
-              icon: <ShoppingOutlined />,
-              label: "Mis Compras",
-            },
-            {
-              key: "opiniones",
-              icon: <StarOutlined />,
-              label: "Opiniones",
-            },
-            {
-              key: "favoritos",
-              icon: <HeartOutlined />,
-              label: "Favoritos",
-            },
-          ]}
+          items={items}
         />
       </Sider>
-      <Layout>
+      <Layout className={style.containerInfo}>
         <Content className={style.layaout1}>
           {selectedKey === "perfil" && <DataProfile />}
           {selectedKey === "compras" && <ShoppingClient idUser={infouser.id} />}
@@ -144,6 +158,21 @@ const ProfileLayout = ({ profileKey }) => {
           {selectedKey === "opiniones" && <ReviewsClient infoUser={infouser}/>}
         </Content>
       </Layout>
+      <FloatButton.Group
+      trigger="click"
+      type="primary"
+      style={{ right: 24,display: isLatop ? 'none' : 'block' }}
+      icon={<CustomerServiceOutlined />}
+
+    >
+      {items.map(item => (
+        <FloatButton key={item.key} icon={item.icon} label={item.label} onClick={() => keySelect(item.key)}>
+        
+        </FloatButton>
+      ))}
+     
+    </FloatButton.Group>
+    
     </Layout>
   );
 };

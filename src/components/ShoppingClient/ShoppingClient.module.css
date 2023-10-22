@@ -26,3 +26,17 @@
     color:#BA338A;
     text-decoration: underline;
 }
+.buy{
+    height: 50px;
+    width: 200px;
+    text-align: center;
+}
+.detailFav{
+    height: 210px;
+    width: 210px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}

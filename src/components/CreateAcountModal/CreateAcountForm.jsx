@@ -228,26 +228,9 @@ const CreateAcountForm = ({
             );
           }}
         </Field>
-        {pivotuser ? (
-          <p>
-            Direccion actual:{" "}
-            {dataAddress
-              ? `${dataAddress.calle} ${dataAddress.numero} ${dataAddress.dpto} ${dataAddress.entreCalles} ${dataAddress.localidad} ${dataAddress.provincia} ${dataAddress.codigoPostal}`
-              : "No definido"}
-          </p>
-        ) : (
-          ""
-        )}
-        {isEditing ? (
-          <p>
-            Direccion actual:{" "}
-            {values.address
-              ? `${values.address.calle} ${values.address.numero} ${values.address.dpto} ${values.address.entreCalles} ${values.address.localidad} ${values.address.provincia} ${values.address.codigoPostal}`
-              : "No definido"}{" "}
-          </p>
-        ) : (
-          ""
-        )}
+        {
+          isEditing ? <p>Direccion actual: {values.address ? `${values.address.calle} ${values.address.numero} ${values.address.dpto} ${values.address.entreCalles} ${values.address.localidad} ${values.address.provincia} ${values.address.codigoPostal}` : "No definido"} </p> : ""
+        }
         <div className="createAcountCalleNumDpto">
           <Field id="calle" name="calle">
             {({ field, form, meta, error }) => {
@@ -487,7 +470,7 @@ const CreateAcountForm = ({
           )}
           {pivotuser ? (
             <ButtonSecondary
-              title="Update Password"
+              title="Act. contraseña"
               type="button"
               onClick={openLoginModal}
             />

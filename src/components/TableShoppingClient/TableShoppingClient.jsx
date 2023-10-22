@@ -32,13 +32,6 @@ const TableShoppingClient = () => {
 
   const columns = [
     {
-      title: "id",
-      dataIndex: "id",
-      sorter: (a, b) => a.id - b.id,
-      key: 1,
-      render: (text) => <p>{text}</p>,
-    },
-    {
       title: "Dirección de envío",
       dataIndex: "",
       key: 2,
@@ -65,16 +58,6 @@ const TableShoppingClient = () => {
       render: (text) => <p>{text}</p>,
     },
     {
-      title: "Id pago",
-      dataIndex: "mercadopagoTransactionId",
-      key: 6,
-      filters: paymentIdFilters,
-      filterSearch: true,
-      onFilter: (value, record) =>
-        record.mercadopagoTransactionId.indexOf(value) === 0,
-      render: (text) => <p>{text}</p>,
-    },
-    {
       title: "Estado",
       dataIndex: "status",
       filters: [
@@ -84,6 +67,9 @@ const TableShoppingClient = () => {
       ],
       onFilter: (value, record) => record.status.indexOf(value) === 0,
       key: 7,
+      render: (text, record) => {
+        return <Tag color={colorStatus(record.status)}>{text}</Tag>;
+      },
     },
     // {
     //   title: "Reseña",

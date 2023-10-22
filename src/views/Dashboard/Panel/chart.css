@@ -1,15 +1,17 @@
 .chartContainer{
-    min-height: 400px;
+    min-height: 20%;
     width: 100%;
     display: flex;
     align-items: center;
-    gap:40px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    gap: 20px;
 }
 
 .chart{
-    width: 100%;
-    height: 400px;
-    margin-top: 100px;
+    width: 400px;
+    height: auto;
     align-items: center;
 }
 
@@ -18,8 +20,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 150px;
-    gap: 40px;
+  
+    
 }
 
 
