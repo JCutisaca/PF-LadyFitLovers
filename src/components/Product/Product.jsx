@@ -153,26 +153,29 @@ const Product = ({
         </Col>
       </Row>
       <Row>
-        {stock ? (
-          <Col
-            className={hasSale ? style.hasSale : null}
-            style={colStyle}
-            span={hasSale ? 12 : 24}
-          >
-            $ {price}
-          </Col>
-        ) : (
-          <Col style={colStyle} span={24}>
-            No stock available
-          </Col>
-        )}
-        {hasSale && (
-          <Col className={style.offert} style={colStyle} span={12}>
-            $ {priceOnSale}
-          </Col>
-        )}
-      </Row>
-
+  {stock ? (
+    <Col
+      className={hasSale ? style.hasSale : null}
+      style={{ ...colStyle, textAlign: hasSale ? 'right' : 'center', padding:"2px" }}
+      span={hasSale ? 12 : 24}
+    >
+      $ {price}
+    </Col>
+  ) : (
+    <Col style={{ ...colStyle, textAlign: 'center', padding:"2px" }} span={24}>
+      No stock available
+    </Col>
+  )}
+  {hasSale && (
+    <Col
+      className={style.offert}
+      style={{ ...colStyle, textAlign: 'left', padding:"2px" }}
+      span={12}
+    >
+      $ {priceOnSale}
+    </Col>
+  )}
+</Row>
       <Row>
         <Col style={colStyle} span={24}>
           <NavLink className={style.buy} to={`/detail/${id}`}>

@@ -47,6 +47,7 @@
   cursor: pointer;
   height: 80px;
   border-bottom: 6px solid #ba338a;
+  transition: 0.3s ease-in-out;
 }
 
 .searchBarDiv {

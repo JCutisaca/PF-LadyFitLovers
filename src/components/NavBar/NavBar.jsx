@@ -112,32 +112,7 @@ const NavBar = () => {
     </Menu>
   );
 
-  const categories = (
-    <Menu onClick={handleMenuClick}>
-      <Menu.Item key="perfil">
-        <Link to="/perfil/perfil">
-          <ProfileOutlined className="menuIcon" />
-          Perfil
-        </Link>
-      </Menu.Item>
-      <Menu.Item key="compras">
-        <Link to="/perfil/compras">
-          <ShoppingOutlined className="menuIcon" />
-          Mis compras
-        </Link>
-      </Menu.Item>
-      <Menu.Item key="opiniones">
-        <Link to="/perfil/opiniones">
-          <StarOutlined className="menuIcon" />
-          Opiniones
-        </Link>
-      </Menu.Item>
-      <Menu.Item key="logout" onClick={handleLogout}>
-        <LogoutOutlined className="menuIcon" />
-        Cerrar Sesión
-      </Menu.Item>
-    </Menu>
-  );
+
 
   const userDropdown = (
     <Dropdown
