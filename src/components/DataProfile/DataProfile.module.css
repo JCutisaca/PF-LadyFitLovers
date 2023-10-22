@@ -102,3 +102,16 @@ label {
 .ant::-webkit-scrollbar-thumb {
     background-color: #dd7fc2; 
 }
+@media screen and (max-width: 768px) {
+    .ant{
+        width:  90vw;
+        height: 110vw;
+        border: solid 3px #e2a6d1;
+        border-Radius: 3em 0 3em 0 ;
+        overflow: auto;
+        display: grid;
+        place-items: center;
+    
+    }
+    
+}
