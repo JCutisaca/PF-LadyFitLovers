@@ -83,7 +83,7 @@
   flex-direction: row;
 }
 .availableStock {
-  width: 50%;
+  width: 65%;
   color: gray;
   display: flex;
   padding-left: 5px;

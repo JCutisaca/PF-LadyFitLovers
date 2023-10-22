@@ -411,7 +411,7 @@ const ProductDetails = ({ productData }) => {
                           setSelects({ ...selects, quantity: value });
                         }
                       }}
-                      style={{ width: "25%" }}
+                      style={{ width: "35%" }}
                     />
                     <div className="availableStock">({max} disponibles)</div>
                   </div>
