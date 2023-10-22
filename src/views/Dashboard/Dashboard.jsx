@@ -12,13 +12,13 @@ const Dashboard = () => {
   const location = useLocation();
 
   return (
-    <div className={style.DashboardDiv} style={{ display: "flex", height: "100vh", marginTop: 85 }}>
+    <div  style={{ display: "flex", height: "100vh", marginTop: 85 }}>
       {/* Barra lateral */}
       
       <SideBarDashboard />
     
       {/* Contenido principal */}
-      <div style={{ flex: 1, overflowY: "auto", padding: 0 }}>
+      <div className={style.DashboardDiv} style={{ flex: 1, overflowY: "auto", padding: 0 }}>
         {location.pathname === "/admin" && <Panel/>}
         {location.pathname === "/admin/usuarios" && <UsersTable />}
         {location.pathname === "/admin/productos" && <ProductsTable />}

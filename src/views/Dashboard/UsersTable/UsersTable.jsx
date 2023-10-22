@@ -13,7 +13,7 @@ import CreateAcountModal from "../../../components/CreateAcountModal/CreateAcoun
 import userBan from "../../../redux/Actions/User/banUser";
 
 const UsersTable = () => {
-  const isMobile = useMediaQuery({ maxWidth: 768 });
+  const isMobile = useMediaQuery({ maxWidth: 769 });
   const dispatch = useDispatch();
   const [showEditModal, setShowEditModal] = useState(false);
   const [showBanModal, setShowBanModal] = useState(false);
@@ -21,17 +21,17 @@ const UsersTable = () => {
 
   const accessToken = useSelector((state) => state.accessToken);
   const allUsers = useSelector((state) => state.allUsers);
-  
-  
+
+
   const onChange = async (value, user) => {
     try {
-     const response= await dispatch(userBan(value, user, accessToken));
-     if(response){
-      dispatch(getAllUsers(accessToken));
-      message.success("Usuario actualizado correctamente", [2] , onClose() );
+      const response = await dispatch(userBan(value, user, accessToken));
+      if (response) {
+        dispatch(getAllUsers(accessToken));
+        message.success("Usuario actualizado correctamente", [2], onClose());
       }
     } catch (error) {
-      
+
     }
   };
 
@@ -49,25 +49,9 @@ const UsersTable = () => {
       dataIndex: "email",
       sorter: (a, b) => a.email.localeCompare(b.email),
       key: "email",
-      render: (text) => <p style={{width: "60%"}}>{text}</p>,
+      render: (text) => <p style={{ width: "60%" }}>{text}</p>,
     },
-    {
-      title: "Rol",
-      dataIndex: "typeUser",
-      filters: [
-        { text: "Admin", value: "Admin" },
-        { text: "Usuario", value: "User" },
-      ],
-      onFilter: (value, record) => record.typeUser.indexOf(value) === 0,
-      key: "typeUser",
-      render: (text, record) => {
-        return (
-          <Tag color={record.typeUser === "Admin" ? "green" : "blue"}>
-            {text}
-          </Tag>
-        );
-      },
-    },
+    
     {
       title: "Banneado",
       dataIndex: "",
@@ -101,6 +85,23 @@ const UsersTable = () => {
       key: "phone",
       render: (text) => <p>{text || "No definido"}</p>,
     });
+    columns.splice(5,0,{
+      title: "Rol",
+      dataIndex: "typeUser",
+      filters: [
+        { text: "Admin", value: "Admin" },
+        { text: "Usuario", value: "User" },
+      ],
+      onFilter: (value, record) => record.typeUser.indexOf(value) === 0,
+      key: "typeUser",
+      render: (text, record) => {
+        return (
+          <Tag color={record.typeUser === "Admin" ? "green" : "blue"}>
+            {text}
+          </Tag>
+        );
+      },
+    },)
     columns.push(
       {
         title: "Acciones",
