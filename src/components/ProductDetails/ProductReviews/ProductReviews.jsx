@@ -62,18 +62,12 @@ const ProductReviews = ({ productData }) => {
   const ratingPercentages = calculateRatingPercentages(reviews);
   const reversedRatingPercentages = ratingPercentages.slice().reverse();
 
-
   return (
     <div className={style.container}>
       {/* agregar filtro por rating y ordenamiento por fecha */}
 
       <div className={style.reviewStats}>
         <div className={style.reviewAverage}>
-          {/* aca va a ir el 
-          -promedio de /5  en numero
-          -promedio que se muestre en un rate
-          -agregar un review count
-          */}
           <div className={style.reviewAverageNum}>
             <h1 className={style.averageNum}>
               {averageProductRating.toFixed(1)}
