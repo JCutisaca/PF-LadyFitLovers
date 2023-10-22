@@ -28,7 +28,7 @@ const PaymentState = () => {
   // const shippingType= "Envío a domicilio"
 
   useEffect(() => {
-    if (parsedData.status === "approved") {
+    if (parsedData?.status === "approved") {
       const paymentApproved = async () => {
         if (userId) {
           const response = await dispatch(
@@ -54,42 +54,60 @@ const PaymentState = () => {
 
   const renderSuccessCard = () => (
     <Card>
-      <Result
-        status="success"
-        title="Compra realizada con éxito!"
-        subTitle="Su compra ha sido aprobada y procesada correctamente."
-        extra={[
-          <Button
-            type="primary"
-            key="profile"
-            onClick={() => navigate("/perfil/compras")}
-          >
-            <ShoppingOutlined /> Ir al detalle de compra
-          </Button>,
-          <Button type="default" key="home" onClick={() => history.push("/")}>
-            Volver al inicio
-          </Button>,
-        ]}
-      />
+      <div
+        style={{
+          height: "60vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Result
+          status="success"
+          title="Compra realizada con éxito!"
+          subTitle="Su compra ha sido aprobada y procesada correctamente."
+          extra={[
+            <Button
+              type="primary"
+              key="profile"
+              onClick={() => navigate("/perfil/compras")}
+            >
+              <ShoppingOutlined /> Ir al detalle de compra
+            </Button>,
+            <Button type="default" key="home" onClick={() => navigate("/")}>
+              Volver al inicio
+            </Button>,
+          ]}
+        />
+      </div>
     </Card>
   );
 
   const renderErrorCard = () => (
     <Card>
-      <Result
-        status="error"
-        title="Error en la compra"
-        subTitle="Hubo un problema con su compra. Por favor, intente nuevamente más tarde."
-        extra={[
-          <Button type="default" key="home" onClick={() => navigate("/")}>
-            Volver al inicio
-          </Button>,
-        ]}
-      />
+      <div
+        style={{
+          height: "60vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Result
+          status="error"
+          title="Error en la compra"
+          subTitle="Hubo un problema con su compra. Por favor, intente nuevamente más tarde."
+          extra={[
+            <Button type="default" key="home" onClick={() => navigate("/")}>
+              Volver al inicio
+            </Button>,
+          ]}
+        />
+      </div>
     </Card>
   );
 
-  return parsedData.status === "approved"
+  return parsedData?.status === "approved"
     ? renderSuccessCard()
     : renderErrorCard();
 };

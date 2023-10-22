@@ -31,21 +31,6 @@ const ReviewForm = ({ productData, userId, accessToken }) => {
     console.log("Form values:", allValues);
   };
 
-  //mensajes de alerta formulario
-  const [messageApi, contextHolder] = message.useMessage();
-  const success = () => {
-    messageApi.open({
-      type: "success",
-      content: "This is a success message",
-    });
-  };
-  const error = () => {
-    messageApi.open({
-      type: "error",
-      content: "This is an error message",
-    });
-  };
-
   const handleSubmit = async () => {
     try {
       const values = await form.validateFields();
@@ -70,9 +55,8 @@ const ReviewForm = ({ productData, userId, accessToken }) => {
       message.success("Reseña enviada con exito");
       setTimeout(() => {
         window.location.reload();
-      }, 2000);
-    }
-     catch (errorInfo) {
+      }, 3000);
+    } catch (errorInfo) {
       message.error("Error al enviar la reseña");
       console.log("Fallo", errorInfo);
     }
@@ -120,7 +104,7 @@ const ReviewForm = ({ productData, userId, accessToken }) => {
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit">
-              Submit
+              Publicar
             </Button>
           </Form.Item>
         </Form>

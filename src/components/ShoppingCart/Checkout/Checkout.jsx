@@ -9,7 +9,7 @@ import checkout from '../../../redux/Actions/Checkout/checkout';
 import updateUser from '../../../redux/Actions/User/updateUser';
 import { getColorName } from '../../../utils/getColorName';
 import userById from '../../../redux/Actions/User/getUserById';
-
+import style from './Checkout.module.css'
 
 
 
@@ -159,33 +159,33 @@ const Checkout = () => {
   }, [userUpdated.address]);
   return <>
 
-    <Space
+    <div
+      className={style.containerCheckout}
       direction="horizontal"
       size="middle"
       style={{
+        alignItems: 'flex-start',
+        marginTop: '86px',
         display: 'flex',
-        justifyContent: "space-around"
+        justifyContent: "space-around",
       }}
     >
 
-      <Space direction='vertical' style={{
-        display: 'flex',
-        justifyContent: "space-around",
-        flexDirection: "column",
-        margin: 40
-      }}>
-        <h2>Escoge el tipo de entrega</h2>
-        <Radio.Group style={{ margin: 20 }} onChange={handleRadio} defaultValue={"Retiro en punto de entrega"}>
-          <Radio.Button style={{ width: 300 }} value="Retiro en punto de entrega">
+      <div
+        className={style.containerLeft}
+        direction='vertical'>
+        <h2 style={{ marginLeft: '20px' }}>Escoge el tipo de entrega</h2>
+        <Radio.Group className={style.containerShipping} onChange={handleRadio} defaultValue={"Retiro en punto de entrega"}>
+          <Radio.Button className={style.buttonShipping} value="Retiro en punto de entrega">
             Retiro en punto de entrega
           </Radio.Button>
-          <Radio.Button style={{ width: 300 }} value="Envío a domicilio">
+          <Radio.Button className={style.buttonShipping} value="Envío a domicilio">
             Envío a domicilio
           </Radio.Button>
         </Radio.Group>
         {shipping === "Retiro en punto de entrega" && <Card
           style={{
-            width: 600,
+            width: '90%',
             height: 200,
             margin: 20
           }}
@@ -196,7 +196,7 @@ const Checkout = () => {
         </Card>}
         {shipping === "Envío a domicilio" && calle && !editing.address && <Card
           style={{
-            width: 600,
+            width: '90%',
             height: 200,
             margin: 20
           }}
@@ -208,7 +208,7 @@ const Checkout = () => {
         </Card>}
         {shipping === "Envío a domicilio" && (!calle || editing.address) && <Card
           style={{
-            width: 600,
+            width: '90%',
             height: 320,
             margin: 20
           }}
@@ -314,7 +314,7 @@ const Checkout = () => {
                   style={{
                     display: 'inline-block',
                     width: 'calc(100% - 8px)',
-                    margin: '0 8px',
+                    // margin: '0 8px',
                   }}
                   defaultValue={"Seleccione una provincia"}
                   value={item.provincia}
@@ -334,7 +334,7 @@ const Checkout = () => {
         </Card>}
         {user.phone && !editing.phone && <Card
           style={{
-            width: 600,
+            width: '90%',
             height: 200,
             margin: 20
           }}
@@ -346,7 +346,7 @@ const Checkout = () => {
         </Card>}
         {(editing.phone || !user.phone) && <Card
           style={{
-            width: 600,
+            width: '90%',
             height: 200,
             margin: 20
           }}
@@ -365,116 +365,118 @@ const Checkout = () => {
           <Button disabled={disabled.phone} size='small' name='editPhone' type='primary' style={{ marginTop: 10 }} onClick={handleEdit}>Actualizar teléfono</Button>
 
         </Card>}
-      </Space>
-      <Space direction='vertical' style={{
-        display: 'flex',
-        flexDirection: "column",
-        margin: 40,
-        alignItems: "center"
-      }}>
+      </div>
+      <div 
+      className={style.containerRight}
+      direction='vertical'>
 
         {/* card de la derecha */}
 
         <Card
           title="Resumen de compra"
           bordered={false}
-          style={{ width: 655 }}
+          className={style.card}
+          // style={{ width: '90%', marginRight: '20px', }}
         >
+          <div>
+            {cart.length > 0 &&
+              cart.map(
+                ({ name, color, image, size, quantity, price, id }, i) => {
+                  return (
+                    <div key={id}>
+                      <Card
+                        // className={styles.productShow}
+                        title={name}
+                        bordered={false}
+                        hoverable={true}
+                        style={{
+                          width: "100%",
 
-          {cart.length > 0 &&
-            cart.map(
-              ({ name, color, image, size, quantity, price, id }, i) => {
-                return (
-                  <div key={id}>
-                    <Card
-                      // className={styles.productShow}
-                      title={name}
-                      bordered={false}
-                      hoverable={true}
-                      style={{
-                        width: 450,
+                          margin: 15,
+                        }}
+                        id={id}
+                        name={size}
+                      >
+                        <Row justify="center">
+                          <Divider
+                            type="vertical"
+                            style={{ borderColor: "#e0b3cd" }}
+                          />
+                          <Col style={{ margin: 3 }} >
+                            <div>
+                              <Image
+                                alt={name}
+                                src={image && image}
+                                width={35}
+                              />
+                            </div>
+                          </Col>
+                          <Divider
+                            type="vertical"
+                            style={{ borderColor: "#e0b3cd" }}
+                          />
+                          <Col style={{ margin: 3 }}>
+                            <div>
+                              Color
+                              <br />
+                              {getColorName(color)}
+                            </div>
+                          </Col>
+                          <Divider
+                            type="vertical"
+                            style={{ borderColor: "#e0b3cd" }}
+                          />
+                          <Col style={{ margin: 3 }}>
+                            <div>
+                              Cant.
+                              <br />
+                              {quantity}
+                            </div>
+                          </Col>
+                          <Divider
+                            type="vertical"
+                            style={{ borderColor: "#e0b3cd" }}
+                          />
+                          <Col style={{ margin: 3 }}>
+                            <div>
+                              Precio x unidad
+                              <br />
+                              ${price}
+                            </div>
+                          </Col>
+                          <Divider
+                            type="vertical"
+                            style={{ borderColor: "#e0b3cd" }}
+                          />
+                          <Col style={{ margin: 3 }}>
+                            <div>
+                              Total
+                              <br />
+                              ${price * quantity}
+                            </div>
+                          </Col>
+                          <Divider
+                            type="vertical"
+                            style={{ borderColor: "#e0b3cd" }}
+                          />
+                        </Row>
+                      </Card>
+                    </div>
+                  );
+                }
+              )}
 
-                        margin: 15,
-                      }}
-                      id={id}
-                      name={size}
-                    >
-                      <Row justify="center">
-                        <Divider
-                          type="vertical"
-                          style={{ borderColor: "#e0b3cd" }}
-                        />
-                        <Col style={{ margin: 3 }} >
-                          <div>
-                            <Image
-                              alt={name}
-                              src={image && image}
-                              width={35}
-                            />
-                          </div>
-                        </Col>
-                        <Divider
-                          type="vertical"
-                          style={{ borderColor: "#e0b3cd" }}
-                        />
-                        <Col style={{ margin: 3 }}>
-                          <div>
-                            Color
-                            <br />
-                            {getColorName(color)}
-                          </div>
-                        </Col>
-                        <Divider
-                          type="vertical"
-                          style={{ borderColor: "#e0b3cd" }}
-                        />
-                        <Col style={{ margin: 3 }}>
-                          <div>
-                            Cant.
-                            <br />
-                            {quantity}
-                          </div>
-                        </Col>
-                        <Divider
-                          type="vertical"
-                          style={{ borderColor: "#e0b3cd" }}
-                        />
-                        <Col style={{ margin: 3 }}>
-                          <div>
-                            Precio x unidad
-                            <br />
-                            {price}
-                          </div>
-                        </Col>
-                        <Divider
-                          type="vertical"
-                          style={{ borderColor: "#e0b3cd" }}
-                        />
-                        <Col style={{ margin: 3 }}>
-                          <div>
-                            Total
-                            <br />
-                            {price * quantity}
-                          </div>
-                        </Col>
-                        <Divider
-                          type="vertical"
-                          style={{ borderColor: "#e0b3cd" }}
-                        />
-                      </Row>
-                    </Card>
-                  </div>
-                );
-              }
-            )}
+            <Divider style={{ borderColor: "#e0b3cd" }} />
+            <p>Subtotal ${total}</p>
+            <p>Envío ${costSelected}</p>
+            <Divider style={{ borderColor: "#e0b3cd" }} />
+            <p>Total ${total + costSelected}</p>
 
-          <Divider style={{ borderColor: "#e0b3cd" }} />
-          <p>Subtotal ${total}</p>
-          <p>Envío ${costSelected}</p>
-          <Divider style={{ borderColor: "#e0b3cd" }} />
-          <p>Total ${total + costSelected}</p>
 
+          </div>
+          
           <Button
+            style={{ marginTop: '1rem' }}
             type='primary'
             disabled={
               (shipping === 'Retiro en punto de entrega') ? false :
@@ -485,8 +487,8 @@ const Checkout = () => {
             Ir a pagar
           </Button>
         </Card>
-      </Space>
-    </Space>
+      </div>
+    </div>
 
   </>
 };

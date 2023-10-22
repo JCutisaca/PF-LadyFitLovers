@@ -1,66 +1,70 @@
-
 .footerContainer {
-    bottom: 0;
-    flex-shrink: 0;
-  }
-  
-  .footerBottom {
-    display: flex;
-    justify-content: center;
-    background-color: #ba338a;
-    color: #E0B3D3;
-    padding: 8px;
-  }
-  
+  /* bottom: 0; */
+  flex-shrink: 0;
+}
+
+.footerBottom {
+  display: flex;
+  justify-content: center;
+  background-color: #ba338a;
+  color: #e0b3d3;
+  padding: 8px;
+}
+.footerBottom a {
+  color: peachpuff;
+}
+.footerBottom a:hover {
+  color: white;
+  text-shadow: 0 0 3px #e0b3d3;
+}
+
+.footerTop {
+  display: flex;
+  justify-content: space-around;
+  background-color: #e0b3d3;
+  padding: 16px;
+}
+
+.footerTop a {
+  color: #ba338a;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.footerTop a:hover {
+  color: #f6f1f5;
+  font-size: 16px;
+  /* font-weight: 700; */
+}
+
+.footerTopLeftWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.h3footer {
+  color: #ba338a;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  margin-top: 16px;
+  margin-left: 0;
+}
+
+.footerTopLeft {
+  display: flex;
+  justify-content: left;
+  margin-left: 36px;
+}
+
+@media (max-width: 768px) {
   .footerTop {
-    display: flex;
-    justify-content: space-around;
-    background-color: #E0B3D3;
-    padding: 16px;
-  }
-  
-  .footerTop a {
-    color: #ba338a;
-    font-size: 16px;
-    font-weight: 500;
-    text-decoration: none;
-  }
-  
-  .footerTop a:hover {
-    color: #f6f1f5;
-    font-size: 16px;
-    /* font-weight: 700; */
-  }
-  
-  .footerTopLeftWrapper {
-    display: flex;
     flex-direction: column;
-  }
-  
-  .h3footer {
-    color: #ba338a;
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 16px;
-    margin-top: 16px;
-  }
-  
-  .footerTopLeft {
-    display: flex;
-    justify-content: left;
-    margin-left: 36px;
-  }
-  
-  @media (max-width: 768px) {
-    .footerTop {
-      flex-direction: column;
-      justify-content: center;
-    }
-  
-    .footerTopLeft {
-      margin-left: 0;
-    }
+    justify-content: center;
   }
 
-  
-  
+  .footerTopLeft {
+    margin-left: 0;
+  }
+}

@@ -1,7 +1,12 @@
-import { Button, Switch, Table } from "antd";
+import { Button, Switch, Table, message } from "antd";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { CheckOutlined, CloseOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import {
+  CheckOutlined,
+  CloseOutlined,
+  DeleteOutlined,
+  EditOutlined,
+} from "@ant-design/icons";
 import "./productsTable.css";
 import EditProductModal from "../../../components/EditPorductModal/EditPorductModal";
 import updateProduct from "../../../redux/Actions/Product/updateProduct";
@@ -11,11 +16,9 @@ const ProductsTable = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.allProductsAdmin);
   const allCatgories = useSelector((state) => state.allCategories);
- const accessToken = useSelector((state) => state.accessToken);
- const [showEditModal, setShowEditModal] = useState(false);
- const [productUpdate, setProductUpdate] = useState({});
-
-
+  const accessToken = useSelector((state) => state.accessToken);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [productUpdate, setProductUpdate] = useState({});
 
   const sortedProducts = products?.sort((a, b) => a.name.localeCompare(b.name));
 
@@ -27,35 +30,33 @@ const ProductsTable = () => {
     return { text: product.name, value: product.name };
   });
 
-  
-
   const handleActive = async (value, product) => {
     try {
       const response = await dispatch(
-        updateProduct({
-          id: product.id,
-          name: product.name,
-          price: product.price,
-          priceOnSale: product.priceOnSale || product.price,
-          unitsSold: product.unitsSold,
-          image: product.image,
-          category: product.category,
-          stock: product.stock,
-          active: value,
-        }, accessToken)
-      );     
-      message.success(response.message, [2], onClose());
-
-      resetForm();
-    } catch {
-      message.error("Error al crear producto", [2], onClose());
-    }
-    finally {
+        updateProduct(
+          {
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            priceOnSale: product.priceOnSale || product.price,
+            unitsSold: product.unitsSold,
+            image: product.image,
+            category: product.category,
+            stock: product.stock,
+            active: value,
+          },
+          accessToken
+        )
+      );
+      if (response.message === "Producto editado correctamente")
+        message.success("Producto editado correctamente", [2]);
+    } catch (error) {
+      console.log(error);
+    } finally {
       dispatch(getAllProducts(accessToken));
     }
   };
 
-  
   const columns = [
     {
       title: "Imagen",
@@ -105,33 +106,35 @@ const ProductsTable = () => {
               type="primary"
               icon={<EditOutlined />}
               size="small"
-              onClick={() => {setShowEditModal(true), setProductUpdate(cell)}}
+              onClick={() => {
+                setShowEditModal(true), setProductUpdate(cell);
+              }}
             />
-            
           </div>
         );
       },
     },
     {
-        title: "Activo",
-        dataIndex: "",
-        key: "active",
-        render: (cell) => {
-           
-          return (
-            <Switch
-              checkedChildren={<CheckOutlined />}
-              unCheckedChildren={<CloseOutlined />}
-              defaultChecked={cell.active === true ? true : false}
-              onChange={()=> handleActive(cell.active === true ? false : true, cell)}
-            />
-          )
-        }
-    }
+      title: "Activo",
+      dataIndex: "",
+      key: "active",
+      render: (cell) => {
+        return (
+          <Switch
+            checkedChildren={<CheckOutlined />}
+            unCheckedChildren={<CloseOutlined />}
+            defaultChecked={cell.active === true ? true : false}
+            onChange={() =>
+              handleActive(cell.active === true ? false : true, cell)
+            }
+          />
+        );
+      },
+    },
   ];
   return (
     <div>
-        {productUpdate && showEditModal && (
+      {productUpdate && showEditModal && (
         <EditProductModal
           visible={showEditModal}
           onClose={() => setShowEditModal(false)}

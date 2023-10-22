@@ -1,0 +1,16 @@
+.reviewsData {
+  display: flex;
+  flex-direction: row;
+}
+.reviewsData p {
+  color: rgb(139, 139, 139);
+
+}
+@media screen and (max-width: 768px) {
+  .reviewStats {
+    flex-direction: column;
+  }
+  .reviewAverage {
+    flex-wrap: wrap;
+  }
+}
