@@ -17,7 +17,7 @@ import { getColorName } from "../../../utils/getColorName";
 import removingProduct from "../../../redux/Actions/ShoppingCart/removingProduct";
 import checkout from "../../../redux/Actions/Checkout/checkout";
 import LoginModal from "../../LoginModal/LoginModal";
-import EmptyCart from "../emptyCart/emptyCart";
+import EmptyCart from "../EmptyCart/emptyCart";
 import { useNavigate } from "react-router";
 import Checkout from "../Checkout/Checkout";
 import style from './DrawerCart.module.css'
