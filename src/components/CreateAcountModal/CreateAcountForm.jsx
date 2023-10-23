@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Input, Button, message, Select } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
 import { Field, FieldArray, useFormikContext } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { provincias } from "./Provincias";
@@ -31,8 +32,7 @@ const CreateAcountForm = ({
   const [selectedImage, setSelectedImage] = useState({
     saveImage: null,
     urlImage: "",
-  }); // Paso 2: Crea una variable de estado para la imagen
-  // Paso 3: Maneja el cambio de archivo de imagen
+  });
   const handleImageChange = (event) => {
     setSelectedImage({
       ...selectedImage,
@@ -48,13 +48,11 @@ const CreateAcountForm = ({
             ...prevImage,
             urlImage: imageUrl,
           }));
-        } catch (error) {
-          // Manejar errores si es necesario
-        }
+        } catch (error) {}
       }
     }
 
-    fetchImage(); // Llama a la función async inmediatamente
+    fetchImage();
   }, [selectedImage.saveImage]);
 
   const [showPassword, setShowPassword] = useState(false);
@@ -124,7 +122,7 @@ const CreateAcountForm = ({
 
       if (response.message === "Usuario editado correctamente") {
         message.success(response.message);
-        resetForm(); // Restablece los valores del formulario
+        resetForm();
         dispatch(getUserById(valuesToSend.id, accessToken));
       } else {
         message.error("Error al editar la cuenta");
@@ -180,7 +178,12 @@ const CreateAcountForm = ({
     <>
       <div className="containerFormCreateAcount">
         {pivotuser ? (
-          <Input type="file" accept="image/*" onChange={handleImageChange} />
+          <Input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            addonBefore={<UploadOutlined />}
+          />
         ) : (
           ""
         )}
@@ -228,9 +231,16 @@ const CreateAcountForm = ({
             );
           }}
         </Field>
-        {
-          isEditing ? <p>Direccion actual: {values.address ? `${values.address.calle} ${values.address.numero} ${values.address.dpto} ${values.address.entreCalles} ${values.address.localidad} ${values.address.provincia} ${values.address.codigoPostal}` : "No definido"} </p> : ""
-        }
+        {isEditing ? (
+          <p>
+            Direccion actual:{" "}
+            {values.address
+              ? `${values.address.calle} ${values.address.numero} ${values.address.dpto} ${values.address.entreCalles} ${values.address.localidad} ${values.address.provincia} ${values.address.codigoPostal}`
+              : "No definido"}{" "}
+          </p>
+        ) : (
+          ""
+        )}
         <div className="createAcountCalleNumDpto">
           <Field id="calle" name="calle">
             {({ field, form, meta, error }) => {
