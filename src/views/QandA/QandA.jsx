@@ -2,7 +2,8 @@ import { Collapse } from "antd";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import LoginModal from "../../components/LoginModal/LoginModal";
-import "./qAndA.css";
+
+import './qAndA.css';
 
 const QandA = () => {
   const [loginModalVisible, setLoginModalVisible] = useState(false);
