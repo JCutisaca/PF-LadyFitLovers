@@ -1,27 +1,24 @@
 .containerForm {
-  outline: solid red 1px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 16px;
-  width: 70vw;
+  width: 46vw;
   
 }
 .inputsContainerII{
-  outline: solid green 1px;
   width: 100%;
-  justify-content: space-around;
+  justify-content: space-between;
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
 }
 .inputsContainer{
     display: flex;
-    
     justify-content: center;
-   outline: solid blue 1px;
     flex-wrap: wrap;
     gap: 16px;
     width: 100%;
@@ -68,4 +65,16 @@
    .createCategoryButton:hover{
      cursor: pointer;    
      color: #c04c98;
+}
+
+@media screen and (max-width: 767px) {
+  .containerForm{
+    width: 90%;
+    padding: 20px;
+  }
+  .inputsContainerII{
+    width: 100%;
+    justify-content: center;
+  }
+  
 }

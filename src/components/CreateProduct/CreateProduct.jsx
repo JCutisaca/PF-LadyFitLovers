@@ -18,7 +18,7 @@ const initialValues = {
 
   return (
     <div className='createProductContainer'>
-        <h1>CREAR PRODUCTO</h1>
+        <h1 className='createProductTitle'>CREAR PRODUCTO</h1>
         <Formik 
         initialValues={initialValues}
         validationSchema={CreateProductSchema}
