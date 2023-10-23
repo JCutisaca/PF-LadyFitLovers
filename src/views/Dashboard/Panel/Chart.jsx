@@ -24,7 +24,7 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-import "./Chart.css";
+import "./chart.css";
 import { useSelector } from "react-redux";
 
 const Chart = ({ months }) => {
