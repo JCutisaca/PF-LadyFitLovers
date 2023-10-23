@@ -1,15 +1,25 @@
 .containerForm {
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   gap: 16px;
-  width: 700px;
+  width: 46vw;
   
 }
-
+.inputsContainerII{
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
 .inputsContainer{
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 16px;
     width: 100%;
     margin: 16px 0px;
@@ -22,6 +32,7 @@
 }
 .inputsSizesContainer{
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     gap: 16px;
     width: 100%;
@@ -54,4 +65,16 @@
    .createCategoryButton:hover{
      cursor: pointer;    
      color: #c04c98;
+}
+
+@media screen and (max-width: 767px) {
+  .containerForm{
+    width: 90%;
+    padding: 20px;
+  }
+  .inputsContainerII{
+    width: 100%;
+    justify-content: center;
+  }
+  
 }

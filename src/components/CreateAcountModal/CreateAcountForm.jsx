@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Input, Button, message, Select } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
+import { Upload, Input, Button, message, Select } from "antd";
+import {UploadOutlined } from "@ant-design/icons";
 import { Field, FieldArray, useFormikContext } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { provincias } from "./Provincias";
@@ -32,11 +32,15 @@ const CreateAcountForm = ({
   const [selectedImage, setSelectedImage] = useState({
     saveImage: null,
     urlImage: "",
+
   });
-  const handleImageChange = (event) => {
+  const handleImageChange = (img) => {
+    message.success("Imagen subida correctamente");
+
     setSelectedImage({
       ...selectedImage,
-      saveImage: event.target.files[0],
+      saveImage: img.file.originFileObj
+      ,
     });
   };
   useEffect(() => {
@@ -178,12 +182,14 @@ const CreateAcountForm = ({
     <>
       <div className="containerFormCreateAcount">
         {pivotuser ? (
-          <Input
-            type="file"
-            accept="image/*"
-            onChange={handleImageChange}
-            addonBefore={<UploadOutlined />}
-          />
+          <Upload
+          accept="image/*"
+          customRequest={() => {}}
+          onChange={handleImageChange}
+          showUploadList={false}
+        >
+          <Button icon={<UploadOutlined />}>Seleccionar foto de perfil</Button>
+        </Upload>
         ) : (
           ""
         )}

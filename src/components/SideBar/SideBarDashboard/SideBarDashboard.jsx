@@ -5,6 +5,7 @@ import {
   UploadOutlined,
   LineChartOutlined,
   CustomerServiceOutlined,
+  RadarChartOutlined 
 } from "@ant-design/icons";
 import { Divider, Menu, Switch } from "antd";
 import { useNavigate } from "react-router";
@@ -104,7 +105,7 @@ const SideBarDashboard = () => {
       trigger="click"
       type="primary"
       style={{ right: 24,display: isLatop ? 'none' : 'block' }}
-      icon={<CustomerServiceOutlined />}
+      icon={<RadarChartOutlined />}
 
     >
       {items.map(item => (

@@ -4,9 +4,11 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import ShoppingClient from "../ShoppingClient/ShoppingClient";
 import getOrdersByUser from "../../redux/Actions/Order/getOrdersByUser";
+import { useMediaQuery } from "react-responsive";
 import style from "./TableShoppingClient.module.css";
 
 const TableShoppingClient = () => {
+  const isMobile = useMediaQuery({ maxWidth: 769 });
   const ordersUser = useSelector((state) => state.ordersUser);
   const accessToken = useSelector((state) => state.accessToken);
   const userId = useSelector((state) => state.user.id);
@@ -42,21 +44,14 @@ const TableShoppingClient = () => {
         return "blue";
     }
   };
-
-
   const columns = [
     {
-      title: "Dirección de envío",
+      title: "Dirección",
       dataIndex: "",
       key: 2,
       render: (cell) => <p>{cell?.User?.address || "No especificada"}</p>,
     },
-    {
-      title: "Teléfono",
-      dataIndex: "",
-      key: 3,
-      render: (cell) => <p>{cell?.User?.phone || "No especificado"}</p>,
-    },
+    
     {
       title: "Total",
       dataIndex: "totalAmount",
@@ -65,7 +60,7 @@ const TableShoppingClient = () => {
       render: (text) => <p>${text}</p>,
     },
     {
-      title: "Fecha de compra",
+      title: "Fecha",
       dataIndex: "orderDate",
       sorter: (a, b) => a.totalAmount - b.totalAmount,
       key: 5,
@@ -85,18 +80,17 @@ const TableShoppingClient = () => {
         return <Tag color={colorStatus(record.status)}>{text}</Tag>;
       },
     },
-    // {
-    //   title: "Reseña",
-    //   dataIndex: "status",
-    //   filters: [
-    //     { text: "Realizada", value: "Realizada" },
-    //     { text: "No realizada", value: "No realizada" },
-    //   ],
-    //   onFilter: (value, record) => record.status.indexOf(value) === 0,
-    //   key: 8,
-    //   render: (review) => <p>{review?.User?.id || ""}</p>,
-    // },
   ];
+  if(!isMobile){
+    columns.splice(1,0,{
+      
+        title: "Teléfono",
+        dataIndex: "",
+        key: 3,
+        render: (cell) => <p>{cell?.User?.phone || "No especificado"}</p>,
+      
+    })
+  }
 
   return (
     // <div className={style.container}>
@@ -109,7 +103,6 @@ const TableShoppingClient = () => {
         ),
       }}
       style={{
-        overflowX: "scroll",
         width: "90%",
         position: "relative",
         height: "100%",

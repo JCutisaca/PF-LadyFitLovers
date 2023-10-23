@@ -11,8 +11,10 @@ import CreateCategoryModal from "../CreateCategoryModal/CreateCategoryModal";
 import updateProduct from "../../redux/Actions/Product/updateProduct";
 import { useNavigate } from "react-router-dom";
 import "./createProductForm.css";
+import { useMediaQuery } from "react-responsive";
 
 const CreateProductForm = ({ errors, isEditing }) => {
+  const isMobile = useMediaQuery({ maxWidth: 768 });
   const navigate = useNavigate();
   const categories = useSelector((state) => state.allCategories);
   const accessToken = useSelector((state) => state.accessToken);
@@ -129,7 +131,7 @@ const CreateProductForm = ({ errors, isEditing }) => {
           {({ field, form, meta, error }) => {
             return (
               <div className="fieldAndError">
-                <Input {...field} placeholder="Nombre" autoComplete="off" />
+                <Input  {...field} placeholder="Nombre" autoComplete="off" />
                 {errors.name && (
                   <p className="createProductError">{errors.name}</p>
                 )}
@@ -149,12 +151,13 @@ const CreateProductForm = ({ errors, isEditing }) => {
             );
           }}
         </Field>
-        <div className="inputsContainer">
+        <div className="inputsContainerII">
+          <div>
           <Field id="price" name="price">
             {({ field, form, meta }) => {
               return (
                 <div className="fieldAndError">
-                  <Input {...field} placeholder="Precio" />
+                  <Input style={{width: isMobile ? "35vh" : 300}} {...field} placeholder="Precio" />
                   {errors.price && (
                     <p className="createProductError">{errors.price}</p>
                   )}
@@ -162,44 +165,52 @@ const CreateProductForm = ({ errors, isEditing }) => {
               );
             }}
           </Field>
+          </div>
+          <div>
           <Field id="priceOnSale" name="priceOnSale">
             {({ field, form, meta }) => {
               return (
                 <div className="fieldAndError">
-                  <Input {...field} placeholder="Precio en oferta" />
+                  <Input style={{width: isMobile ? "35vh" : 300}} {...field} placeholder="Precio en oferta" />
                 </div>
               );
             }}
           </Field>
+          </div>
         </div>
         <div className="inputsContainer">
           <div className="fieldAndError">
             {!isEditing && (
               <>
+                <div>
                 <Input
                   type="file"
                   placeholder="Imagen"
+                  style={{width: "100%"}}
                   onChange={(e) => setFieldValue("image", e.target.files[0])}
                 />
                 {errors.image && (
                   <p className="createProductError">{errors.image}</p>
                 )}
+                </div>
               </>
             )}
           </div>
 
           {!isEditing && (
+            
             <Field id="category" name="category">
               {({ field, form, meta }) => {
                 return (
                   <div className="fieldAndError">
+                    
                     <Select
                       {...field}
                       options={
                         isEditing ? categoryUpdateOptions : categoriesOptions
                       }
                       onChange={(value) => onChangeCategories(value)}
-                      style={{ width: "100%" }}
+                      
                     />
                     <button
                       type="button"
@@ -256,6 +267,7 @@ const CreateProductForm = ({ errors, isEditing }) => {
                                   return (
                                     <div>
                                       <Input
+                                        style={{width: 100}}
                                         type="text"
                                         id={`stock.${index}.sizeAndQuantity.${index2}.size`}
                                         {...field}
@@ -276,6 +288,7 @@ const CreateProductForm = ({ errors, isEditing }) => {
                                   return (
                                     <div>
                                       <Input
+                                      style={{width: 100}}
                                         type="number"
                                         id={`stock.${index}.sizeAndQuantity.${index2}.quantity`}
                                         {...field}

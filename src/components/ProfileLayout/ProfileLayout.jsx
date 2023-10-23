@@ -5,7 +5,9 @@ import {
   EditOutlined,
   StarOutlined,
   HeartOutlined,
-  CommentOutlined, CustomerServiceOutlined 
+  CommentOutlined, 
+  CustomerServiceOutlined,
+  IdcardOutlined 
 } from "@ant-design/icons";
 import { Layout, Menu, Button, theme, Table, FloatButton } from "antd";
 import {useMediaQuery} from 'react-responsive'
@@ -162,7 +164,7 @@ const ProfileLayout = ({ profileKey }) => {
       trigger="click"
       type="primary"
       style={{ right: 24,display: isLatop ? 'none' : 'block' }}
-      icon={<CustomerServiceOutlined />}
+      icon={<IdcardOutlined />}
 
     >
       {items.map(item => (

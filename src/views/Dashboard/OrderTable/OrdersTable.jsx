@@ -6,6 +6,7 @@ import {
 } from "@ant-design/icons";
 import OrderExpandedRow from "./OrderExpandedRow";
 import UpdateOrderModal from "./UpdateOrderModal";
+import "./OrderTable.css";
 
 const OrdersTable = () => {
   const allOrders = useSelector((state) => state.allOrders);
@@ -148,6 +149,7 @@ const OrdersTable = () => {
         />
       )}
       <Table
+        className="containTable"
         dataSource={tableOrders}
         columns={columns}
         expandable={{
@@ -156,7 +158,7 @@ const OrdersTable = () => {
           ),
           rowExpandable: (record) => record.name !== "Not Expandable",
         }}
-        style={{ overflowX: "scroll" }}
+        style={{ overflowX: "scroll"}}
       />
     </div>
   );

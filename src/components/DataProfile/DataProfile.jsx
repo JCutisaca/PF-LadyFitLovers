@@ -6,11 +6,13 @@ import {
   EnvironmentOutlined,
 } from "@ant-design/icons";
 import style from "./DataProfile.module.css";
+import user from "../../assets/img/user124.png";
 
 const { Text } = Typography;
 
 const Profile = () => {
   const infouser = useSelector((state) => state.user);
+  console.log(infouser.image);
   return (
     <div className={style.containerProfiler}>
       <Card
@@ -22,12 +24,13 @@ const Profile = () => {
           {infouser.image ? (
             <Avatar
               src={infouser.image}
-              style={{ margin: "12px 12px", height: "17vh", width: "auto" }}
+              style={{ margin: "12px 12px", height: "17vh", width: "17vh" }}
             />
           ) : (
             <Avatar
-              src="../../assets/img/user.png"
-              style={{ margin: "12px 12px", height: "17vh", width: "auto" }}
+              src={user}
+              
+              style={{ margin: "12px 12px", height: "17vh", width: "17vh",  }}
             />
           )}
           <Space direction="vertical" align="start">

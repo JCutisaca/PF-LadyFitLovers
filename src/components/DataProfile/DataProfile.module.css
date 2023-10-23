@@ -2,6 +2,17 @@
     overflow: hidden;
     border-Radius: 3em 0 3em 0 ;
 }
+.avatarContainer{
+    height: 17vh;
+    width: 17vh;
+    border-radius: 50%;
+    background-image: url("../../assets/img/user.png");
+    background-position: center;
+    background-size: 100% 100%;
+    box-shadow: 0 0 20px #BA338A ;
+   
+
+}
 /*.subcontainer{
    height: 60vh; 
    width: 50%;
