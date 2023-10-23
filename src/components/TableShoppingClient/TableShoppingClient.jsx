@@ -25,6 +25,25 @@ const TableShoppingClient = () => {
     };
   });
 
+  const paymentIdFilters = ordersUser?.map((order) => {
+    return {
+      text: order.mercadopagoTransactionId,
+      value: order.mercadopagoTransactionId,
+    };
+  });
+
+  const colorStatus = (status) => {
+    switch (status) {
+      case "En proceso":
+        return "blue";
+      case "Cancelada":
+        return "red";
+      case "Entregada":
+        return "green";
+      default:
+        return "blue";
+    }
+  };
   const columns = [
     {
       title: "Dirección",

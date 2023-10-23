@@ -90,7 +90,7 @@ const ProductReviews = ({ productData }) => {
       </div>
 
       {reviews.length === 0 ? (
-        <h4>
+        <h4 className={style.noReviews}>
           Actualmente este producto no cuenta con reseñas, ¡sé el primero!
         </h4>
       ) : (

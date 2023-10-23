@@ -76,6 +76,9 @@
   margin-bottom: 8px;
   padding-right: 0.4em;
 }
+.noReviews {
+  text-align: center;
+}
 
 @media screen and (max-width: 768px) {
   .reviewStats {
