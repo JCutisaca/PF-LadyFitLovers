@@ -1,6 +1,5 @@
 .continer{
-    /* width: 100vw; */
-    min-height: 71.4vh;
+    min-height: 75vh;
     display: grid;
     place-items: center;
 }

@@ -1,11 +1,12 @@
 .aboutContainer{
+    margin-top: 80px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 80vh;
     background-color: #f5f5f5;
-    width: 100vw;
+    /* width: 100vw; */
 }
 
 .iconAbout{
@@ -13,7 +14,7 @@
     display: flex;
     justify-content: center;
     gap:16px;
-    margin-top:20px;
+    margin-top:10px;
     font-size: 30px;
     color:#ba338a
 }
@@ -28,9 +29,9 @@
 }
 
 .barra{
-    height: 400px;
+    /* height: 400px; */
     background-color: #ba338a;
-    padding: 0px 100px;
+    padding: 0 1rem;
 
 }
 .aboutCardsContainer{
@@ -40,10 +41,11 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 32px;
-    margin: 0px 200px;
-    padding: 50px 100px;
+    /* margin: 0px 200px; */
+    position: relative;
+    top: 6rem;
+    margin: 50px 100px;
     background-color: #f5f5f5;
-    z-index: 10;
     transform:translateY(-100px);
 }
 
@@ -60,4 +62,19 @@
     font-weight: 400;
     padding:0px 90px;
     font-family: "Poppins", sans-serif;
+    padding: 0 1rem;
+}
+
+@media (max-width: 858px) {
+    .aboutCardsContainer {
+        justify-content: center;
+    }
+    .barra {
+        /* height: 27rem; */
+        padding: inherit;
+    }
+    .pAbout {
+        padding: 0px 30px;
+        text-align: center;
+    }
 }

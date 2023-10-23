@@ -2,6 +2,7 @@ import * as Yup from 'yup';
 
 const CreateProductSchema = Yup.object().shape({
     name: Yup.string().required('Nombre es requerido'),
+    description: Yup.string().required('Descripcion es requerida'),
     price: Yup.number().required('Precio es requerido'),
     image: Yup.string().required('Imagen es requerida'),
     unitSold: Yup.number().required('Unidades vendidas es requerido'),

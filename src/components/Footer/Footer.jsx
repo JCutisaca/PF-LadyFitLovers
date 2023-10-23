@@ -5,6 +5,7 @@ import {
   MailOutlined,
   WhatsAppOutlined,
   InfoCircleOutlined,
+  EnvironmentOutlined,
 } from "@ant-design/icons";
 import "./footer.css";
 
@@ -45,7 +46,9 @@ const Footer = () => {
 
         <div>
           <h3 className="h3footer">Ciudad</h3>
-          <p style={{ color: "#ba338a" }}>Berazategui, Bs.As. Arg.</p>
+          <p style={{ color: "#ba338a" }}>
+            <EnvironmentOutlined /> Berazategui, Bs.As. Arg.
+          </p>
         </div>
       </div>
       <div className="footerBottom">

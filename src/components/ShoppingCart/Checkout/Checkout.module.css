@@ -1,89 +1,95 @@
 .containerRight {
-    display: flex;
-    flex-direction: column;
-    margin-top: 6rem;
-    margin-bottom: 3rem;
-    align-items: center;
-    width: 100%;
-    max-width: 750px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 6rem;
+  margin-bottom: 3rem;
+  align-items: center;
+  width: 100%;
+  max-width: 750px;
 }
 
 .cardsContainer {
-    width: 100%;
+  width: 100%;
 }
 
 .textCost {
-    width: 100%;
-    display: flex;
+  width: 100%;
+  display: flex;
 }
 
 .textCost p {
-    margin: inherit;
+  margin: inherit;
 }
 
 .containerLeft {
-    display: flex;
-    justify-content: space-around;
-    flex-direction: column;
-    width: 100%;
-    max-width: 750px;
-    align-items: center;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  width: 100%;
+  max-width: 750px;
+  align-items: center;
 }
 
 .card {
-    width: 90%;
-    margin-right: 20px;
+  width: 90%;
+  margin-right: 20px;
 }
 
 .buttonShipping {
-    width: 50%;
+  width: 50%;
 }
 
 .containerShipping {
-    margin: 20px;
-    width: 90%;
-    text-align: center;
+  margin: 20px;
+  width: 90%;
+  text-align: center;
+}
+.cardRight{
+    display: flex;
+    justify-content: end;
+}
+.cardRight,
+.cardLeft {
+  width: 50%;
 }
 
-
-
 @media (max-width: 1001px) {
-    .containerCheckout {
-        display: flex;
-        flex-direction: column;
-    }
+  .containerCheckout {
+    display: flex;
+    flex-direction: column;
+  }
 
-    .containerLeft {
-        max-width: none;
-    }
+  .containerLeft {
+    max-width: none;
+  }
 
-    .containerRight {
-        max-width: none;
-        margin-top: 0;
-    }
+  .containerRight {
+    max-width: none;
+    margin-top: 0;
+  }
 
-    .card {
-        margin: inherit;
-    }
+  .card {
+    margin: inherit;
+  }
 }
 
 @media (max-width: 515px) {
-    .containerShipping {
-        display: flex;
-        flex-direction: revert;
-        width: 100%;
-        align-items: center;
-        padding: 0 20px;
-    }
+  .containerShipping {
+    display: flex;
+    flex-direction: revert;
+    width: 100%;
+    align-items: center;
+    padding: 0 20px;
+  }
 
-    /* .containerShipping label {
+  /* .containerShipping label {
         margin-bottom: 5px;
         border-radius: 1rem;
         background-color: inherit;
         border-start-start-radius: 1rem !important;
         border-end-start-radius: 1rem !important;
     } */
-    .buttonShipping {
-        height: 4rem;
-      } 
+  .buttonShipping {
+    height: 4rem;
+  }
 }
