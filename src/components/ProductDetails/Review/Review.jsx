@@ -5,7 +5,7 @@ import {
   EllipsisOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-import styles from "./Review.module.css";
+import styles from "./review.module.css";
 
 const { Meta } = Card;
 
