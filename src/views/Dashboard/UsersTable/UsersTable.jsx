@@ -11,9 +11,11 @@ import {
 } from "@ant-design/icons";
 import CreateAcountModal from "../../../components/CreateAcountModal/CreateAcountModal";
 import userBan from "../../../redux/Actions/User/banUser";
+import "../OrderTable/OrderTable.css"
 
 const UsersTable = () => {
   const isMobile = useMediaQuery({ maxWidth: 769 });
+  const isOp = useMediaQuery({ maxWidth: 500 });
   const dispatch = useDispatch();
   const [showEditModal, setShowEditModal] = useState(false);
   const [showBanModal, setShowBanModal] = useState(false);
@@ -151,7 +153,9 @@ const UsersTable = () => {
           user={user}
         />
       )}
-      <Table  dataSource={allUsers} columns={columns} />
+      
+      <Table style={{ width: isOp ? 0 : "100%"}} dataSource={allUsers} columns={columns} />
+      
     </div>
   );
 };

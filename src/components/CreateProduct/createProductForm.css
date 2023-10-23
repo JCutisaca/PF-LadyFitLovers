@@ -1,15 +1,28 @@
 .containerForm {
+  outline: solid red 1px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   gap: 16px;
-  width: 700px;
+  width: 70vw;
   
 }
-
+.inputsContainerII{
+  outline: solid green 1px;
+  width: 100%;
+  justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
 .inputsContainer{
     display: flex;
+    
+    justify-content: center;
+   outline: solid blue 1px;
+    flex-wrap: wrap;
     gap: 16px;
     width: 100%;
     margin: 16px 0px;
@@ -22,6 +35,7 @@
 }
 .inputsSizesContainer{
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
     gap: 16px;
     width: 100%;

@@ -127,7 +127,7 @@ const CreateProductForm = ({ errors, isEditing }) => {
           {({ field, form, meta, error }) => {
             return (
               <div className="fieldAndError">
-                <Input {...field} placeholder="Nombre" autoComplete="off" />
+                <Input  {...field} placeholder="Nombre" autoComplete="off" />
                 {errors.name && (
                   <p className="createProductError">{errors.name}</p>
                 )}
@@ -135,12 +135,13 @@ const CreateProductForm = ({ errors, isEditing }) => {
             );
           }}
         </Field>
-        <div className="inputsContainer">
+        <div className="inputsContainerII">
+          <div>
           <Field id="price" name="price">
             {({ field, form, meta }) => {
               return (
                 <div className="fieldAndError">
-                  <Input {...field} placeholder="Precio" />
+                  <Input style={{width: 300}} {...field} placeholder="Precio" />
                   {errors.price && (
                     <p className="createProductError">{errors.price}</p>
                   )}
@@ -148,44 +149,52 @@ const CreateProductForm = ({ errors, isEditing }) => {
               );
             }}
           </Field>
+          </div>
+          <div>
           <Field id="priceOnSale" name="priceOnSale">
             {({ field, form, meta }) => {
               return (
                 <div className="fieldAndError">
-                  <Input {...field} placeholder="Precio en oferta" />
+                  <Input style={{width: 300}} {...field} placeholder="Precio en oferta" />
                 </div>
               );
             }}
           </Field>
+          </div>
         </div>
         <div className="inputsContainer">
           <div className="fieldAndError">
             {!isEditing && (
               <>
+                <div>
                 <Input
                   type="file"
                   placeholder="Imagen"
+                  style={{width: "70%"}}
                   onChange={(e) => setFieldValue("image", e.target.files[0])}
                 />
                 {errors.image && (
                   <p className="createProductError">{errors.image}</p>
                 )}
+                </div>
               </>
             )}
           </div>
 
           {!isEditing && (
+            
             <Field id="category" name="category">
               {({ field, form, meta }) => {
                 return (
                   <div className="fieldAndError">
+                    
                     <Select
                       {...field}
                       options={
                         isEditing ? categoryUpdateOptions : categoriesOptions
                       }
                       onChange={(value) => onChangeCategories(value)}
-                      style={{ width: "100%" }}
+                      
                     />
                     <button
                       type="button"
