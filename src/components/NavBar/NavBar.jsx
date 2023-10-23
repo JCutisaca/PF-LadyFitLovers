@@ -38,6 +38,12 @@ const NavBar = () => {
   const menuBurger = useSelector(state => state.menuBurger)
   // logout
   const handleLogout = () => {
+    if (typeof gapi !== 'undefined' && gapi.auth2 && gapi.auth2.getAuthInstance()) {
+      const authInstance = gapi.auth2.getAuthInstance();
+      if (authInstance.isSignedIn.get()) {
+        authInstance.signOut();
+      }
+    }
     dispatch(postCart({ userId, products, accessToken }))
       .then(() => dispatch(cleanCartReducer()))
     dispatch(logoutUser());
