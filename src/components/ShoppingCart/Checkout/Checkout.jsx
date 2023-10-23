@@ -25,6 +25,7 @@ import updateUser from "../../../redux/Actions/User/updateUser";
 import { getColorName } from "../../../utils/getColorName";
 import userById from "../../../redux/Actions/User/getUserById";
 import style from "./Checkout.module.css";
+import MenuBurger from "../../MenuBurger/MenuBurger";
 
 const Checkout = () => {
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ const Checkout = () => {
   const cart = useSelector((state) => state.cart);
   const costSelected = useSelector((state) => state.shippingCost);
   const accessToken = useSelector((state) => state.accessToken);
+  const menuBurger = useSelector(state => state.menuBurger)
   const total = cart
     .map((prod) => prod.price * prod.quantity)
     .reduce((acc, cur) => acc + cur, 0);
@@ -218,6 +220,7 @@ const Checkout = () => {
   }, [userUpdated.address]);
   return (
     <>
+      {menuBurger ? <MenuBurger></MenuBurger> : null}
       <div
         className={style.containerCheckout}
         direction="horizontal"

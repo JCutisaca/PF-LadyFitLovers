@@ -18,7 +18,7 @@ const AboutCard = ({user}) => {
         }
         style={{
           width: 300,
-          height: 550,
+          height: 500,
         }}
       >
         <Meta title={user.name} description={user.description} />
