@@ -8,12 +8,19 @@ import {
   EnvironmentOutlined,
 } from "@ant-design/icons";
 import "./footer.css";
+import { Modal } from "@mui/material";
+import ChatBot from "../Chatbot/chatBot";
 
 const Footer = () => {
+
+
+  const abrirChatBot = () => {
+  }
   return (
     <div className="footerContainer">
       <div className="footerTop">
         <div className="footerTopLeftWrapper">
+          <button onClick={abrirChatBot}>CHATBOT</button>
           <h3 className="h3footer">Información</h3>
 
           <Link to="/contacto">Contacto</Link>
