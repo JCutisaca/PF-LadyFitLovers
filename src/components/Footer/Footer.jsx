@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   InstagramOutlined,
@@ -8,19 +8,27 @@ import {
   EnvironmentOutlined,
 } from "@ant-design/icons";
 import "./footer.css";
-import { Modal } from "@mui/material";
+// import { Modal } from "@mui/material";
 import ChatBot from "../Chatbot/chatBot";
+import { Modal } from "antd";
 
 const Footer = () => {
 
+  const [isChatBotOpen, setIsChatBotOpen] = useState(false)
 
   const abrirChatBot = () => {
+    setIsChatBotOpen(true)
+  }
+
+  const cerrarChatBot = () => {
+    setIsChatBotOpen(false)
   }
   return (
     <div className="footerContainer">
       <div className="footerTop">
         <div className="footerTopLeftWrapper">
           <button onClick={abrirChatBot}>CHATBOT</button>
+          <Modal open={isChatBotOpen} onClose={cerrarChatBot}> <ChatBot/> </Modal>
           <h3 className="h3footer">Información</h3>
 
           <Link to="/contacto">Contacto</Link>
