@@ -49,7 +49,20 @@ const TableShoppingClient = () => {
       title: "Dirección",
       dataIndex: "",
       key: 2,
-      render: (cell) => <p>{cell?.User?.address || "No especificada"}</p>,
+      render: (ordersUser) => {
+        console.log(ordersUser);
+        if (ordersUser && ordersUser.User && ordersUser.User.address) {
+          const { User } = ordersUser;
+          const { address } = User;
+    
+          // Verificar si la dirección es válida y crear una cadena
+          const addressString = `${address?.calle} ${address?.numero} ${address?.dpto} ${address?.entreCalles} ${address?.localidad} ${address?.provincia} ${address?.codigoPostal}`;
+    
+          return <p>{addressString}</p>;
+        } else {
+          return <p>No especificada</p>;
+        }
+      }
     },
     
     {
