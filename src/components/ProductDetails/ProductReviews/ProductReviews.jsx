@@ -28,11 +28,17 @@ const ProductReviews = ({ productData }) => {
   const onChange = (page) => {
     setCurrent(page);
   };
-
+  //estado local filtros
+  const [selectedFilter, setSelectedFilter] = useState("Todos");
   //filtros
   const handleFilterChange = (value) => {
     console.log("cambio el filtro", value);
+    setSelectedFilter(value);
   };
+  const filteredReviews =
+    selectedFilter === "Todos"
+      ? reviews
+      : reviews.filter((review) => review.rating.toString() === selectedFilter);
 
   //porcentage
   const calculateAverageProductRating = () => {
@@ -108,22 +114,27 @@ const ProductReviews = ({ productData }) => {
               <Option value="5">5</Option>
             </Select>
           </div>
-          <div className={style.reviewsContainer}>
-            {/* mapear las reviews del producto que vienen en un array */}
-            {reviews
-              .slice((current - 1) * pageSize, current * pageSize)
-              .map(({ id, reviewText, rating, productreview, User }) => (
-                //id, reviewText, rating,updatedAt,user.id
-                <Review
-                  key={id}
-                  id={id}
-                  reviewText={reviewText}
-                  rating={rating}
-                  updatedAt={productreview.updatedAt}
-                  user={User}
-                />
-              ))}
-          </div>
+          {filteredReviews.length === 0 ? (
+            <h4 className={style.noReviews}>
+              No hay reseñas disponibles para esta categoría seleccionada.
+            </h4>
+          ) : (
+            <div className={style.reviewsContainer}>
+              {/* map the filtered reviews based on the selected filter */}
+              {filteredReviews
+                .slice((current - 1) * pageSize, current * pageSize)
+                .map(({ id, reviewText, rating, productreview, User }) => (
+                  <Review
+                    key={id}
+                    id={id}
+                    reviewText={reviewText}
+                    rating={rating}
+                    updatedAt={productreview.updatedAt}
+                    user={User}
+                  />
+                ))}
+            </div>
+          )}
 
           <div className={style.pagination}>
             <Pagination
