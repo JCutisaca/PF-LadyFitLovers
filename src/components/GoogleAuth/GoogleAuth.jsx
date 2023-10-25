@@ -24,8 +24,8 @@ const GoogleAuth = ({ onGoogleLoginSuccess }) => {
   const onSuccess = (data) => {
     let profileObj = data;
     let accessToken = data.access_token;
-    if (profileObj.familyName == undefined) {
-      profileObj.familyName = "No definido";
+    if (profileObj.family_name == undefined) {
+      profileObj.family_name = "No definido";
     }
     //userId, token, profileObj
     dispatch(authUser(profileObj, accessToken))
