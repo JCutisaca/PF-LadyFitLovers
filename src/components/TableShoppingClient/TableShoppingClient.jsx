@@ -10,7 +10,7 @@ import { useState } from "react";
 import style from "./TableShoppingClient.module.css";
 
 const TableShoppingClient = () => {
-  const isMobile = useMediaQuery({ maxWidth: 769 });
+  const isMobile = useMediaQuery({ maxWidth: 914 });
   const minIsMobile = useMediaQuery({ maxWidth: 700 });
   const ordersUser = useSelector((state) => state.ordersUser);
   const accessToken = useSelector((state) => state.accessToken);
