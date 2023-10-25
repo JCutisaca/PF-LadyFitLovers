@@ -9,8 +9,6 @@ const ChatBot = () => {
   const ordersUser = useSelector((state) => state.ordersUser);
   const [isChatOpen, setIsChatOpen] = useState(false);
   
-
-  // console.log(user);
   const [messages, setMessages] = useState([
     {text:   <div>
              ¡Hola {user?.name}! Soy LadyBot🤖, tu asistente virtual. ¿En qué puedo ayudarte hoy? Aquí hay algunas opciones que podrías probar: <br/>
@@ -18,6 +16,7 @@ const ChatBot = () => {
             - <strong>Envíos:</strong> Para información sobre envíos y entrega. <br/> 
             - <strong>Productos disponibles:</strong> Para conocer nuestra gama de productos.<br/> 
             - <strong>Cómo realizar un pedido:</strong> Para obtener instrucciones sobre cómo comprar.<br/> 
+            - <strong>Mis pedidos:</strong> Para obtener información sobre tus pedidos.<br/> 
             - <strong>Métodos de pago:</strong> Para conocer los métodos de pago aceptados.<br/> 
             - <strong>Tallas y guía de tallas:</strong> Para obtener información sobre tallas de productos.<br/> 
             - <strong>Necesito información sobre el stock:</strong> Para verificar la disponibilidad de un producto específico.<br/> 
@@ -38,11 +37,15 @@ const ChatBot = () => {
   }, [messages]);
 
   const addMessage = ( array ) => {
-    // console.log(newMesagge);
     setMessages([...messages, ...array]);
-    // return newMesagge
+
   };
-  console.log("orden", ordersUser);
+
+  const orderHandler = (event) => {
+    console.log(ordersUser);
+    console.log(event.target.name);
+    handleUserMessage(event.target.name)
+  }
 
   const handleUserMessage = (message) => {
     if (message.trim() !== "") {
@@ -104,15 +107,17 @@ const ChatBot = () => {
                       botResponse = 
                       <div>
                       Dime en que mas puedo ayudarte <br/>
-                     - <strong>Teléfono: </strong> Para obtener nuestro número de teléfono <br/> 
-                     - <strong>Envíos:</strong> Para información sobre envíos y entrega. <br/> 
-                     - <strong>Productos disponibles:</strong> Para conocer nuestra gama de productos.<br/> 
-                     - <strong>Cómo realizar un pedido:</strong> Para obtener instrucciones sobre cómo comprar.<br/> 
-                     - <strong>Métodos de pago:</strong> Para conocer los métodos de pago aceptados.<br/> 
-                     - <strong>Tallas y guía de tallas:</strong> Para obtener información sobre tallas de productos.<br/> 
-                     - <strong>Necesito información sobre el stock:</strong> Para verificar la disponibilidad de un producto específico.<br/> 
-                     - <strong>Necesito la dirección del local:</strong> Para conocer nuestra dirección física.<br/> 
-                     ¿En qué más puedo ayudarte?"
+                      <div>
+            - <strong>Teléfono: </strong> Para obtener nuestro número de teléfono <br/> 
+            - <strong>Envíos:</strong> Para información sobre envíos y entrega. <br/> 
+            - <strong>Productos disponibles:</strong> Para conocer nuestra gama de productos.<br/> 
+            - <strong>Cómo realizar un pedido:</strong> Para obtener instrucciones sobre cómo comprar.<br/> 
+            - <strong>Mis pedidos:</strong> Para obtener información sobre tus pedidos.<br/> 
+            - <strong>Métodos de pago:</strong> Para conocer los métodos de pago aceptados.<br/> 
+            - <strong>Tallas y guía de tallas:</strong> Para obtener información sobre tallas de productos.<br/> 
+            - <strong>Necesito información sobre el stock:</strong> Para verificar la disponibilidad de un producto específico.<br/> 
+            - <strong>Necesito la dirección del local:</strong> Para conocer nuestra dirección física.<br/> 
+              </div>,
                        </div>
                        break
                        case "no":
@@ -128,34 +133,54 @@ const ChatBot = () => {
                             {!ordersUser?
                             (<p>No tienen pedidos realizados por el momento.</p>)
                           :(<div>Elije con cual pedido tienes dudas
-                            {ordersUser.map((order) => 
-                              <input type="button">{order.id}</input>
+                            {ordersUser?.map((order) => 
+                            // <p>{order.id}</p>
+                            <div>
+
+                              <input name="order" type="button" value={order.id} onClick={orderHandler}></input>
+                              
+                              </div>
                             )}
                           </div>)}
                             </div> } 
 
                         </div>
                         break
+                        case "order": 
+                              const id = event.target.value
+                              const respuesta = ordersUser.find((order) => order.id === Number(id))
+                           
+                        // botResponse = <div>{ordersUser.find((order) => console.log(order.id))}</div>
+                        botResponse = <div>El pedido {ordersUser.id} esta: {respuesta.status}<br/>¿Puedo ayudarte en algo mas?<br/>Puedes responder con <strong>si</strong> o  <strong>no</strong></div>
+                        break
                             default:
                               botResponse = 
                               <div>
                Lo siento, no entiendo esa opción. Aquí hay algunas opciones que podrías probar <br/>
-              - <strong>Teléfono: </strong> Para obtener nuestro número de teléfono <br/> 
-              - <strong>Envíos:</strong> Para información sobre envíos y entrega. <br/> 
-              - <strong>Productos disponibles:</strong> Para conocer nuestra gama de productos.<br/> 
-              - <strong>Cómo realizar un pedido:</strong> Para obtener instrucciones sobre cómo comprar.<br/> 
-              - <strong>Métodos de pago:</strong> Para conocer los métodos de pago aceptados.<br/> 
-              - <strong>Tallas y guía de tallas:</strong> Para obtener información sobre tallas de productos.<br/> 
-              - <strong>Necesito información sobre el stock:</strong> Para verificar la disponibilidad de un producto específico.<br/> 
-              - <strong>Necesito la dirección del local:</strong> Para conocer nuestra dirección física.<br/> 
-              ¿En qué más puedo ayudarte?"
+               - <strong>Teléfono: </strong> Para obtener nuestro número de teléfono <br/> 
+            - <strong>Envíos:</strong> Para información sobre envíos y entrega. <br/> 
+            - <strong>Productos disponibles:</strong> Para conocer nuestra gama de productos.<br/> 
+            - <strong>Cómo realizar un pedido:</strong> Para obtener instrucciones sobre cómo comprar.<br/> 
+            - <strong>Mis pedidos:</strong> Para obtener información sobre tus pedidos.<br/> 
+            - <strong>Métodos de pago:</strong> Para conocer los métodos de pago aceptados.<br/> 
+            - <strong>Tallas y guía de tallas:</strong> Para obtener información sobre tallas de productos.<br/> 
+            - <strong>Necesito información sobre el stock:</strong> Para verificar la disponibilidad de un producto específico.<br/> 
+            - <strong>Necesito la dirección del local:</strong> Para conocer nuestra dirección física.<br/> 
                 </div>
               break;
             }
-            let  userResponse = inputText
+            console.log(event.target.value);
+            let userResponse
+            if(event.target.name === "order") {
+             userResponse = event.target.value
+            } else {
+              userResponse = inputText
+              setInputText("");
+
+            }
+console.log("desoyes del if", userResponse);
             let array = [{text:userResponse, isUser: true}, {text:botResponse, isUser:false} ]
             const botMessage = addMessage(array)
-            setInputText("");
           }
         };
 
