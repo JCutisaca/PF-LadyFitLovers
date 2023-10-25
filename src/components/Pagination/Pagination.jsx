@@ -72,27 +72,24 @@ const Pagination = () => {
       <div className={style.arrow}>
         <div className={style.buttons}>
           {
-            <Button shape="circle" style={{ marginLeft: "5px" }}>
-              <button
-                className={style.arrowBtn}
-                name="first"
-                onClick={handlePage}
-              >
-                {" "}
-                {"<<"}{" "}
-              </button>
+            <Button
+              className={style.arrowBtn}
+              name="first"
+              onClick={handlePage}
+              shape="circle"
+              style={{ marginLeft: "5px" }}>
+              {" "}
+              {"<<"}{" "}
             </Button>
           }
           {
-            <Button shape="circle" style={{ marginLeft: "5px" }}>
-              <button
-                className={style.arrowBtn}
-                name="prev"
-                onClick={handlePage}
-              >
-                {" "}
-                {"<"}{" "}
-              </button>
+            <Button
+              className={style.arrowBtn}
+              name="prev"
+              onClick={handlePage}
+              shape="circle" style={{ marginLeft: "5px" }}>
+              {" "}
+              {"<"}{" "}
             </Button>
           }
         </div>
@@ -116,27 +113,25 @@ const Pagination = () => {
         <div className={style.buttons}>
           {
             // <button name='next' onClick={handlePage} >Siguiente</button>}
-            <Button shape="circle" style={{ marginLeft: "5px" }}>
-              <button
-                className={style.arrowBtn}
-                name="next"
-                onClick={handlePage}
-              >
-                {" "}
-                {">"}{" "}
-              </button>
+            <Button
+              className={style.arrowBtn}
+              name="next"
+              onClick={handlePage}
+              shape="circle" 
+              style={{ marginLeft: "5px" }}>
+              {" "}
+              {">"}{" "}
             </Button>
           }
           {
-            <Button shape="circle" style={{ marginLeft: "5px" }}>
-              <button
-                className={style.arrowBtn}
-                name="last"
-                onClick={handlePage}
-              >
-                {" "}
-                {">>"}{" "}
-              </button>
+            <Button
+              className={style.arrowBtn}
+              name="last"
+              onClick={handlePage}
+              shape="circle" 
+              style={{ marginLeft: "5px" }}>
+              {" "}
+              {">>"}{" "}
             </Button>
           }
         </div>

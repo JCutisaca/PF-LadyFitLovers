@@ -131,7 +131,7 @@ const LoginModal = (props) => {
           />
         </Form.Item>
         <Link to="/recuperar-contrasena">
-          <p style={{ color: "#BA338A", fontSize: "0.7rem" }}>
+          <p style={{ color: "#BA338A", fontSize: "0.9rem" }}>
             ¿Has olvidado tu contraseña?
           </p>
         </Link>

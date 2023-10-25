@@ -70,12 +70,12 @@ const DrawerCart = ({ openDrawer, onClose }) => {
       if (e.target.localName === "span") {
         const id =
           e.nativeEvent.srcElement.parentElement.offsetParent.offsetParent.id;
-        let colorSelected = cart[e.target.offsetParent.id].color;
+        let colorSelected = cart[e.target.offsetParent.id]?.color;
         let sizeSelected = e.target.offsetParent.name;
         let indexCart = e.target.offsetParent.id;
         const top = allProductsAdmin
           .find((p) => p.id === Number(id))
-          .stock.find((col) => col.color === colorSelected)
+          ?.stock.find((col) => col.color === colorSelected)
           .sizeAndQuantity.find((siz) => siz.size === sizeSelected).quantity;
         if (e.target.innerText === "-") {
           dispatch(decrementQuantity(indexCart));
@@ -87,13 +87,13 @@ const DrawerCart = ({ openDrawer, onClose }) => {
       if (e.target.localName === "button") {
         const id =
           e.nativeEvent.srcElement.parentElement.offsetParent.offsetParent.id;
-        let colorSelected = cart[e.target.id].color;
+        let colorSelected = cart[e.target.id]?.color;
         let sizeSelected = e.target.name;
         let indexCart = e.target.id;
 
         const top = allProductsAdmin
           .find((p) => p.id === Number(id))
-          .stock.find((col) => col.color === colorSelected)
+          ?.stock.find((col) => col.color === colorSelected)
           .sizeAndQuantity.find((siz) => siz.size === sizeSelected).quantity;
 
         if (e.target.innerText === "-") {
@@ -158,7 +158,7 @@ const DrawerCart = ({ openDrawer, onClose }) => {
         {cart.length > 0 &&
           cart.map(({ name, color, image, size, quantity, price, id }, i) => {
             return (
-              <div>
+              <div key={`${name}${color}${size}`}>
                 <Card
                   bordered={false}
                   hoverable={true}

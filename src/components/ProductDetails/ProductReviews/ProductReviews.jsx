@@ -32,7 +32,6 @@ const ProductReviews = ({ productData }) => {
   const [selectedFilter, setSelectedFilter] = useState("Todos");
   //filtros
   const handleFilterChange = (value) => {
-    console.log("cambio el filtro", value);
     setSelectedFilter(value);
   };
   const filteredReviews =

@@ -61,7 +61,7 @@ const Checkout = () => {
     provincia: user?.address?.provincia,
     phone: null,
   });
-  console.log(item);
+
   useEffect(() => {
     dispatch(shippingType(shipping));
     dispatch(shippingCost(amount(shipping)));
@@ -529,7 +529,7 @@ const Checkout = () => {
                         i
                       ) => {
                         return (
-                          <>
+                          <div key={`${id}${name}${color}${size}`}>
                             <Card
                               // className={styles.productShow}
                               title={name}
@@ -653,7 +653,7 @@ const Checkout = () => {
                                 </div>
                               </Col>
                             </Card>
-                          </>
+                          </div>
                         );
                       }
                     )}

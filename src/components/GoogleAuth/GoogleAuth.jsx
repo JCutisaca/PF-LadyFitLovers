@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import "./GoogleAuth.css";
+import style from "./GoogleAuth.module.css";
 import authUser from "../../redux/Actions/User/authUser";
 import getCart from "../../redux/Actions/ShoppingCart/getCart";
 import { useEffect, useState } from "react";
@@ -51,21 +51,8 @@ const GoogleAuth = ({ onGoogleLoginSuccess }) => {
         console.log(err)
       }}
     >
-      <GoogleLoginButton />
+      <GoogleLoginButton text="Igresar con Google" className={style.containerButton} />
     </LoginSocialGoogle>
-    // <div id="signInButton" className="googleButton">
-
-    //   <GoogleLogin
-    //     clientId={clientId}
-    //     buttonText="Iniciar con Google"
-    //     onSuccess={onSuccess}
-    //     onFailure={onFailure}
-    //     cookiesPolicy={"single_host_origin"}
-    //     isSignedIn={true}
-
-    //   />
-    // </div>
-
   );
 };
 
