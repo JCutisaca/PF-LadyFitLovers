@@ -58,6 +58,25 @@
   margin-left: 36px;
 }
 
+.chatbot-overlay {
+  position: fixed;
+  bottom: 60px; /* Ajusta la distancia desde la parte inferior según tus preferencias */
+  right: 20px; /* Ajusta la distancia desde la derecha según tus preferencias */
+  z-index: 999; /* Ajusta el valor de z-index según sea necesario, debe ser mayor que el del botón */
+  /* Otros estilos, como dimensiones y fondo, según tus preferencias */
+  width: 500px; /* Ajusta el ancho del chat según tus preferencias */
+  height: 900px;
+}
+
+/* Estilos para el botón CHATBOT */
+.buttonChatBot {
+  position: fixed;
+  bottom: 20px; /* Ajusta la distancia desde la parte inferior según tus preferencias */
+  right: 20px; /* Ajusta la distancia desde la derecha según tus preferencias */
+  z-index: 998; /* Ajusta el valor de z-index según sea necesario */
+  /* Otros estilos para el botón */
+}
+
 @media (max-width: 768px) {
   .footerTop {
     flex-direction: column;
@@ -68,3 +87,4 @@
     margin-left: 0;
   }
 }
+

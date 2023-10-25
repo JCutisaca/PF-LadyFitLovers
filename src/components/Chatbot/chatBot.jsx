@@ -6,6 +6,10 @@ import { useSelector } from "react-redux";
 const ChatBot = () => {
   const user = useSelector((state)=> state.user)
   const [inputText, setInputText] = useState("")
+  const ordersUser = useSelector((state) => state.ordersUser);
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  
+
   // console.log(user);
   const [messages, setMessages] = useState([
     {text:   <div>
@@ -38,6 +42,7 @@ const ChatBot = () => {
     setMessages([...messages, ...array]);
     // return newMesagge
   };
+  console.log("orden", ordersUser);
 
   const handleUserMessage = (message) => {
     if (message.trim() !== "") {
@@ -46,10 +51,10 @@ const ChatBot = () => {
       let botResponse = ""
       switch (message.toLowerCase()) {
         case "telefono":
-          case "télefono":
-            case "Télefono":
-              case "Telefono":
-                botResponse = <div>Nuestro número de teléfono es 123-456-789.<br/> ¿Puedo ayudarte en algo mas?</div>
+          case "teléfono":
+            case "Telefono":
+              case "Teléfono":
+                botResponse = <div>Nuestro número de teléfono es 123-456-789.<br/> ¿Puedo ayudarte en algo mas?<br/>Puedes responder con <strong>si</strong> o  <strong>no</strong></div>
                 
                 break;
             break;
@@ -57,7 +62,7 @@ const ChatBot = () => {
               case "envios":
                 case "Envios":
                   case "Envíos":
-                    botResponse = <div>Realizamos envíos a todo el país. Al realizar la compra debe elegir tu provincia <br/>¿Puedo ayudarte en algo mas?</div>
+                    botResponse = <div>Realizamos envíos a todo el país. Al realizar la compra debe elegir tu provincia <br/>¿Puedo ayudarte en algo mas?<br/>Puedes responder con <strong>si</strong> o  <strong>no</strong></div>
                     break;
                     case "necesito información sobre el stock":
                       case "Necesito información sobre el stock":
@@ -73,28 +78,27 @@ const ChatBot = () => {
                                     break;
                                     case "productos disponibles":
                                       case "Productos disponibles":
-            botResponse = <div>Tenemos una amplia gama de productos disponibles, incluyendo remeras, calzas, shorts, vestidos y bikinis. Están disponibles en diferentes tallas y colores, tanto cortos como largos.<br/> ¿Puedo ayudarte en algo mas?</div>
+            botResponse = <div>Tenemos una amplia gama de productos disponibles, incluyendo remeras, calzas, shorts, vestidos y bikinis. Están disponibles en diferentes tallas y colores, tanto cortos como largos.<br/> ¿Puedo ayudarte en algo mas?<br/>Puedes responder con <strong>si</strong> o  <strong>no</strong></div>
             break;
         case "cómo realizar un pedido":
         case "Cómo realizar un pedido":
         case "Como realizar un pedido":
           case "como realizar un pedido":
-            botResponse = <div>Para realizar un pedido, simplemente selecciona los productos que te interesan y agrégales al carrito. Luego, sigue los pasos para completar tu compra, incluyendo tu información de envío y pago.<br/> ¿Puedo ayudarte en algo mas?</div>
+            botResponse = <div>Para realizar un pedido, simplemente selecciona los productos que te interesan y agrégales al carrito. Luego, sigue los pasos para completar tu compra, incluyendo tu información de envío y pago.<br/> ¿Puedo ayudarte en algo mas?<br/>Puedes responder con <strong>si</strong> o  <strong>no</strong></div>
             break;
             case "métodos de pago":
               case "Métodos de pago":
                 case "metodos de pago":
                   case "Metodos de pago":
-                    botResponse = <div>Aceptamos varios métodos de pago, incluyendo tarjetas de crédito, débito y mercado pago. Puedes elegir el método de pago que sea más conveniente para ti durante el proceso de compra.<br/> ¿Puedo ayudarte en algo mas?</div>
+                    botResponse = <div>Aceptamos varios métodos de pago, incluyendo tarjetas de crédito, débito y mercado pago. Puedes elegir el método de pago que sea más conveniente para ti durante el proceso de compra.<br/> ¿Puedo ayudarte en algo mas?<br/>Puedes responder con <strong>si</strong> o  <strong>no</strong></div>
                     break; 
                     break;
                     case "tallas y guía de tallas":
                       case "Tallas y guía de tallas":
                         case "tallas y guia de tallas":
                           case "Tallas y guia de tallas":
-                            botResponse = <div>Nuestros productos están disponibles en una variedad de tallas, desde XS hasta XXL. También ofrecemos una guía de tallas en nuestro sitio web para ayudarte a elegir el tamaño adecuado.<br/> ¿Puedo ayudarte en algo mas?</div>
+                            botResponse = <div>Nuestros productos están disponibles en una variedad de tallas, desde XS hasta XXL. También ofrecemos una guía de tallas en nuestro sitio web para ayudarte a elegir el tamaño adecuado.<br/> ¿Puedo ayudarte en algo mas?<br/>Puedes responder con <strong>si</strong> o  <strong>no</strong></div>
                             break; 
-                            break;
                     case "si":
                     case "Si":
                       botResponse = 
@@ -114,6 +118,23 @@ const ChatBot = () => {
                        case "no":
                        case "No":
                         botResponse = "Me alegra haberte ayudado 🤖"
+                        break
+                      case "mis pedidos":
+                      case "Mis pedidos":
+                        botResponse = <div>
+                          {!user? 
+                          (<p>Para poder ver tus usuarios tienes que ingresar seción.</p>)
+                          : <div>
+                            {!ordersUser?
+                            (<p>No tienen pedidos realizados por el momento.</p>)
+                          :(<div>Elije con cual pedido tienes dudas
+                            {ordersUser.map((order) => 
+                              <input type="button">{order.id}</input>
+                            )}
+                          </div>)}
+                            </div> } 
+
+                        </div>
                         break
                             default:
                               botResponse = 

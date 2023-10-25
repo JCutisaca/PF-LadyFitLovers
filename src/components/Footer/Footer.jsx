@@ -16,27 +16,25 @@ const Footer = () => {
 
   const [isChatBotOpen, setIsChatBotOpen] = useState(false)
 
-  const abrirChatBot = () => {
-    setIsChatBotOpen(true)
+  const toggleChatBot = () => {
+    setIsChatBotOpen(!isChatBotOpen);
   }
 
-  const cerrarChatBot = () => {
-    setIsChatBotOpen(false)
-  }
+
   return (
     <div className="footerContainer">
-      <div className="footerTop">
-        <div className="footerTopLeftWrapper">
-          <button onClick={abrirChatBot}>CHATBOT</button>
-          <Modal open={isChatBotOpen} onClose={cerrarChatBot}> <ChatBot/> </Modal>
-          <h3 className="h3footer">Información</h3>
+    <div className="footerTop">
+      <div className="footerTopLeftWrapper">
+        <button className="buttonChatBot" onClick={toggleChatBot}>CHATBOT</button>
+        {isChatBotOpen ? "Cerrar Chat" : "Abrir chat"}
+        <h3 className="h3footer">Información</h3>
 
-          <Link to="/contacto">Contacto</Link>
-          <Link to="/nosotros">Nosotros</Link>
-          <Link to="/preguntas-frecuentes">Preguntas frecuentes</Link>
-          <Link to="/products">Productos</Link>
-          <Link to="/">Inicio</Link>
-        </div>
+        <Link to="/contacto">Contacto</Link>
+        <Link to="/nosotros">Nosotros</Link>
+        <Link to="/preguntas-frecuentes">Preguntas frecuentes</Link>
+        <Link to="/products">Productos</Link>
+        <Link to="/">Inicio</Link>
+      </div>
         <div>
           <h3 className="h3footer">Redes Sociales</h3>
           <a
@@ -73,6 +71,11 @@ const Footer = () => {
           <InfoCircleOutlined style={{ color: "rgb(252, 192, 182)" }} />
         </Link>
       </div>
+      {isChatBotOpen && (
+        <div className="chatbot-overlay">
+          <ChatBot />
+        </div>
+      )}
     </div>
   );
 };
