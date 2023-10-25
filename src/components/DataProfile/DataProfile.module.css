@@ -101,7 +101,6 @@ label {
     height: 35vw;
     border: solid 3px #e2a6d1;
     border-Radius: 3em 0 3em 0 ;
-    overflow: auto;
     display: grid;
     place-items: center;
 
@@ -113,27 +112,88 @@ label {
 .ant::-webkit-scrollbar-thumb {
     background-color: #dd7fc2; 
 }
-@media screen and (max-width: 768px) {
-    .ant{
-        width:  90vw;
-        height: 90vw;
-        border: solid 3px #e2a6d1;
-        border-Radius: 3em 0 3em 0 ;
-        overflow: auto;
-        display: grid;
-        place-items: center;
-    
+@media screen and (max-width: 1273px) {
+    .ant {
+        width: 50vw;
+        height: 45vw;
     }
-    
 }
-@media screen and (max-width: 576px) {
-    .ant{
-        width:  90vw;
-        height: 129vw;
+
+@media screen and (max-width: 1024px) {
+    .ant {
+        width: 50vw;
+        height: 50vw;
+    }
+}
+
+@media screen and (max-width: 938px) {
+    .ant {
+        width: 50vw;
+        height: 54vw;
+    }
+}
+
+@media screen and (max-width: 816px) {
+    .ant {
+        width: 60vw;
+        height: 60vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .ant {
+        width: 80vw;
+        height: 55vw;
         border: solid 3px #e2a6d1;
-        border-Radius: 3em 0 3em 0 ;
-        overflow: auto;
-        display: grid;
-        place-items: center;
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .ant {
+        width: 80vw;
+        height: 60vw;
+    }
+}
+
+@media screen and (max-width: 642px) {
+    .ant {
+        width: 80vw;
+        height: 70vw;
+    }
+}
+
+@media screen and (max-width: 597px) {
+    .ant {
+        width: 90vw;
+        height: 75vw;
+    }
+}
+
+@media screen and (max-width: 558px),
+       screen and (max-width: 521px),
+       screen and (max-width: 497px),
+       screen and (max-width: 457px),
+       screen and (max-width: 419px),
+       screen and (max-width: 392px) {
+    .ant {
+        width: 90vw;
+    }
+    .ant {
+        height: 80vw;
+    }
+    .ant {
+        height: 85vw;
+    }
+    .ant {
+        height: 91vw;
+    }
+    .ant {
+        height: 105vw;
+    }
+    .ant {
+        height: 117vw;
+    }
+    .ant {
+        height: 140vw;
     }
 }
