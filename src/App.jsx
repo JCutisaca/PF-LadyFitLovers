@@ -53,8 +53,7 @@ const App = () => {
   }, [user, pathname])
 
   useEffect(()=> {
-    if(user) {
-
+    if(user.id) {
       dispatch(getFavoritesByIdUser(user.id))
     }
 

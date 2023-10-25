@@ -9,8 +9,6 @@ const MostSoldProducts = () => {
     .sort((a, b) => b.unitsSold - a.unitsSold)
     .slice(0, 4);
 
-    console.log(mostSoldProduct)
-
   return (
     <div className="mostSoldProductsContainer">
       <h1 className="titleMostSold">¡Productos destacados!</h1>

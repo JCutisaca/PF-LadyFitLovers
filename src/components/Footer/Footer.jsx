@@ -8,6 +8,7 @@ import {
   EnvironmentOutlined,
 } from "@ant-design/icons";
 import "./footer.css";
+import { NavLink } from "react-router-dom/dist";
 
 const Footer = () => {
   return (
@@ -33,10 +34,8 @@ const Footer = () => {
           </a>
 
           <h3 className="h3footer">Contactanos</h3>
-          <a href="mailto:ladyfitlovers@gmail.com" style={{ color: "#ba338a" }}>
-            <Link>
-              <MailOutlined></MailOutlined> LadyFitLovers@gmail.com
-            </Link>
+          <a href="mailto:ladyfitlovers@gmail.com">
+            <MailOutlined /> LadyFitLovers@gmail.com
           </a>
           <br></br>
           <Link to="https://chat.whatsapp.com/LijG0wDr4ytLMZvYiU1dra">

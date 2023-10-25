@@ -1,10 +1,10 @@
-import { GoogleLogin } from "react-google-login";
 import { useDispatch, useSelector } from "react-redux";
 import "./GoogleAuth.css";
 import authUser from "../../redux/Actions/User/authUser";
-import { Button } from "antd";
 import getCart from "../../redux/Actions/ShoppingCart/getCart";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { LoginSocialGoogle } from "reactjs-social-login";
+import { GoogleLoginButton } from "react-social-login-buttons";
 
 
 
@@ -16,14 +16,14 @@ const GoogleAuth = ({ onGoogleLoginSuccess }) => {
   const userId = useSelector((state) => state.user.id)
   const accessToken2 = useSelector((state) => state.accessToken)
 
- useEffect(() => {
-  if (userId && accessToken2) {
-    dispatch(getCart(userId, accessToken2));
-  }
-}, [userId]);
-  const onSuccess = (res) => {
-    let profileObj = res.profileObj;
-    let accessToken = res.accessToken;
+  useEffect(() => {
+    if (userId && accessToken2) {
+      dispatch(getCart(userId, accessToken2));
+    }
+  }, [userId]);
+  const onSuccess = (data) => {
+    let profileObj = data;
+    let accessToken = data.access_token;
     if (profileObj.familyName == undefined) {
       profileObj.familyName = "No definido";
     }
@@ -36,20 +36,35 @@ const GoogleAuth = ({ onGoogleLoginSuccess }) => {
     console.log("Login Failed: res: ", res);
   };
 
-  return (
 
-      <div id="signInButton" className="googleButton">
-        
-        <GoogleLogin
-          clientId={clientId}
-          buttonText="Iniciar con Google"
-          onSuccess={onSuccess}
-          onFailure={onFailure}
-          cookiesPolicy={"single_host_origin"}
-          isSignedIn={true}
-          
-        />
-      </div>
+  // const onLogoutSuccess = useCallback(() => {
+  //   setProfile(null)
+  //   setProvider('')
+  // }, [])
+  return (
+    <LoginSocialGoogle
+      client_id={clientId}
+      onResolve={({ provider, data }) => {
+        onSuccess(data)
+      }}
+      onReject={(err) => {
+        console.log(err)
+      }}
+    >
+      <GoogleLoginButton />
+    </LoginSocialGoogle>
+    // <div id="signInButton" className="googleButton">
+
+    //   <GoogleLogin
+    //     clientId={clientId}
+    //     buttonText="Iniciar con Google"
+    //     onSuccess={onSuccess}
+    //     onFailure={onFailure}
+    //     cookiesPolicy={"single_host_origin"}
+    //     isSignedIn={true}
+
+    //   />
+    // </div>
 
   );
 };

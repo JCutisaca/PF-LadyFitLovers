@@ -15,7 +15,8 @@ const SearchBar = () => {
   const name = useSelector((state) => state.name);
   const navigate = useNavigate();
   useEffect(()=>{
-    if(name!==""){
+    // if(name!==""){
+    if(name && name.length){
       dispatch(getProductByName(name))
     }
   },[name])
