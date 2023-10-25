@@ -82,80 +82,90 @@ const ReviewsClient = ({ infoUser }) => {
         <h3 className={styles.averageTitle}>
           Nivel de satisfacción segun mis reseñas
         </h3>
-        <div className={styles.averageIcon}>
-          <div className={styles.iconFace}>
-            {customIcons[Math.round(averageRating)]}
-          </div>
 
-          <Card>
-            <Rate defaultValue={averageRating} disabled />
-            <p> {averageRating} (puntuación promedio)</p>
-            <p> {reviewsByUser?.length} (total de reseñas)</p>
-          </Card>
-        </div>
-      </div>
-
-      <div className={styles.reviewsContainer}>
-        {reviewsByUser &&
-          reviewsByUser.map((review) => {
-            const formattedDate = new Date(review.createdAt).toLocaleDateString(
-              "es-AR",
-              {
-                year: "numeric",
-                month: "short",
-                day: "numeric",
-              }
-            );
-
-            return (
-              <div className={styles.reviewCard}>
-                <Card
-                  className={styles.reviewCard}
-                  hoverable
-                  style={{ width: 250 }}
-                  size="small"
-                  cover={
-                    <img
-                      alt="example"
-                      src={review.Product[0].image}
-                      style={{
-                        objectFit: "cover",
-                        height: "200px",
-                        borderRadius: "5px",
-                      }}
-                    />
-                  }
-                >
-                  <Meta
-                    description={
-                      <div className={styles.ratingContainer}>
-                        <h3>{review.Product[0].name}</h3>
-
-                        <div className={styles.cardInfo}>
-                          <Rate defaultValue={review.rating} disabled />
-                          <p>{review.reviewText}</p>
-                          {/* NOTA */}
-                          <NavLink
-                            className={styles.productLink}
-                            to={`/detail/${review.Product[0].id}`}
-                          >
-                            Ir al producto
-                          </NavLink>
-                        </div>
-                        <div className={styles.ratingIcon}>
-                          <div className={styles.icon}>
-                            {customIcons[review.rating]}
-                          </div>
-
-                          <p className={styles.reviewDate}>{formattedDate}</p>
-                        </div>
-                      </div>
-                    }
-                  />
-                </Card>
+        {reviewsByUser?.length === 0 ? (
+          <h4 className={styles.noReviews}>
+            No has realizado ninguna reseña, ¡llevate alguno de nuestros
+            productos y dejanos tu opinión!
+          </h4>
+        ) : (
+          <>
+            <div className={styles.averageIcon}>
+              <div className={styles.iconFace}>
+                {customIcons[Math.round(averageRating)]}
               </div>
-            );
-          })}
+
+              <Card style={{boxShadow:"none"}}> 
+                <Rate defaultValue={averageRating} disabled />
+                <p> {averageRating} (puntuación promedio)</p>
+                <p> {reviewsByUser?.length} (total de reseñas)</p>
+              </Card>
+            </div>
+            <div className={styles.reviewsContainer}>
+              {reviewsByUser &&
+                reviewsByUser.map((review) => {
+                  const formattedDate = new Date(
+                    review.createdAt
+                  ).toLocaleDateString("es-AR", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  });
+
+                  return (
+                    <div className={styles.reviewCard}>
+                      <Card
+                        className={styles.reviewCard}
+                        hoverable
+                        style={{ width: 250 }}
+                        size="small"
+                        cover={
+                          <img
+                            alt="example"
+                            src={review.Product[0].image}
+                            style={{
+                              objectFit: "cover",
+                              height: "200px",
+                              borderRadius: "5px",
+                            }}
+                          />
+                        }
+                      >
+                        <Meta
+                          description={
+                            <div className={styles.ratingContainer}>
+                              <h3>{review.Product[0].name}</h3>
+
+                              <div className={styles.cardInfo}>
+                                <Rate defaultValue={review.rating} disabled />
+                                <p>{review.reviewText}</p>
+                                {/* NOTA */}
+                                <NavLink
+                                  className={styles.productLink}
+                                  to={`/detail/${review.Product[0].id}`}
+                                >
+                                  Ir al producto
+                                </NavLink>
+                              </div>
+                              <div className={styles.ratingIcon}>
+                                <div className={styles.icon}>
+                                  {customIcons[review.rating]}
+                                </div>
+
+                                <p className={styles.reviewDate}>
+                                  {formattedDate}
+                                </p>
+                              </div>
+                            </div>
+                          }
+                        />
+                      </Card>
+                    </div>
+                  );
+                })}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
