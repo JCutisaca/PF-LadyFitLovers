@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Button, TextField, Box, Avatar } from "@mui/material";
 import "./chatBot.css"
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import LoginModal from "../LoginModal/LoginModal";
+import { filtByCategory } from "../../redux/Actions/Filter/filtByCategory";
 
 
 const ChatBot = () => {
@@ -11,6 +12,14 @@ const ChatBot = () => {
   const user = useSelector((state) => state.user)
   const [inputText, setInputText] = useState("")
   const ordersUser = useSelector((state) => state.ordersUser);
+  const dispatch = useDispatch()
+  const navigate = useNavigate();
+
+  
+  const handleGoToCategory = (category) => {
+    dispatch(filtByCategory(category));
+    navigate(`/products/${category}`);
+  };
 
   const emailLink = () => {
     const email = "ladyfitlovers@gmail.com";
@@ -83,7 +92,16 @@ const ChatBot = () => {
           botResponse = <div>Estamos ubicados en la Calle Principal 123, Ciudad. ¡Te esperamos! ¿Hay algo más en lo que pueda ayudarte?<br />¿Puedo ayudarte en algo mas?<br />Puedes responder con <strong>si</strong> o  <strong>no</strong></div>
           break;
         case "productos disponibles":
-          botResponse = <div>Tenemos una amplia gama de productos disponibles, incluyendo remeras, calzas, shorts, vestidos y bikinis. Están disponibles en diferentes tallas y colores, tanto cortos como largos.<br /> ¿Puedo ayudarte en algo mas?<br />Puedes responder con <strong>si</strong> o  <strong>no</strong></div>
+          botResponse = <div>Tenemos una amplia gama de productos disponibles, incluyendo 
+            <strong><span onClick={() => handleGoToCategory("REMERAS")}> remeras</span></strong>, 
+            <strong><span onClick={() => handleGoToCategory("BUZOS")}> buzos</span></strong>, 
+            <strong><span onClick={() => handleGoToCategory("BIKERS")}> bikers</span></strong>, 
+            <strong><span onClick={() => handleGoToCategory("PANTALONES")}> pantalones</span></strong>, 
+            <strong><span onClick={() => handleGoToCategory("CALZAS")}> calzas</span></strong>,
+            <strong><span onClick={() => handleGoToCategory("SHORTS")}> shorts</span></strong>,
+            <strong><span onClick={() => handleGoToCategory("VESTIDOS")}> vestidos</span></strong> y
+            <strong><span onClick={() => handleGoToCategory("BIKINIS")}> bikinis</span></strong>.
+             Están disponibles en diferentes tallas y colores, tanto cortos como largos.<br /> <strong>Al hacer click sobre el producto que mas te guste vas a poder ver los productos disponibles</strong> <br/>¿Puedo ayudarte en algo mas?<br />Puedes responder con <strong>si</strong> o  <strong>no</strong></div>
           break;
         case "cómo realizar un pedido":
         case "como realizar un pedido":
@@ -159,8 +177,8 @@ const ChatBot = () => {
               - <strong>Mis pedidos:</strong> Para obtener información sobre tus pedidos.<br />
               - <strong>Métodos de pago:</strong> Para conocer los métodos de pago aceptados.<br />
               - <strong>Tallas y guía de tallas:</strong> Para obtener información sobre tallas de productos.<br />
-              - <strong>Necesito información sobre el stock:</strong> Para verificar la disponibilidad de un producto específico.<br />
-              - <strong>Necesito la dirección del local:</strong> Para conocer nuestra dirección física.<br />
+              - <strong>Información sobre el stock:</strong> Para verificar la disponibilidad de un producto específico.<br />
+              - <strong>Dirección del local:</strong> Para conocer nuestra dirección física.<br />
             </div>
           break;
       }
