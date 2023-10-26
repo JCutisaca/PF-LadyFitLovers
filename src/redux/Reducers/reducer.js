@@ -84,7 +84,8 @@ const initialState = {
   //purchase
   //reviews
   reviewsByUser: null,
-  menuBurger: false
+  menuBurger: false,
+  chatBot: [],
 };
 const reducer = (state = initialState, action) => {
   switch (action.type) {

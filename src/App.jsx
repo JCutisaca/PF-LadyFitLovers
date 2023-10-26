@@ -29,6 +29,7 @@ import UserBanError from "./components/UserBanError/UserBanError";
 import ProductsByCategory from "./components/ProductsByCategory/ProductsByCategory";
 import Checkout from "./components/ShoppingCart/Checkout/Checkout";
 import setMenuBurger from "./redux/Actions/MenuBurger/setMenuBurger";
+import ChatBot from "./components/Chatbot/chatBot";
 
 const App = () => {
   const user = useSelector((state) => state.user);
@@ -98,6 +99,7 @@ const App = () => {
             <Route path="/admin/ordenes" element={(!user.userBan && user?.typeUser === "Admin") ? <Dashboard /> : <Navigate to='/' />} />
             <Route path="/admin/crear-producto" element={(!user.userBan && user?.typeUser === "Admin") ? <Dashboard /> : <Navigate to='/' />} />
             <Route path="/login" />
+            <Route path="/chatbot" element={<ChatBot />}></Route>
             <Route path="/contacto" element={<Contac />} />
             <Route path="/register" />
             <Route path="/products" element={<ProductsView />} />
