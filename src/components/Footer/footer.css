@@ -76,10 +76,11 @@
   left: 20px; /* Ajusta la distancia desde la derecha según tus preferencias */
   z-index: 998; /* Ajusta el valor de z-index según sea necesario */
   /* Otros estilos para el botón */
-  background: transparent;
+  background: rgba(255, 255, 255, 0.507);
   width: 5rem;
   /* height: 5%; */
   border: none;
+  border-radius: 1em 1em 1em 0 ;
 
 }
 .ladyBot {
