@@ -18,9 +18,8 @@ const FacebookAuth = ({ handleFacebookLoginSuccess }) => {
     }, [userId]);
     return (
         <LoginSocialFacebook
-            appId="879180820271428"
+            appId="1085073596200584"
             onResolve={(response) => {
-                console.log("me ejecute");
                 const profileObj = response.data;
                 dispatch(authFacebookUser(profileObj))
                 handleFacebookLoginSuccess()
