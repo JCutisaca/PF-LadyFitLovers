@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import NoFoundScreen from "../NoFoundScreen/NoFoundScreen";
 import deleteFav from "../../redux/Actions/Favs/deleteFav";
 import { NavLink } from "react-router-dom";
-import style from "../ShoppingClient/ShoppingClient.module.css";
+import style from "./ProductFavs.module.css";
 
 
 
@@ -22,7 +22,7 @@ const ProductFavs = () => {
     dispatch(getFavoritesByIdUser(user.id))
 
   }, [])
-  // console.log(favorites, "mis favortios");
+
 
   return (
     <div className={style.shoppingClientContainer}>

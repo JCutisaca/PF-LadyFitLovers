@@ -2,13 +2,16 @@ import React, { useState, useRef, useEffect } from "react";
 import { Button, TextField, Box, Avatar } from "@mui/material";
 import "./chatBot.css"
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import LoginModal from "../LoginModal/LoginModal";
+
 
 const ChatBot = () => {
+  const [loginModalVisible, setLoginModalVisible] = useState(false);
+
   const user = useSelector((state)=> state.user)
   const [inputText, setInputText] = useState("")
   const ordersUser = useSelector((state) => state.ordersUser);
-  const [isChatOpen, setIsChatOpen] = useState(false);
-  
   const [messages, setMessages] = useState([
     {text:   <div>
              ¡Hola {user?.name}! Soy LadyBot🤖, tu asistente virtual. ¿En qué puedo ayudarte hoy? Aquí hay algunas opciones que podrías probar: <br/>
@@ -21,7 +24,6 @@ const ChatBot = () => {
             - <strong>Tallas y guía de tallas:</strong> Para obtener información sobre tallas de productos.<br/> 
             - <strong>Necesito información sobre el stock:</strong> Para verificar la disponibilidad de un producto específico.<br/> 
             - <strong>Necesito la dirección del local:</strong> Para conocer nuestra dirección física.<br/> 
-            ¿En qué más puedo ayudarte?"
               </div>,
               isUser:false }
 
@@ -42,8 +44,6 @@ const ChatBot = () => {
   };
 
   const orderHandler = (event) => {
-    console.log(ordersUser);
-    console.log(event.target.name);
     handleUserMessage(event.target.name)
   }
 
@@ -117,7 +117,7 @@ const ChatBot = () => {
             - <strong>Tallas y guía de tallas:</strong> Para obtener información sobre tallas de productos.<br/> 
             - <strong>Necesito información sobre el stock:</strong> Para verificar la disponibilidad de un producto específico.<br/> 
             - <strong>Necesito la dirección del local:</strong> Para conocer nuestra dirección física.<br/> 
-              </div>,
+              </div>
                        </div>
                        break
                        case "no":
@@ -127,14 +127,15 @@ const ChatBot = () => {
                       case "mis pedidos":
                       case "Mis pedidos":
                         botResponse = <div>
-                          {!user? 
-                          (<p>Para poder ver tus usuarios tienes que ingresar seción.</p>)
+                          {!user.id? 
+                          (<p>Para poder ver tus usuarios tienes que <Link to="#" onClick={() => setLoginModalVisible(true)}>
+                     ingresar sesión
+                        </Link> .</p>)
                           : <div>
-                            {!ordersUser?
+                            {!ordersUser.length?
                             (<p>No tienen pedidos realizados por el momento.</p>)
                           :(<div>Elije con cual pedido tienes dudas
                             {ordersUser?.map((order) => 
-                            // <p>{order.id}</p>
                             <div>
 
                               <input name="order" type="button" value={order.id} onClick={orderHandler}></input>
@@ -149,9 +150,8 @@ const ChatBot = () => {
                         case "order": 
                               const id = event.target.value
                               const respuesta = ordersUser.find((order) => order.id === Number(id))
-                           
-                        // botResponse = <div>{ordersUser.find((order) => console.log(order.id))}</div>
-                        botResponse = <div>El pedido {ordersUser.id} esta: {respuesta.status}<br/>¿Puedo ayudarte en algo mas?<br/>Puedes responder con <strong>si</strong> o  <strong>no</strong></div>
+
+                        botResponse = <div>El pedido {respuesta?.id} esta: {respuesta.status}<br/>¿Puedo ayudarte en algo mas?<br/>Puedes responder con <strong>si</strong> o  <strong>no</strong></div>
                         break
                             default:
                               botResponse = 
@@ -169,18 +169,20 @@ const ChatBot = () => {
                 </div>
               break;
             }
-            console.log(event.target.value);
             let userResponse
             if(event.target.name === "order") {
-             userResponse = event.target.value
+              userResponse = event.target.value
+              let prevMessage = <div>Elije con cual pedido tienes dudas</div> 
+              let array = [{text:prevMessage, isUser: false}, {text:userResponse, isUser: true}, {text:botResponse, isUser:false} ]
+              const botMessage = addMessage(array)
+
             } else {
               userResponse = inputText
               setInputText("");
+              let array = [{text:userResponse, isUser: true}, {text:botResponse, isUser:false} ]
+              const botMessage = addMessage(array)
 
             }
-console.log("desoyes del if", userResponse);
-            let array = [{text:userResponse, isUser: true}, {text:botResponse, isUser:false} ]
-            const botMessage = addMessage(array)
           }
         };
 
@@ -294,6 +296,12 @@ console.log("desoyes del if", userResponse);
           </div>
         </Box>
       </Box>
+      {loginModalVisible && (
+        <LoginModal
+          visible={loginModalVisible}
+          onClose={() => setLoginModalVisible(false)}
+        />
+      )}
     </div>
   );
 };

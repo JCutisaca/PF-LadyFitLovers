@@ -1,0 +1,50 @@
+.shoppingClientContainer{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 26px;
+    grid-row-gap: 16px;
+    width: 100%;
+    justify-content: center;
+    align-content: center;
+    /* height: 40vh; */
+    /* display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    overflow: auto; */
+}
+.shoppingClientContainer::-webkit-scrollbar {
+    width: 3px; 
+}
+.shoppingClientContainer::-webkit-scrollbar-thumb {
+    background-color: #BA338A; 
+    border-radius: 20px;
+}
+
+.containerOrder {
+    justify-content: end;
+}
+.shoppingClientContainer a{
+    color:#BA338A;
+
+}
+.shoppingClientContainer a:hover{
+    color:#BA338A;
+    text-decoration: underline;
+}
+.buy{
+    height: 50px;
+    width: 200px;
+    text-align: center;
+}
+.detailFav{
+    height: 210px;
+    width: 210px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
