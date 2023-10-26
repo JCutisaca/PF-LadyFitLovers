@@ -70,11 +70,21 @@
 
 /* Estilos para el botón CHATBOT */
 .buttonChatBot {
+  display: flex;
   position: fixed;
   bottom: 20px; /* Ajusta la distancia desde la parte inferior según tus preferencias */
-  right: 20px; /* Ajusta la distancia desde la derecha según tus preferencias */
+  left: 20px; /* Ajusta la distancia desde la derecha según tus preferencias */
   z-index: 998; /* Ajusta el valor de z-index según sea necesario */
   /* Otros estilos para el botón */
+  background: transparent;
+  width: 5rem;
+  /* height: 5%; */
+  border: none;
+
+}
+.ladyBot {
+  height: 100%;
+  width: 100%;
 }
 
 @media (max-width: 768px) {
@@ -87,4 +97,3 @@
     margin-left: 0;
   }
 }
-

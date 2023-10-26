@@ -25,7 +25,7 @@ const Footer = () => {
     <div className="footerContainer">
     <div className="footerTop">
       <div className="footerTopLeftWrapper">
-        <button className="buttonChatBot" onClick={toggleChatBot}>CHATBOT</button>
+        <button className="buttonChatBot" onClick={toggleChatBot}><img className="ladyBot" src="/img/ladyBot.png"/></button>
         {isChatBotOpen ? "Cerrar Chat" : "Abrir chat"}
         <h3 className="h3footer">Información</h3>
 

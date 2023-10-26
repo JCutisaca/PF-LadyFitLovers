@@ -242,7 +242,8 @@ const ChatBot = () => {
           justifyContent: "center",
           textAlign: "center",
           borderColor: "#ba338a",
-          marginTop: "25vh"
+          marginTop: "25vh",
+
         }}
       >
         <Box
@@ -254,6 +255,7 @@ const ChatBot = () => {
             borderRadius: 5,
             marginBottom: "10vh",
             borderColor: "#ba338a",
+            background: "white",
           }}
         >
           <div className="div-render-chat"
@@ -275,13 +277,13 @@ const ChatBot = () => {
                   }}
                 >
                   {!message.isUser ? ( // Verifica si es un mensaje del bot
-                    <div>
-                      <Avatar
-                        alt="Bot"
-                        src="https://cdn.pixabay.com/photo/2015/06/12/18/31/cute-807306_1280.png"
-                      />
-                    </div>
-                  ) : null}
+      <div>
+        <Avatar 
+          alt="Bot" 
+          src="/img/ladyBot.png"
+        />
+      </div>
+    ) : null}
 
                   <div className={message.isUser ? "user-message" : "bot-message"}>
                     {message.text}
