@@ -10,7 +10,10 @@ const FacebookAuth = ({ handleFacebookLoginSuccess }) => {
     const dispatch = useDispatch();
     const userId = useSelector((state) => state.user.id)
     const accessToken2 = useSelector((state) => state.accessToken)
-
+    const onSuccess = (profileObj) => {
+        dispatch(authFacebookUser(profileObj))
+        handleFacebookLoginSuccess()
+    }
     useEffect(() => {
         if (userId && accessToken2) {
             dispatch(getCart(userId, accessToken2));
@@ -21,8 +24,7 @@ const FacebookAuth = ({ handleFacebookLoginSuccess }) => {
             appId="1085073596200584"
             onResolve={(response) => {
                 const profileObj = response.data;
-                dispatch(authFacebookUser(profileObj))
-                handleFacebookLoginSuccess()
+                onSuccess(profileObj)
             }}
             onReject={(error) => {
                 console.log(error);
