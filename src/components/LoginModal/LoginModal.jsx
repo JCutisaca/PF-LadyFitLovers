@@ -27,8 +27,9 @@ const LoginModal = (props) => {
   const user = useSelector((state) => state.user);
   // auth google
   useEffect(() => {
-    if(user && user.id) {
-      props.onClose()
+    if (user && user.id) {
+      setLoading(false);
+      return props.onClose();
     }
   }, [user])
   useEffect(() => {
@@ -152,7 +153,7 @@ const LoginModal = (props) => {
         <Form.Item>
           <FacebookAuth onFacebookLoginSuccess={handleFacebookLoginSuccess} />
         </Form.Item>
-    </Form>
+      </Form>
     </Modal >
   );
 };
