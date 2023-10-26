@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import getAllUsers from "../../../redux/Actions/User/getAllUsers";
-import { Button, Switch, Table, Tag, message } from "antd";
+import { Button, Switch, Table, Tag, message, Card } from "antd";
 import { useMediaQuery } from "react-responsive";
 import {
   CheckOutlined,
@@ -23,7 +23,6 @@ const UsersTable = () => {
 
   const accessToken = useSelector((state) => state.accessToken);
   const allUsers = useSelector((state) => state.allUsers);
-
 
   const onChange = async (value, user) => {
     try {
@@ -154,8 +153,49 @@ const UsersTable = () => {
         />
       )}
       
-      <Table style={{ width: isOp ? 0 : "100%"}} dataSource={allUsers} columns={columns} />
-      
+      {isOp ? (
+      allUsers.map((user, index) => (
+        <Card
+          key={index}
+          title={`Usuario ${user.name} ${user.surname}`}
+          bordered={false}
+          hoverable={true}
+          style={{
+            width: "100%",
+            marginBottom: "10px",
+            marginTop: "10px",
+            backgroundColor: "#f5f5f5",
+          }}
+        >
+          <p style={{fontWeight: 600}}>Email: {user.email}</p>
+          <p style={{fontWeight: 600}}>Telefono: {user.phone}</p>
+          <p style={{fontWeight: 600}}>Rol: {user.typeUser}</p>
+          <p style={{fontWeight: 600}}>Dirección: {`${user?.address?.calle} ${user?.address?.numero} ${user?.address?.dpto} ${user?.address?.entreCalles} ${user?.address?.localidad} ${user?.address?.provincia} ${user?.address?.codigoPostal}` || "No especificada"}</p>
+          
+          <p style={{fontWeight: 600}}>Bloquear Usuario:</p><Switch
+            checkedChildren={<CheckOutlined />}
+            unCheckedChildren={<CloseOutlined />}
+            defaultChecked={allUsers.userBan === true ? true : false}
+            onChange={() =>
+              onChange(allUsers.userBan === true ? false : true, allUsers)
+            }
+          />
+          <p style={{fontWeight: 600}}>Acciones:</p><Button
+                type="primary"
+                icon={<EditOutlined />}
+                size="small"
+                onClick={() => {
+                  setShowEditModal(true), setUser(user);
+                }}
+              />
+
+        
+
+        </Card>
+      ))
+    ) : (
+      <Table style={{ width: isOp ? 0 : "100%" }} dataSource={allUsers} columns={columns} />
+    )}
     </div>
   );
 };

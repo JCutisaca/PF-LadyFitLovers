@@ -2,3 +2,22 @@
     background-color: #F6F1F5;
     
 }
+.editOrderTable{
+    text-align: left;
+}
+.editOrderCard{
+    margin:10px auto 10px auto;
+}
+.settingCard{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 50px;
+}
+.settingCard>img{
+    height: 200px;
+    width:auto;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgb(168, 168, 168);
+}
