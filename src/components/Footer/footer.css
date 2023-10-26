@@ -61,7 +61,7 @@
 .chatbot-overlay {
   position: fixed;
   bottom: 60px; /* Ajusta la distancia desde la parte inferior según tus preferencias */
-  right: 20px; /* Ajusta la distancia desde la derecha según tus preferencias */
+  left: 20px; /* Ajusta la distancia desde la derecha según tus preferencias */
   z-index: 999; /* Ajusta el valor de z-index según sea necesario, debe ser mayor que el del botón */
   /* Otros estilos, como dimensiones y fondo, según tus preferencias */
   width: 500px; /* Ajusta el ancho del chat según tus preferencias */
@@ -79,7 +79,7 @@
   background: rgba(255, 255, 255, 0.507);
   width: 5rem;
   /* height: 5%; */
-  border: none;
+  border: 1px solid rgb(126, 126, 126);
   border-radius: 1em 1em 1em 0 ;
 
 }

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   InstagramOutlined,
@@ -12,29 +13,34 @@ import "./footer.css";
 import ChatBot from "../Chatbot/chatBot";
 import { Modal } from "antd";
 
-const Footer = () => {
+//chatbot actions
+import openChat from "../../redux/Actions/ChatBot/OpenChat";
+import closeChat from "../../redux/Actions/ChatBot/CloseChat";
 
-  const [isChatBotOpen, setIsChatBotOpen] = useState(false)
+const Footer = () => {
+  const isChatBotOpen = useSelector((state) => state.isChatBotOpen);
+  const dispatch = useDispatch();
 
   const toggleChatBot = () => {
-    setIsChatBotOpen(!isChatBotOpen);
-  }
-
+    dispatch(openChat());
+  };
 
   return (
     <div className="footerContainer">
-    <div className="footerTop">
-      <div className="footerTopLeftWrapper">
-        <button className="buttonChatBot" onClick={toggleChatBot}><img className="ladyBot" src="/img/ladyBot.png"/></button>
-        {isChatBotOpen ? "Cerrar Chat" : "Abrir chat"}
-        <h3 className="h3footer">Información</h3>
+      <div className="footerTop">
+        <div className="footerTopLeftWrapper">
+          <button className="buttonChatBot" onClick={toggleChatBot}>
+            <img className="ladyBot" src="/img/ladyBot.png" />
+          </button>
+          {/* {isChatBotOpen ? "Cerrar Chat" : "Abrir chat"} */}
+          <h3 className="h3footer">Información</h3>
 
-        <Link to="/contacto">Contacto</Link>
-        <Link to="/nosotros">Nosotros</Link>
-        <Link to="/preguntas-frecuentes">Preguntas frecuentes</Link>
-        <Link to="/products">Productos</Link>
-        <Link to="/">Inicio</Link>
-      </div>
+          <Link to="/contacto">Contacto</Link>
+          <Link to="/nosotros">Nosotros</Link>
+          <Link to="/preguntas-frecuentes">Preguntas frecuentes</Link>
+          <Link to="/products">Productos</Link>
+          <Link to="/">Inicio</Link>
+        </div>
         <div>
           <h3 className="h3footer">Redes Sociales</h3>
           <a
