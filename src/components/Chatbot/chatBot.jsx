@@ -181,6 +181,8 @@ const ChatBot = () => {
               - <strong>Dirección del local:</strong> Para conocer nuestra dirección física.<br />
             </div>
           break;
+
+          
       }
       let userResponse
       if (event.target.name === "order") {
