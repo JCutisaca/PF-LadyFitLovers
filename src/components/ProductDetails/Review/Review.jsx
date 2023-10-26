@@ -37,10 +37,10 @@ const Review = ({ id, reviewText, rating, updatedAt, user }) => {
       <Skeleton loading={loading} avatar active>
         <Meta
           avatar={
-            !user[0]?.image ? (
+            !user || !user[0]?.image ? (
               <Avatar size="large" src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
             ) : (
-              <Avatar size="large" src={user[0].image} />
+              <Avatar size="large" src={user[0]?.image} />
               
             )
           }

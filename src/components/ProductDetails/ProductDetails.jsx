@@ -200,7 +200,7 @@ const ProductDetails = ({ productData }) => {
       //verificar si el usuario YA hizo una review
       const hasAlreadyReviewed =
         productData.Reviews &&
-        productData.Reviews.some((review) => review.User[0].id === userId);
+        productData.Reviews.some((review) => review.User[0]?.id === userId);
       setHasAlreadyReviewed(hasAlreadyReviewed);
     }
   }, []);
