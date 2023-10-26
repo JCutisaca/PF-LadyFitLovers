@@ -18,7 +18,7 @@ const Dashboard = () => {
       <SideBarDashboard />
     
       {/* Contenido principal */}
-      <div className={style.DashboardDiv} style={{ flex: 1, overflowY: "auto", padding: 0 }}>
+      <div className={style.DashboardDiv} style={{ flex: 1, overflowY: "auto",overflowX: "hidden", padding: 10 }}>
         {location.pathname === "/admin" && <Panel/>}
         {location.pathname === "/admin/usuarios" && <UsersTable />}
         {location.pathname === "/admin/productos" && <ProductsTable />}

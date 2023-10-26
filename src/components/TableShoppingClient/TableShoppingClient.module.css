@@ -1,0 +1,32 @@
+
+.subCard{
+    width: 70vw;
+    display: flex;
+    justify-content: space-around;
+}
+.subCard>img{
+    width: auto;
+    height: 200px;
+    border-radius: 20px;
+    box-shadow: 0 10px 10px rgba(0,0,0,0.2);
+}
+.subCard>div{
+    width:30%;
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: left;
+}
+@media screen and (max-width: 600px){
+    .subCard{
+        align-items: center;
+        flex-direction: column;
+    }
+    .subCard>img{
+        width: 130px;
+        height: auto
+    }
+    .subCard>div{
+        width: 40%;
+    }
+    
+}
