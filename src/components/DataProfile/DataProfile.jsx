@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Card, Space, Typography, Avatar, Row, Col } from "antd";
 import {
-  MailOutlined,
-  PhoneOutlined,
-  EnvironmentOutlined,
+  EditOutlined
 } from "@ant-design/icons";
+import AvatarEdit from "react-avatar-edit"
+import EditPhotoProfile from "../EditPhotoProfile/EditPhotoProfile";
+import { useState } from "react";
 import style from "./DataProfile.module.css";
 import user from "../../assets/img/user124.png";
 
@@ -12,26 +13,36 @@ const { Text } = Typography;
 
 const Profile = () => {
   const infouser = useSelector((state) => state.user);
-  console.log(infouser.image);
+  const [visible, setVisible] = useState(false);
+  const openModal = () => {
+    setVisible(true);
+  }
   return (
     <div className={style.containerProfiler}>
       <Card
-        hoverable
+
         className={style.ant}
-       
+
       >
         <Space direction="vertical" align="center">
           {infouser.image ? (
-            <Avatar
-              src={infouser.image}
-              style={{ margin: "12px 12px", height: "17vh", width: "17vh" }}
-            />
+            <div className={style.containerAvatarEdit}>
+              <Avatar
+                src={infouser.image}
+                style={{ margin: "12px 12px", height: "17vh", width: "17vh", }}
+                onClick={openModal}
+              />
+              <EditOutlined onClick={openModal} className={style.editProfile} />
+            </div>
           ) : (
-            <Avatar
-              src={user}
-              
-              style={{ margin: "12px 12px", height: "17vh", width: "17vh",  }}
-            />
+            <div className={style.containerAvatarEdit}>
+              <Avatar
+                src={user}
+                style={{ margin: "12px 12px", height: "17vh", width: "17vh", }}
+                onClick={openModal}
+              />
+              <EditOutlined onClick={openModal} className={style.editProfile} />
+            </div>
           )}
           <Space direction="vertical" align="start">
             <Row>
@@ -95,9 +106,10 @@ const Profile = () => {
                   className={style.dataaddres}
                   style={{ margin: "12px 12px" }}
                 >
-                  {infouser.address
-                    ? `Calle: ${infouser?.address.calle} Número: ${infouser?.address.numero} Dpto: ${infouser?.address.dpto} Entre Calles: ${infouser?.address.entreCalles} ${infouser?.address.localidad} Provincia: ${infouser?.address.provincia} C.P: ${infouser?.address.codigoPostal}`
-                    : "No definido"}
+                  {infouser && infouser.address && infouser.address.calle
+                    ? `Calle: ${infouser.address.calle} Número: ${infouser.address.numero} Dpto: ${infouser.address.dpto} Entre Calles: ${infouser.address.entreCalles} ${infouser.address.localidad} Provincia: ${infouser.address.provincia} C.P: ${infouser.address.codigoPostal}`
+                    : "No definido"
+                  }
                 </Text>
               </Col>
 
@@ -105,6 +117,11 @@ const Profile = () => {
           </Space>
         </Space>
       </Card>
+      <EditPhotoProfile
+        visible={visible}
+        onClose={() => setVisible(false)}
+        idUser={infouser.id}
+      />
     </div>
   );
 };

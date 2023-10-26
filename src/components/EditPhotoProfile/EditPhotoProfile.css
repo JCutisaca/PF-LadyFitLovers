@@ -1,0 +1,26 @@
+.containerEditPhoto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+.avaatarEdit{
+    border-radius: 20px;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    height: auto;
+    overflow: hidden;
+}
+
+.preview{
+    outline: solid red 1px;
+    width: 200px;
+    height: 200px;
+}
+.preview>img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
