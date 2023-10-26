@@ -7,7 +7,6 @@ const endpoint = `${API_URL_BASE}/user/loginGoogle`;
 const endpoint2 = `${API_URL_BASE}/user/`;
 
 const authUser = (profileObj, accessToken) => {
-  console.log(profileObj, accessToken);
   return async (dispatch) => {
     try {
       const { data } = await axios.post(endpoint, { profileObj, accessToken });

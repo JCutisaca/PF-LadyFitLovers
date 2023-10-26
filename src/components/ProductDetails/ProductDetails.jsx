@@ -192,8 +192,8 @@ const ProductDetails = ({ productData }) => {
                   )
                 )
               : false;
-          console.log(ordersByUser);
-          console.log(hasPurchased, "hasPurchased");
+          // console.log(ordersByUser);
+          // console.log(hasPurchased, "hasPurchased");
           setUserHasPurchased(hasPurchased);
         }
       );
@@ -329,7 +329,7 @@ const ProductDetails = ({ productData }) => {
                             }}
                           >
                             <Button
-                              bordered
+                              // bordered
                               style={{
                                 background: color,
                                 border: `6px solid ${

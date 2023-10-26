@@ -15,7 +15,8 @@ const SearchBar = () => {
   const name = useSelector((state) => state.name);
   const navigate = useNavigate();
   useEffect(()=>{
-    if(name!==""){
+    // if(name!==""){
+    if(name && name.length){
       dispatch(getProductByName(name))
     }
   },[name])
@@ -35,7 +36,7 @@ const SearchBar = () => {
           onChange={handleInputChange}
           value={name} // Asigna el valor del campo de búsqueda a 'name'
           style={{
-            width: 200,
+            width: '100%',
           }} 
         />
         

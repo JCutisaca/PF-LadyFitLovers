@@ -80,7 +80,7 @@ const About = () => {
       </div>
       <div className="aboutCardsContainer">
    {users.map((user) => (
-    <AboutCard user={user}/>
+    <AboutCard key={user.name} user={user}/>
     ))}
       </div>
     </div>

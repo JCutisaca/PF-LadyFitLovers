@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import "./loginModal.css";
 import ButtonTertiary from "../ButtonTertiary/ButtonTertiary";
 import getCart from "../../redux/Actions/ShoppingCart/getCart";
+import FacebookAuth from "../FacebookAuth/FacebookAuth";
 
 //Enviar a una variable de entorno!!!!!!!!!!!!!!!!!!!!!!!!!!!
 const clientId =
@@ -23,8 +24,14 @@ const LoginModal = (props) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const cart = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.user);
   // auth google
-
+  useEffect(() => {
+    if (user && user.id) {
+      setLoading(false);
+      return props.onClose();
+    }
+  }, [user])
   useEffect(() => {
     function start() {
       gapi.client.init({
@@ -57,11 +64,14 @@ const LoginModal = (props) => {
   const handleGoogleLoginSuccess = () => {
     props.onClose();
   };
+  const handleFacebookLoginSuccess = () => {
+    props.onClose();
+  };
 
   return (
     <Modal
       title="Ingresar"
-      visible={props.visible}
+      open={props.visible}
       onCancel={props.onClose}
       footer={null}
     >
@@ -127,7 +137,7 @@ const LoginModal = (props) => {
           />
         </Form.Item>
         <Link to="/recuperar-contrasena">
-          <p style={{ color: "#BA338A", fontSize: "0.7rem" }}>
+          <p style={{ color: "#BA338A", fontSize: "0.9rem" }}>
             ¿Has olvidado tu contraseña?
           </p>
         </Link>
@@ -137,8 +147,14 @@ const LoginModal = (props) => {
         <Form.Item>
           <GoogleAuth onGoogleLoginSuccess={handleGoogleLoginSuccess} />
         </Form.Item>
+        <Divider orientation="left" style="">
+          Facebook
+        </Divider>
+        <Form.Item>
+          <FacebookAuth onFacebookLoginSuccess={handleFacebookLoginSuccess} />
+        </Form.Item>
       </Form>
-    </Modal>
+    </Modal >
   );
 };
 

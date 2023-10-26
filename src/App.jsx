@@ -30,6 +30,7 @@ import ProductsByCategory from "./components/ProductsByCategory/ProductsByCatego
 import Checkout from "./components/ShoppingCart/Checkout/Checkout";
 import setMenuBurger from "./redux/Actions/MenuBurger/setMenuBurger";
 import ChatBot from "./components/Chatbot/chatBot";
+import MenuBurger from "./components/MenuBurger/MenuBurger";
 
 const App = () => {
   const user = useSelector((state) => state.user);
@@ -54,8 +55,7 @@ const App = () => {
   }, [user, pathname])
 
   useEffect(()=> {
-    if(user) {
-
+    if(user.id) {
       dispatch(getFavoritesByIdUser(user.id))
     }
 
@@ -85,6 +85,7 @@ const App = () => {
 
 
       {(pathname !== "/nosotros" || pathname !== "/sin-acceso") && !pathname.startsWith("/recuperar-contrasena") && <NavBar />}
+      {menuBurger ? <MenuBurger /> : null}
       {/* <h1>Hello World</h1>
       <Button type="primary">Hello World</Button> */}
       <Routes>
@@ -92,6 +93,7 @@ const App = () => {
           <Route path="/sin-acceso" element={<UserBanError />} />
         ) : (
           <>
+
             <Route path="/" element={<Home />} />
             <Route path="/admin" element={(!user.userBan && user?.typeUser === "Admin") ? <Dashboard /> : <Navigate to='/' />} />
             <Route path="/admin/usuarios" element={(!user.userBan && user?.typeUser === "Admin") ? <Dashboard /> : <Navigate to='/' />} />

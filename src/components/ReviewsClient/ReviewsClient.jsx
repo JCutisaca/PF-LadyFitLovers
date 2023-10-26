@@ -39,14 +39,10 @@ const customIcons = {
 };
 
 const ReviewsClient = ({ infoUser }) => {
-  // console.log("sto",infoUser);
   const dispatch = useDispatch();
   const accessToken = useSelector((state) => state.accessToken);
-  console.log(accessToken);
   const reviewsByUser = useSelector((state) => state.reviewsByUser);
-  console.log(reviewsByUser);
   const userId = infoUser.id;
-  console.log(userId);
 
   useEffect(() => {
     const fetchData = async () => {

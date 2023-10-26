@@ -217,7 +217,7 @@ const reducer = (state = initialState, action) => {
         allCategories: [...state.allCategories, action.payload],
       };
     case LOGIN_USER:
-      console.log("User logged in:", action);
+      // console.log("User logged in:", action);
       return {
         ...state,
         isLoggedIn: true,
@@ -226,14 +226,14 @@ const reducer = (state = initialState, action) => {
       };
 
     case USER_BY_ID:
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         user: action.payload,
       };
 
     case AUTH_USER:
-      console.log("User authenticated with Google", action.payload);
+      // console.log("User authenticated with Google", action.payload);
       return {
         ...state,
         isLoggedIn: true,
@@ -241,7 +241,7 @@ const reducer = (state = initialState, action) => {
         user: action.payload,
       };
     case LOGOUT_USER:
-      console.log("logout");
+      // console.log("logout");
       return {
         ...state,
         isLoggedIn: false,
@@ -274,7 +274,7 @@ const reducer = (state = initialState, action) => {
       };
     case ADDING_PRODUCT:
       if (!state.cart.length) {
-        console.log("no hay nada, guardo por primera vez");
+        // console.log("no hay nada, guardo por primera vez");
         return {
           ...state,
           cart: [action.payload],
@@ -295,7 +295,7 @@ const reducer = (state = initialState, action) => {
         ) {
           productDontMatch = [];
 
-          console.log("es diferente, agrego como otro producto");
+          // console.log("es diferente, agrego como otro producto");
           return {
             ...state,
             cart: [...state.cart, action.payload],
@@ -316,15 +316,15 @@ const reducer = (state = initialState, action) => {
           ) {
             productDontMatch = [];
 
-            console.log("es diferente, agrego como otro producto");
+            // console.log("es diferente, agrego como otro producto");
             return {
               ...state,
               cart: [...state.cart, action.payload],
             };
           } else {
-            console.log(
-              "ya existe el producto, lo encuentro y le sumo la cantidad"
-            );
+            // console.log(
+            //   "ya existe el producto, lo encuentro y le sumo la cantidad"
+            // );
             let productFound = state.cart.find(
               (prod) =>
                 prod.name === action.payload.name &&
@@ -344,7 +344,7 @@ const reducer = (state = initialState, action) => {
       let product = state.cart[action.payload];
 
       if (product.quantity > 1) {
-        console.log("la cantidad es mayor que 1, disminuyo 1");
+        // console.log("la cantidad es mayor que 1, disminuyo 1");
 
         product.quantity = product.quantity - 1;
         return {
@@ -352,7 +352,7 @@ const reducer = (state = initialState, action) => {
           cart: [...state.cart],
         };
       } else {
-        console.log("no se cumple la primera condición, elimino el producto");
+        // console.log("no se cumple la primera condición, elimino el producto");
         let product = state.cart[action.payload];
 
         return {
@@ -363,7 +363,7 @@ const reducer = (state = initialState, action) => {
     case INCREMENT_QUANTITY:
       let productIn = state.cart[action.payload.index];
       if (productIn.quantity < action.payload.top) {
-        console.log("la cantidad es menor que el top, aumento 1");
+        // console.log("la cantidad es menor que el top, aumento 1");
 
         productIn.quantity = productIn.quantity + 1;
         return {
@@ -371,7 +371,7 @@ const reducer = (state = initialState, action) => {
           cart: [...state.cart],
         };
       } else {
-        console.log("no se cumple la primera condición, no sumo nada");
+        // console.log("no se cumple la primera condición, no sumo nada");
 
         return {
           ...state,
@@ -426,7 +426,7 @@ const reducer = (state = initialState, action) => {
         allOrders: action.payload,
       };
     case GET_ORDERID:
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         ordersUser: action.payload,
@@ -437,7 +437,7 @@ const reducer = (state = initialState, action) => {
         email: action.payload,
       };
     case GET_REVIEW_BY_USERID:
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         reviewsByUser: action.payload,

@@ -36,7 +36,7 @@ const Pagination = () => {
   };
 
   const handlePage = (event) => {
-    console.log(event.target.value);
+    window.scrollTo(0, 0);
     switch (event.target.name) {
       case "button":
         return dispatch(setCurrentPage(Number(event.target.id)));
@@ -72,72 +72,68 @@ const Pagination = () => {
       <div className={style.arrow}>
         <div className={style.buttons}>
           {
-            <Button shape="circle" style={{ marginLeft: "5px" }}>
-              <button
-                className={style.arrowBtn}
-                name="first"
-                onClick={handlePage}
-              >
-                {" "}
-                {"<<"}{" "}
-              </button>
-            </Button>
+            <button
+              className={style.arrowBtn}
+              name="first"
+              onClick={() => {handlePage(event); window.scrollTo(0, 0);}}
+              shape="circle"
+              style={{ marginLeft: "5px" }}>
+              {" "}
+              {"<<"}{" "}
+            </button>
           }
           {
-            <Button shape="circle" style={{ marginLeft: "5px" }}>
-              <button
-                className={style.arrowBtn}
-                name="prev"
-                onClick={handlePage}
-              >
-                {" "}
-                {"<"}{" "}
-              </button>
-            </Button>
+            <button
+              className={style.arrowBtn}
+              name="prev"
+              onClick={() => {handlePage(event); window.scrollTo(0, 0);}}
+              shape="circle" style={{ marginLeft: "5px" }}>
+              {" "}
+              {"<"}{" "}
+            </button>
           }
         </div>
         <div>
           {buttons(totalButtonsArray).map((number, i) => {
             return (
-              <Button
+              <button
+                className={currentPage === number ? style.buttonCurrentPage : style.buttonPage}
                 type={currentPage === number ? "primary" : "secondary"}
                 shape="circle"
                 key={number}
-                onClick={handlePage}
+                onClick={() => {handlePage(event); window.scrollTo(0, 0);}}
                 index={i}
                 name={`button`}
                 id={number}
               >
                 {number}
-              </Button>
+              </button>
             );
           })}
         </div>
         <div className={style.buttons}>
           {
             // <button name='next' onClick={handlePage} >Siguiente</button>}
-            <Button shape="circle" style={{ marginLeft: "5px" }}>
-              <button
-                className={style.arrowBtn}
-                name="next"
-                onClick={handlePage}
-              >
-                {" "}
-                {">"}{" "}
-              </button>
-            </Button>
+            <button
+              className={style.arrowBtn}
+              name="next"
+              onClick={() => {handlePage(event); window.scrollTo(0, 0);}}
+              shape="circle"
+              style={{ marginLeft: "5px" }}>
+              {" "}
+              {">"}{" "}
+            </button>
           }
           {
-            <Button shape="circle" style={{ marginLeft: "5px" }}>
-              <button
-                className={style.arrowBtn}
-                name="last"
-                onClick={handlePage}
-              >
-                {" "}
-                {">>"}{" "}
-              </button>
-            </Button>
+            <button
+              className={style.arrowBtn}
+              name="last"
+              onClick={() => {handlePage(event); window.scrollTo(0, 0);}}
+              shape="circle"
+              style={{ marginLeft: "5px" }}>
+              {" "}
+              {">>"}{" "}
+            </button>
           }
         </div>
       </div>

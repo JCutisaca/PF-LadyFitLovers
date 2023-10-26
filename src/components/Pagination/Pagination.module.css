@@ -1,12 +1,38 @@
-.arrowBtn {
+.arrowBtn span {
   background: none;
   border: none;
   width: 100%;
   height: 100%;
   font-weight: 550;
 }
+
 .arrowBtn:hover {
   color: #c04c98;
+}
+
+.arrowBtn {
+  min-width: 32px;
+  min-height: 32px;
+  border-radius: 1rem;
+  border-color: #d9d9d9;
+  font-weight: 550;
+  font-size: 12px;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.02);
+}
+
+.buttonPage {
+  min-width: 32px;
+  min-height: 32px;
+  border-radius: 1rem;
+  border-color: #d9d9d9;
+}
+.buttonCurrentPage {
+  color: white;
+  background-color: #c04c98;
+  min-width: 32px;
+  min-height: 32px;
+  border-radius: 1rem;
+  border-color: #d9d9d9;
 }
 
 .paginationContainer {
@@ -18,6 +44,7 @@
   width: 100%;
   flex-direction: column;
   align-items: center;
+  margin-top: 1rem;
 }
 
 .arrow {
@@ -26,6 +53,13 @@
   justify-content: space-around;
 }
 
-.buttons {
+/* .buttons {
   width: 100px;
+} */
+
+@media (max-width: 400px) {
+  .arrow {
+    width: inherit;
+    justify-content: center;
+  }
 }

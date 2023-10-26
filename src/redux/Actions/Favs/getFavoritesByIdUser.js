@@ -10,7 +10,6 @@ const getFavoritesByIdUser = (id) => {
     return async(dispatch) => {
         try {
             const {data} = await axios.get(`${endpoint}${id}`)
-            console.log("fovoritos del usuario",{data});
             return dispatch({
                 type: GET_FAVORITES_BY_ID_USER,
                 payload: data

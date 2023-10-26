@@ -1,0 +1,12 @@
+
+.containerButton {
+    border-radius: 1rem !important;
+    display: flex !important;
+    justify-content: center;
+    height: 2.7rem !important;
+    width: 100% !important;
+    padding: inherit !important;
+    margin: inherit !important;
+    font-weight: 500;
+    font-size: 14px !important;
+}

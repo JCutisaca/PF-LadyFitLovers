@@ -21,7 +21,7 @@ const Products = () => {
           // const color = stock.map((stockItem) => stockItem.color);
   
           return (
-            <>
+            <div key={id}>
               <Product
                 key={id}
                 id={id}
@@ -34,7 +34,7 @@ const Products = () => {
 
               ></Product>
               <Drawer></Drawer>
-            </>
+            </div>
           );
         })
       }

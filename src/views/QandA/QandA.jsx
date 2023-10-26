@@ -19,7 +19,7 @@ const QandA = () => {
       key: "1",
       label: "¿Debo registrarme para poder comprar?",
       children: [
-        <p>
+        <p key={"1"}>
           Si, podés hacerlo{" "}
           <Link to="#" onClick={() => setLoginModalVisible(true)}>
             haciendo click aquí.
@@ -31,18 +31,18 @@ const QandA = () => {
       key: "2",
       label: "¿Cómo puedo realizar una compra?",
       children: [
-        <p>1- Seleccione los productos que desea comprar.</p>,
-        <p>2- Agregue los productos al carrito de compras.</p>,
-        <p>3- Ingrese su información de envío y facturación.</p>,
-        <p>4- Seleccione el método de pago.</p>,
-        <p>5- Confirme su compra.</p>,
+        <p key={"1"}>1- Seleccione los productos que desea comprar.</p>,
+        <p key={"2"}>2- Agregue los productos al carrito de compras.</p>,
+        <p key={"3"}>3- Ingrese su información de envío y facturación.</p>,
+        <p key={"4"}>4- Seleccione el método de pago.</p>,
+        <p key={"5"}>5- Confirme su compra.</p>,
       ],
     },
     {
       key: "10",
       label: "¿Qué talla debo elegir?",
       children: [
-        <p>
+        <p key={"1"}>
           La talla que debe elegir depende de sus medidas. Consulte la tabla de
           tallas de cada producto para obtener más información.
         </p>,
@@ -52,29 +52,29 @@ const QandA = () => {
       key: "3",
       label: "¿Cómo puedo pagar mi pedido?",
       children: [
-        <p>Aceptamos los siguientes métodos de pago:</p>,
-        <p>- Mercado pago</p>,
-        <p>- Efectivo</p>,
-        <p>- Transferencia bancaria</p>,
+        <p key={"1"}>Aceptamos los siguientes métodos de pago:</p>,
+        <p key={"2"}>- Mercado pago</p>,
+        <p key={"3"}>- Efectivo</p>,
+        <p key={"4"}>- Transferencia bancaria</p>,
       ],
     },
     {
       key: "4",
       label: "¿Cuál es el plazo de entrega?",
       children: [
-        <p>
+        <p key={"1"}>
           El tiempo de entrega de mi pedido depende del método de envío que
           elija:
         </p>,
-        <p>- Retiro por punto de entrega: 24hs hábiles.</p>,
-        <p>- Envío a domicilio: dependerá del servicio de entrega del correo.</p>,
+        <p key={"2"}>- Retiro por punto de entrega: 24hs hábiles.</p>,
+        <p key={"3"}>- Envío a domicilio: dependerá del servicio de entrega del correo.</p>,
       ],
     },
     {
       key: "5",
       label: "¿Cuál es el costo de envío?",
       children: [
-        <p>
+        <p key={"1"}>
           El costo de envío se calculará según el peso y volumen de los
           productos que seleccione y la dirección de entrega.
         </p>,
@@ -85,23 +85,23 @@ const QandA = () => {
       key: "6",
       label: "¿Puedo devolver o cambiar mi pedido?",
       children: [
-        <p>
+        <p key={"1"}>
           Sí, puede devolver o cambiar su pedido dentro de los 30 días
           posteriores a la recepción.
         </p>,
-        <p>Contactate vía mail a: {emailLink()} para poder ayudarte.</p>,
+        <p key={"2"}>Contactate vía mail a: {emailLink()} para poder ayudarte.</p>,
       ],
     },
     {
       key: "7",
       label: "¿Cómo puedo contactarme con ustedes?",
-      children: [<p>Podes contactarte vía mail, whatsapp o redes sociales.</p>],
+      children: [<p key={"1"}>Podes contactarte vía mail, whatsapp o redes sociales.</p>],
     },
     {
       key: "8",
       label: "¿Dónde puedo encontrar más información sobre sus productos?",
       children: [
-        <p>
+        <p key={"1"}>
           Podes encontrar más información sobre nuestros productos en la sección
           de productos de nuestra página web y redes sociales.
         </p>,
@@ -111,7 +111,7 @@ const QandA = () => {
       key: "9",
       label: "¿Tienen cupones, descuentos y promociones?",
       children: [
-        <p>
+        <p key={"1"}>
           Ofrecemos cupones y descuentos con frecuencia. Puede encontrar más
           información sobre nuestros cupones y descuentos en nuestro sitio web o
           en nuestras redes sociales. Y si te registras en nuestra página

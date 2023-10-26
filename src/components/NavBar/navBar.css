@@ -5,12 +5,13 @@
 
 .navBarContainer {
   position: fixed;
-  width: 100vw;
+  /* width: 100vw; */
   z-index: 5;
-  right: 0px;
   height: 80px;
+  right: 0;
+  left: 0;
   top: 0;
-  /* margin: 0px 56px; */
+  padding: 0 7rem;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -25,7 +26,7 @@
   display: flex;
   align-items: center;
   gap: 32px;
-  margin-left: 6.25rem
+  /* margin-left: 5.5rem */
 }
 
 .navBarButton {
@@ -93,7 +94,7 @@
   display: flex;
   align-items: center;
   position: relative;
-  margin-right: 3.75rem;
+  /* margin-right: 3.75rem; */
   margin-left: auto;
   /* right: 11rem; */
 }
@@ -108,9 +109,23 @@
   }
 }
 
+@media (max-width: 1215px) {
+  .navBarContainer {
+    padding: 0px 3rem;
+  }
+}
+
 @media (max-width: 1150px) {
   .userInfo p {
     display: none;
+  }
+
+  .navBarContainer {
+    padding: 0px 24px;
+  }
+
+  .containerUser {
+    flex-direction: row-reverse;
   }
 
   .loginModal {
@@ -124,13 +139,13 @@
   .responsive {
     position: relative;
     display: flex;
-    margin-left: 60px;
+    /* margin-left: 3.75rem; */
   }
 
   .imagesButton {
     min-width: 38px;
     height: 38px;
-    margin: 10px 10px;
+    margin: 8px 8px;
     position: relative;
     cursor: pointer;
     display: inline-block;
@@ -193,12 +208,15 @@
 }
 
 @media (max-width: 760px) {
-  .searchBarDiv {
+  /* .searchBarDiv {
     display: none;
+  } */
+  /* .responsive {
+    margin-left: 1rem;
   }
   .containerSearchAndUser {
     margin-right: 1.75rem;
-  }
+  } */
 }
 
 @media (max-width: 600px) {
@@ -206,26 +224,30 @@
     margin: inherit;
   }
 
-  .responsive {
-    margin-left: 2rem;
+  .navBarContainer {
+    padding: 0 16px;
   }
+
+  /* .responsive {
+    margin-left: 0.2rem;
+  } */
 
   .buttonLogin {
     display: none;
   }
 
   .containerSearchAndUser {
-    flex-direction: row-reverse;
-    margin-right: 1rem;
+    flex-direction: row;
+    /* margin-right: 1rem; */
   }
 
   .navBarLinksContainer {
     gap: inherit;
   }
 
-  .navBarContainer {
+  /* .navBarContainer {
     padding-left: inherit;
-  }
+  } */
 }
 
 @media (min-width: 601px) {
@@ -237,11 +259,22 @@
     flex-direction: row;
   }
 }
+
 @media (max-width: 430px) {
-  .containerSearchAndUser {
+
+  /* .containerSearchAndUser {
     margin-right: 0.5rem;
   }
   .responsive {
-    margin-left: 1.5rem;
+    margin-left: 0.2rem;
+  } */
+  .searchBarDiv {
+    width: 8rem;
   }
 }
+
+/* @media (max-width: 420px) {
+  .responsive {
+    margin-left: 0.2rem;
+  }
+} */

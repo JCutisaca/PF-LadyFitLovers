@@ -72,7 +72,6 @@ const ProfileLayout = ({ profileKey }) => {
     token: { colorBgContainer },
   } = theme.useToken();
   const keySelect = ( access ) => {
-    console.log(access);
     if (typeof access === "object") {
       const {key}=access
       navigate(`/perfil/${key}`)
