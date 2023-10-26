@@ -1,4 +1,4 @@
-import { Button, Switch, Table, message } from "antd";
+import { Button, Switch, Table, message, Card } from "antd";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -15,8 +15,10 @@ import { useMediaQuery } from "react-responsive";
 
 const ProductsTable = () => {
   const isMobile = useMediaQuery({ maxWidth: 769 });
+  const minMobile = useMediaQuery({ maxWidth: 500 });
   const dispatch = useDispatch();
   const products = useSelector((state) => state.allProductsAdmin);
+  console.log(products);
   const allCatgories = useSelector((state) => state.allCategories);
   const accessToken = useSelector((state) => state.accessToken);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -113,7 +115,7 @@ const ProductsTable = () => {
       },
     },
   ];
-  
+
   if (!isMobile) {
     // Si no es un dispositivo móvil, agregamos las columnas "Categoria", "Precio" y "Unidades Vendidas"
     columns.splice(2, 0, {
@@ -123,7 +125,7 @@ const ProductsTable = () => {
       onFilter: (value, record) => record.Category.name === value,
       key: "Category",
       render: (category) => <p>{category.name}</p>,
-      responsive: ["lg"], 
+
     });
     columns.splice(3, 0, {
       title: "Precio",
@@ -131,14 +133,13 @@ const ProductsTable = () => {
       key: "price",
       sorter: (a, b) => a.price - b.price,
       render: (price) => <p>${price}</p>,
-      responsive: ["lg"], 
+
     });
     columns.splice(4, 0, {
       title: "Unidades Vendidas",
       dataIndex: "unitsSold",
       key: "unitsSold",
       render: (stock) => <p>{stock}</p>,
-      responsive: ["lg"], 
     });
   }
   return (
@@ -150,7 +151,49 @@ const ProductsTable = () => {
           product={productUpdate}
         />
       )}
-      <Table  dataSource={sortedProducts} columns={columns} />
+      {minMobile ? (
+        sortedProducts.map((product, index) => (
+          <Card
+            key={index}
+            title={product.name}
+            bordered={false}
+            hoverable={true}
+            style={{
+              width: "100%",
+              marginBottom: "10px",
+              marginTop: "10px",
+              backgroundColor: "#f5f5f5",
+            }}
+          >
+            <div className="settingImg">
+              <img className="productsTableImageMobile" src={product.image} alt="" />
+            </div>
+            <div className="settingInfo">
+              <p>Unidades Vendidas: {product.unitsSold
+              }</p>
+              <p>Acciones: </p><Button
+                type="primary"
+                icon={<EditOutlined />}
+                size="small"
+                onClick={() => {
+                  setShowEditModal(true), setProductUpdate(product);
+                }}
+              />
+              <p>Activo:</p><Switch
+                checkedChildren={<CheckOutlined />}
+                unCheckedChildren={<CloseOutlined />}
+                defaultChecked={product.active === true ? true : false}
+                onChange={() =>
+                  handleActive(product.active === true ? false : true, product)
+                }
+              />
+
+            </div>
+          </Card>
+        ))
+      ) : (
+        <Table dataSource={sortedProducts} columns={columns} />
+      )}
     </div>
   );
 };

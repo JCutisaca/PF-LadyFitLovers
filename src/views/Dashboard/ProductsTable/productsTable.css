@@ -5,3 +5,19 @@
     object-fit: cover;
 
 }
+.productsTableImageMobile{
+    height: 200px;
+    width:auto;
+    border-radius: 20px;
+    box-shadow: 0 0 10px;
+}
+.settingImg{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.settingInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
