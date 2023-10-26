@@ -58,6 +58,42 @@
   margin-left: 36px;
 }
 
+.chatbot-overlay {
+  position: fixed;
+  bottom: 60px;
+  left: 20px;
+  z-index: 999;
+  width: 500px;
+  height: 900px;
+  transition: 0.5s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s, visibility 0.5s;
+}
+.chatbot-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Estilos para el botón CHATBOT */
+.buttonChatBot {
+  display: flex;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 998;
+  background: rgba(255, 255, 255, 0.911);
+  width: 5rem;
+  /* height: 5%; */
+  border: 1px solid rgb(126, 126, 126);
+  border-radius: 1em 1em 1em 0;
+  transition: 0.5s ease-in-out;
+}
+.ladyBot {
+  height: 100%;
+  width: 100%;
+}
+
 @media (max-width: 768px) {
   .footerTop {
     flex-direction: column;
@@ -66,5 +102,11 @@
 
   .footerTopLeft {
     margin-left: 0;
+  }
+  .chatbot-overlay {
+    width: 90%;
+  }
+  .buttonChatBot {
+    width: 4rem;
   }
 }

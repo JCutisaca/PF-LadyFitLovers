@@ -5,13 +5,11 @@ import { Field, FieldArray, useFormikContext } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { provincias } from "./Provincias";
 import { saveImage } from "../CreateProduct/saveImage";
-import AvatarEditor from "react-avatar-editor";
 import ButtonSecondary from "../ButtonSecondary/ButtonSecondary";
 import ButtonPrimary from "../ButtonPrimary/ButtonPrimary";
 import updateUser from "../../redux/Actions/User/updateUser";
 import postUser from "../../redux/Actions/User/postUser";
 import getUserById from "../../redux/Actions/User/getUserById";
-import editPhoto from "../editPhoto/editPhoto";
 import getAllUsers from "../../redux/Actions/User/getAllUsers";
 import UpdatePasswordModal from "../UpdatePassword/UpdatePasswordModal";
 import "./createAcountModal.css";
@@ -181,18 +179,6 @@ const CreateAcountForm = ({
   return (
     <>
       <div className="containerFormCreateAcount">
-        {pivotuser ? (
-          <Upload
-          accept="image/*"
-          customRequest={() => {}}
-          onChange={handleImageChange}
-          showUploadList={false}
-        >
-          <Button icon={<UploadOutlined />}>Seleccionar foto de perfil</Button>
-        </Upload>
-        ) : (
-          ""
-        )}
 
         <Field id="name" name="name">
           {/* Todos los field tienen que tener un name y un id por defecto, lo que cambia es el valor que yo le envìo */}

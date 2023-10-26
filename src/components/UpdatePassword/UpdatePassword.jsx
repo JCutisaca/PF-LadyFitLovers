@@ -10,7 +10,6 @@ import { useNavigate } from "react-router-dom";
 
 const UpdatePassword = ({onClose, pivotbander, email}) => {
   const navigate = useNavigate()
-  console.log(email);
   const accessToken = useSelector((state) => state.accessToken);
   const infouser = useSelector((state) => state.user)
   const id = infouser.id

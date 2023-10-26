@@ -42,7 +42,10 @@ import {
   //purchase
   //reviews
   GET_REVIEW_BY_USERID,
-  MENU_BURGER
+  MENU_BURGER,
+  //chatbot
+  CLOSE_CHAT,
+  OPEN_CHAT,
 } from "../Actions/actionTypes";
 
 const initialState = {
@@ -84,7 +87,10 @@ const initialState = {
   //purchase
   //reviews
   reviewsByUser: null,
-  menuBurger: false
+  menuBurger: false,
+  //chatbot
+  chatBot: [],
+  isChatBotOpen: false,
 };
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -98,6 +104,7 @@ const reducer = (state = initialState, action) => {
         totalButtons: Math.ceil(action.payload.length / state.quantity),
       };
     case GET_ID_DETAIL_PRODUCTS:
+      console.log(action.payload)
       return {
         ...state,
         productDetail: action.payload,
@@ -135,8 +142,8 @@ const reducer = (state = initialState, action) => {
           action.payload === "TA"
             ? state.saveProducts
             : state.saveProducts.filter(
-              (product) => product.Category.name === action.payload
-            ),
+                (product) => product.Category.name === action.payload
+              ),
 
         savePivot: state.saveProducts.filter(
           (product) => product.Category.name === action.payload
@@ -152,27 +159,27 @@ const reducer = (state = initialState, action) => {
         filteredProducts =
           state.savePivot.length > 0
             ? state.savePivot.filter((product) =>
-              product.stock.some(
-                (stockItem) => stockItem.color === action.payload
+                product.stock.some(
+                  (stockItem) => stockItem.color === action.payload
+                )
               )
-            )
             : state.saveProducts.filter((product) =>
-              product.stock.some(
-                (stockItem) => stockItem.color === action.payload
-              )
-            );
+                product.stock.some(
+                  (stockItem) => stockItem.color === action.payload
+                )
+              );
         filteredColor =
           state.savePivot.length > 0
             ? state.savePivot.filter((product) =>
-              product.stock.some(
-                (stockItem) => stockItem.color === action.payload
+                product.stock.some(
+                  (stockItem) => stockItem.color === action.payload
+                )
               )
-            )
             : state.saveProducts.filter((product) =>
-              product.stock.some(
-                (stockItem) => stockItem.color === action.payload
-              )
-            );
+                product.stock.some(
+                  (stockItem) => stockItem.color === action.payload
+                )
+              );
       }
       return {
         ...state,
@@ -455,8 +462,18 @@ const reducer = (state = initialState, action) => {
     case MENU_BURGER:
       return {
         ...state,
-        menuBurger: !state.menuBurger
-      }
+        menuBurger: !state.menuBurger,
+      };
+    case CLOSE_CHAT:
+      return {
+        ...state,
+        isChatBotOpen: false,
+      };
+    case OPEN_CHAT:
+      return {
+        ...state,
+        isChatBotOpen: true,
+      };
     default:
       return {
         ...state,

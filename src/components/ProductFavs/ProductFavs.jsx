@@ -6,8 +6,9 @@ import { useEffect } from "react";
 import NoFoundScreen from "../NoFoundScreen/NoFoundScreen";
 import deleteFav from "../../redux/Actions/Favs/deleteFav";
 import { NavLink } from "react-router-dom";
-import style from "../ShoppingClient/ShoppingClient.module.css";
-
+import style from "./ProductFavs.module.css";
+import Product from "../Product/Product";
+//and le
 
 
 const ProductFavs = () => {
@@ -28,27 +29,21 @@ const ProductFavs = () => {
     <div className={style.shoppingClientContainer}>
       {!favorites.length ? <NoFoundScreen text={"No se encontraron favoritos"} />
 
-        : favorites?.map((fav) => (
-          <div key={fav.id}>
-            <Card
-              key={fav.id}
-              bordered={false}
-              hoverable={true}
-              className={style.cardFavs}
-              style={{
-                width: 250,
-                height: 250,
-                margin: 5,
-                position: "relative",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-              id={fav.id}
-            >
+        : favorites?.map(({id, name, image, price, unitsSold, stock, priceOnSale }) => (
+          <div key={id}>
+            <Product key={id}
+             id={id}
+             name={name}
+             image={image}
+             price={price}
+             unitsSold={unitsSold}
+             stock={stock}
+             priceOnSale={priceOnSale}
 
-              <Button style={{ position: "absolute", top: 5, right: 5 }} id={fav.name} shape='circle' size='small' onClick={() => dispatch(deleteFav(fav.id, user.id, accessToken))}>x</Button>
+          >
+            </Product>
+
+              {/* <Button style={{ position: "absolute", top: 5, right: 5 }} id={fav.name} shape='circle' size='small' onClick={() => dispatch(deleteFav(fav.id, user.id, accessToken))}>x</Button>
               <div className={style.detailFav}>
               <NavLink className={style.buy} to={`/detail/${fav.id}`}>
                 {fav.name}
@@ -56,9 +51,9 @@ const ProductFavs = () => {
                 <div><Image alt={fav.name} src={fav.image && fav.image} width={100} /></div>
                 <div>Precio: ${fav.price}</div>
               </div>
-             
+              */}
 
-            </Card>
+            {/* </Card> */}
           </div>
         ))}
     </div>
@@ -66,3 +61,5 @@ const ProductFavs = () => {
 }
 
 export default ProductFavs
+
+
