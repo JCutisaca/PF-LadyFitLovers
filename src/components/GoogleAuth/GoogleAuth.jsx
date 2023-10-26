@@ -51,7 +51,7 @@ const GoogleAuth = ({ onGoogleLoginSuccess }) => {
         console.log(err)
       }}
     >
-      <GoogleLoginButton text="Igresar con Google" className={style.containerButton} />
+      <GoogleLoginButton text="Ingresar con Google" className={style.containerButton} />
     </LoginSocialGoogle>
   );
 };
