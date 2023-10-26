@@ -24,5 +24,6 @@
 @media (max-width: 768px) {
   .cardsContainer {
     width: 100%;
+    padding: inherit;
   }
 }

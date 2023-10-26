@@ -251,91 +251,95 @@ const NavBar = () => {
           )}
 
           {/* informacion del usuario */}
-          {!location.pathname.includes("User") && user.email && (
-            <div className="userInfo">
-              <p>Hola, {user.name} </p>
-              {/* {user.surname} */}
-              {userDropdown}
-            </div>
-          )}
-          {!location.pathname.includes("admin") && (
-            <>
-              {user.id ? <Link to="/perfil/favoritos">
+          <div style={{display: 'flex', alignItems: 'center'}} className={user.id ? "containerUser" : null}>
+            {!location.pathname.includes("User") && user.email && (
+              <div className="userInfo">
+                <p>Hola, {user.name} </p>
+                {/* {user.surname} */}
+                {userDropdown}
+              </div>
+            )}
+            {!location.pathname.includes("admin") && (
+              <>
+                {user.id ? <Link to="/perfil/favoritos">
+                  <Button
+                    shape="circle"
+                    size="large"
+                    className="buttonNavAccess"
+                  >
+                    <HeartOutlined />
+                  </Button>
+                </Link> : null}
+
                 <Button
                   shape="circle"
                   size="large"
                   className="buttonNavAccess"
+                  onClick={handle}
+
                 >
-                  <HeartOutlined />
+                  <ShoppingCartOutlined />
+                  {totalProducts > 0 && (
+                    <sup
+                      data-show="true"
+                      className="ant-scroll-number ant-badge-count"
+                      title="1"
+                      style={{
+                        position: "absolute",
+                        top: "0",
+                        right: "0",
+                        transform: "translate(50%, -50%)",
+                        backgroundColor: "#ba338a",
+                        color: "white",
+                        borderRadius: "50%",
+                        width: "20px",
+                        height: "20px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      {totalProducts}
+                    </sup>
+                  )}
                 </Button>
-              </Link> : null}
+              </>
+            )}
 
-              <Button
-                shape="circle"
-                size="large"
-                className="buttonNavAccess"
-                onClick={handle}
-
-              >
-                <ShoppingCartOutlined />
-                {totalProducts > 0 && (
-                  <sup
-                    data-show="true"
-                    className="ant-scroll-number ant-badge-count"
-                    title="1"
-                    style={{
-                      position: "absolute",
-                      top: "0",
-                      right: "0",
-                      transform: "translate(50%, -50%)",
-                      backgroundColor: "#ba338a",
-                      color: "white",
-                      borderRadius: "50%",
-                      width: "20px",
-                      height: "20px",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    {totalProducts}
-                  </sup>
-                )}
-              </Button>
-            </>
-          )}
-
-          {!user.email && (
-            <div className="loginModal">
-              <ButtonPrimary title="Iniciar Sesión" onClick={openLoginModal} />
-            </div>
-          )}
-          {!user.email && (
-            <div className="loginResponsive">
-              <Button
-                shape="circle"
-                size="large"
-                onClick={openLoginModal}
-                className="buttonNavAccessUser"
-              >
-                <UserOutlined />
-              </Button>
-            </div>
-          )}
+            {!user.email && (
+              <div className="loginModal">
+                <ButtonPrimary title="Iniciar Sesión" onClick={openLoginModal} />
+              </div>
+            )}
+            {!user.email && (
+              <div className="loginResponsive">
+                <Button
+                  shape="circle"
+                  size="large"
+                  onClick={openLoginModal}
+                  className="buttonNavAccessUser"
+                >
+                  <UserOutlined />
+                </Button>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      </div >
 
       <LoginModal
         visible={loginModalVisible}
         onClose={() => setLoginModalVisible(false)}
         setCreateAcountModalVisible={setCreateAcountModalVisible}
       />
-      {createAcountModalVisible && (
-        <CreateAcountModal
-          visible={createAcountModalVisible}
-          onClose={() => setCreateAcountModalVisible(false)}
-        />
-      )}
+      {
+        createAcountModalVisible && (
+          <CreateAcountModal
+            visible={createAcountModalVisible}
+            onClose={() => setCreateAcountModalVisible(false)}
+          />
+        )
+      }
     </>
   );
 };

@@ -25,3 +25,9 @@
         padding: revert;
     }
 }
+
+@media (max-width: 400px) {
+    .subcontainer {
+        gap: 3px;
+    }
+}

@@ -29,3 +29,10 @@
 .buttons {
   width: 100px;
 }
+
+@media (max-width: 400px) {
+  .arrow {
+    width: inherit;
+    justify-content: center;
+  }
+}

@@ -36,7 +36,7 @@ const SearchBar = () => {
           onChange={handleInputChange}
           value={name} // Asigna el valor del campo de búsqueda a 'name'
           style={{
-            width: 200,
+            width: '100%',
           }} 
         />
         

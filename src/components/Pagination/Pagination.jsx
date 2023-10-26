@@ -36,7 +36,6 @@ const Pagination = () => {
   };
 
   const handlePage = (event) => {
-    console.log(event.target.value);
     switch (event.target.name) {
       case "button":
         return dispatch(setCurrentPage(Number(event.target.id)));

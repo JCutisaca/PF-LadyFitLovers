@@ -12,7 +12,6 @@ const { Text } = Typography;
 
 const Profile = () => {
   const infouser = useSelector((state) => state.user);
-  console.log(infouser.image);
   return (
     <div className={style.containerProfiler}>
       <Card
