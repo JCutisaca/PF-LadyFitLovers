@@ -26,31 +26,32 @@ const Review = ({ id, reviewText, rating, updatedAt, user }) => {
     day: "numeric",
   });
   return (
-
-      <Card
-        style={{
-          width: 300,
-          marginTop: 16,
-        }}
-        loading={loading}
-        className={styles.reviewContainer}
-      >
-        <Skeleton loading={loading} avatar active>
-          <Meta
-            avatar={
+    <Card
+      style={{
+        width: 300,
+        marginTop: 16,
+      }}
+      loading={loading}
+      className={styles.reviewContainer}
+    >
+      <Skeleton loading={loading} avatar active>
+        <Meta
+          avatar={
+            user[0].image ? (
               <Avatar size="large" src={user[0].image} />
-            }
-            title={user[0].name}
-
-            description={formattedDate}
-          />
-          <div className={styles.reviewDescription}>
-            <Rate disabled defaultValue={rating} className={styles.rating} />
-            <div className={styles.reviewText}>{reviewText}</div>
-          </div>
-        </Skeleton>
-      </Card>
-
+            ) : (
+              <Avatar src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1" />
+            )
+          }
+          title={user[0].name}
+          description={formattedDate}
+        />
+        <div className={styles.reviewDescription}>
+          <Rate disabled defaultValue={rating} className={styles.rating} />
+          <div className={styles.reviewText}>{reviewText}</div>
+        </div>
+      </Skeleton>
+    </Card>
   );
 };
 

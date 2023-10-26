@@ -29,9 +29,12 @@ const Footer = () => {
     <div className="footerContainer">
       <div className="footerTop">
         <div className="footerTopLeftWrapper">
-          <button className="buttonChatBot" onClick={toggleChatBot}>
-            <img className="ladyBot" src="/img/ladyBot.png" />
-          </button>
+          {!isChatBotOpen && (
+            <button className="buttonChatBot" onClick={toggleChatBot}>
+              <img className="ladyBot" src="/img/ladyBot.png" />
+            </button>
+          )}
+
           {/* {isChatBotOpen ? "Cerrar Chat" : "Abrir chat"} */}
           <h3 className="h3footer">Información</h3>
 
@@ -78,7 +81,7 @@ const Footer = () => {
         </Link>
       </div>
       {isChatBotOpen && (
-        <div className="chatbot-overlay">
+        <div className={`chatbot-overlay ${!isChatBotOpen ? "" : "visible"}`}>
           <ChatBot />
         </div>
       )}

@@ -26,8 +26,6 @@ const ChatBot = () => {
     return <a href={`mailto:${email}`}>ladyfitlovers@gmail.com</a>;
   };
 
-
-  
   //chatbot
   const handleCloseChat = () => {
     dispatch(closeChat());
@@ -36,8 +34,6 @@ const ChatBot = () => {
     dispatch(filtByCategory(category));
     navigate(`/products/${category}`);
   };
-
-
 
   const [messages, setMessages] = useState([
     {
@@ -150,32 +146,127 @@ const ChatBot = () => {
           );
           break;
         case "productos disponibles":
-          botResponse = <div>Tenemos una amplia gama de productos disponibles, incluyendo 
-            <input type="button"name="categoria"onClick={orderHandler} value="remeras"></input>
-            <input type="button"name="categoria"onClick={orderHandler} value="buzos"></input>
-            <input type="button"name="categoria"onClick={orderHandler} value="bikers"></input>
-            <input type="button"name="categoria"onClick={orderHandler} value="pantalones"></input>
-            <input type="button"name="categoria"onClick={orderHandler} value="calzas"></input>
-            <input type="button"name="categoria"onClick={orderHandler} value="shorts"></input>
-            <input type="button"name="categoria"onClick={orderHandler} value="vestidos"></input>
-            <input type="button"name="categoria"onClick={orderHandler} value="bikinis"></input>
-            <br/>¿Puedo ayudarte en algo mas?<br />Puedes responder con <strong>si</strong> o  <strong>no</strong></div>
+          botResponse = (
+            <div>
+              Tenemos una amplia gama de productos disponibles, incluyendo
+              <input
+                type="button"
+                name="categoria"
+                onClick={orderHandler}
+                value="remeras"
+              ></input>
+              <input
+                type="button"
+                name="categoria"
+                onClick={orderHandler}
+                value="buzos"
+              ></input>
+              <input
+                type="button"
+                name="categoria"
+                onClick={orderHandler}
+                value="bikers"
+              ></input>
+              <input
+                type="button"
+                name="categoria"
+                onClick={orderHandler}
+                value="pantalones"
+              ></input>
+              <input
+                type="button"
+                name="categoria"
+                onClick={orderHandler}
+                value="calzas"
+              ></input>
+              <input
+                type="button"
+                name="categoria"
+                onClick={orderHandler}
+                value="shorts"
+              ></input>
+              <input
+                type="button"
+                name="categoria"
+                onClick={orderHandler}
+                value="vestidos"
+              ></input>
+              <input
+                type="button"
+                name="categoria"
+                onClick={orderHandler}
+                value="bikinis"
+              ></input>
+              <br />
+              ¿Puedo ayudarte en algo mas?
+              <br />
+              Puedes responder con <strong>si</strong> o <strong>no</strong>
+            </div>
+          );
           break;
-          case "categoria":
-            const category = event.target.value.toUpperCase()
-            console.log(category);
-            handleGoToCategory(category)
-            botResponse = <div>Estos son los/as {event.target.value} disponibles. También puedes ver:<br/>
-                         <input type="button"name="categoria"onClick={orderHandler} value="remeras"></input>
-            <input type="button"name="categoria"onClick={orderHandler} value="buzos"></input>
-            <input type="button"name="categoria"onClick={orderHandler} value="bikers"></input>
-            <input type="button"name="categoria"onClick={orderHandler} value="pantalones"></input>
-            <input type="button"name="categoria"onClick={orderHandler} value="calzas"></input>
-            <input type="button"name="categoria"onClick={orderHandler} value="shorts"></input>
-            <input type="button"name="categoria"onClick={orderHandler} value="vestidos"></input>
-            <input type="button"name="categoria"onClick={orderHandler} value="bikinis"></input>
-            <br /> ¿Puedo ayudarte en algo mas?<br />Puedes responder con <strong>si</strong> o  <strong>no</strong></div>
-            break
+        case "categoria":
+          const category = event.target.value.toUpperCase();
+          console.log(category);
+          handleGoToCategory(category);
+          botResponse = (
+            <div>
+              Estos son los/as {event.target.value} disponibles. También puedes
+              ver:
+              <br />
+              <input
+                type="button"
+                name="categoria"
+                onClick={orderHandler}
+                value="remeras"
+              ></input>
+              <input
+                type="button"
+                name="categoria"
+                onClick={orderHandler}
+                value="buzos"
+              ></input>
+              <input
+                type="button"
+                name="categoria"
+                onClick={orderHandler}
+                value="bikers"
+              ></input>
+              <input
+                type="button"
+                name="categoria"
+                onClick={orderHandler}
+                value="pantalones"
+              ></input>
+              <input
+                type="button"
+                name="categoria"
+                onClick={orderHandler}
+                value="calzas"
+              ></input>
+              <input
+                type="button"
+                name="categoria"
+                onClick={orderHandler}
+                value="shorts"
+              ></input>
+              <input
+                type="button"
+                name="categoria"
+                onClick={orderHandler}
+                value="vestidos"
+              ></input>
+              <input
+                type="button"
+                name="categoria"
+                onClick={orderHandler}
+                value="bikinis"
+              ></input>
+              <br /> ¿Puedo ayudarte en algo mas?
+              <br />
+              Puedes responder con <strong>si</strong> o <strong>no</strong>
+            </div>
+          );
+          break;
         case "cómo realizar un pedido":
         case "como realizar un pedido":
           botResponse = (
@@ -325,19 +416,31 @@ const ChatBot = () => {
       }
       let userResponse;
       if (event.target.name === "order") {
-        userResponse = event.target.value
-        let prevMessage = <div>Elije con cual pedido tienes dudas</div>
-        let array = [{ text: prevMessage, isUser: false }, { text: userResponse, isUser: true }, { text: botResponse, isUser: false }]
-        const botMessage = addMessage(array)
-        
+        userResponse = event.target.value;
+        let prevMessage = <div>Elije con cual pedido tienes dudas</div>;
+        let array = [
+          { text: prevMessage, isUser: false },
+          { text: userResponse, isUser: true },
+          { text: botResponse, isUser: false },
+        ];
+        const botMessage = addMessage(array);
       } else if (event.target.name === "categoria") {
-        userResponse= event.target.value
-        let prevMessage = <div>Tenemos una amplia gama de productos disponibles incluyendo:<br/></div>
+        userResponse = event.target.value;
+        let prevMessage = (
+          <div>
+            Tenemos una amplia gama de productos disponibles incluyendo:
+            <br />
+          </div>
+        );
         console.log("aca");
-        let array = [{ text: prevMessage, isUser: false }, { text: userResponse, isUser: true }, { text: botResponse, isUser: false }]
-        const botMessage = addMessage(array)
-      }else {
-        userResponse = inputText
+        let array = [
+          { text: prevMessage, isUser: false },
+          { text: userResponse, isUser: true },
+          { text: botResponse, isUser: false },
+        ];
+        const botMessage = addMessage(array);
+      } else {
+        userResponse = inputText;
         setInputText("");
         let array = [
           { text: userResponse, isUser: true },
@@ -355,7 +458,7 @@ const ChatBot = () => {
   };
 
   return (
-    <div className="chat-bot-container">
+    <div className={`chat-bot-container ${!isChatBotOpen ? "" : "visible"}`}>
       <Box
         sx={{
           width: "100%",
@@ -376,7 +479,7 @@ const ChatBot = () => {
             p: 2,
             border: "1px inset #ccc",
             borderRadius: 5,
-            marginBottom: "10vh",
+            marginBottom: "1vh",
             borderColor: "#ba338a",
             background: "white",
           }}
@@ -452,7 +555,7 @@ const ChatBot = () => {
             <Button
               variant="contained"
               type="primary"
-              style={{ marginTop: "10px", backgroundColor: "#ba338a" }}
+              style={{ margin: "5px", backgroundColor: "#ba338a" }}
               onClick={() => handleUserMessage(inputText)}
             >
               Enviar

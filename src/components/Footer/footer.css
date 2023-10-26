@@ -60,28 +60,34 @@
 
 .chatbot-overlay {
   position: fixed;
-  bottom: 60px; /* Ajusta la distancia desde la parte inferior según tus preferencias */
-  left: 20px; /* Ajusta la distancia desde la derecha según tus preferencias */
-  z-index: 999; /* Ajusta el valor de z-index según sea necesario, debe ser mayor que el del botón */
-  /* Otros estilos, como dimensiones y fondo, según tus preferencias */
-  width: 500px; /* Ajusta el ancho del chat según tus preferencias */
+  bottom: 60px;
+  left: 20px;
+  z-index: 999;
+  width: 500px;
   height: 900px;
+  transition: 0.5s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s, visibility 0.5s;
+}
+.chatbot-overlay.visible {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* Estilos para el botón CHATBOT */
 .buttonChatBot {
   display: flex;
   position: fixed;
-  bottom: 20px; /* Ajusta la distancia desde la parte inferior según tus preferencias */
-  left: 20px; /* Ajusta la distancia desde la derecha según tus preferencias */
-  z-index: 998; /* Ajusta el valor de z-index según sea necesario */
-  /* Otros estilos para el botón */
-  background: rgba(255, 255, 255, 0.507);
+  bottom: 20px;
+  left: 20px;
+  z-index: 998;
+  background: rgba(255, 255, 255, 0.911);
   width: 5rem;
   /* height: 5%; */
   border: 1px solid rgb(126, 126, 126);
-  border-radius: 1em 1em 1em 0 ;
-
+  border-radius: 1em 1em 1em 0;
+  transition: 0.5s ease-in-out;
 }
 .ladyBot {
   height: 100%;
@@ -96,5 +102,11 @@
 
   .footerTopLeft {
     margin-left: 0;
+  }
+  .chatbot-overlay {
+    width: 90%;
+  }
+  .buttonChatBot {
+    width: 4rem;
   }
 }

@@ -4,6 +4,15 @@
   align-items: center;
   height: 100vh;
   background-color: transparent;
+  transition: 0.5s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s, visibility 1s;
+}
+
+.chat-bot-container.visible {
+  opacity: 1;
+  visibility: visible;
 }
 
 .chat-box {
@@ -16,12 +25,14 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 20px;
+ 
+
 }
 
 .chat-messages {
   flex: 1;
   overflow-y: auto;
-}
+} 
 
 .user-message {
   background-color: #ba338a;
@@ -55,6 +66,12 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 10px;
+}
+.input-conta{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .input-text {

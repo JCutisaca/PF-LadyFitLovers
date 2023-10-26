@@ -104,6 +104,7 @@ const reducer = (state = initialState, action) => {
         totalButtons: Math.ceil(action.payload.length / state.quantity),
       };
     case GET_ID_DETAIL_PRODUCTS:
+      console.log(action.payload)
       return {
         ...state,
         productDetail: action.payload,
