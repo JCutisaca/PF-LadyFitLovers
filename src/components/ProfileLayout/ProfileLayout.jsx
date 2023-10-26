@@ -125,7 +125,7 @@ const ProfileLayout = ({ profileKey }) => {
       <Layout className={style.containerInfo}>
         <Content className={style.layaout1}>
           {selectedKey === "perfil" && <DataProfile />}
-          {selectedKey === "compras" && <ShoppingClient idUser={infouser.id} />}
+          {/* selectedKey === "compras" && <ShoppingClient idUser={infouser.id} /> */}
           {selectedKey === "favoritos" && <Favs/>}
           {selectedKey === "compras" && <TableShoppingClient />}
           {selectedKey === "editar" && (

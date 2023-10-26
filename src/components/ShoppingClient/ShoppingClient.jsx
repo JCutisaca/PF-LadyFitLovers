@@ -5,6 +5,7 @@ import getOrdersByUser from "../../redux/Actions/Order/getOrdersByUser";
 import { Card, Row, Col, Image } from "antd";
 import { getColorName } from "../../utils/getColorName";
 import { NavLink } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 const ShoppingClient = ({ products }) => {
   return (

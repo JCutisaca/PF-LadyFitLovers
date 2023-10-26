@@ -3,12 +3,13 @@
     background-color: #F1ECF0;
     /* width: 88vw; */
     width: 98%;
-    height: 71vh;
+    height: 80vh;
     display: grid;
     place-items: center;
     padding: 10px;
     border-radius: 10px;
-    overflow: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 .layaout1::-webkit-scrollbar {
     width: 4px; /* Grosor del scrollbar */
