@@ -24,8 +24,13 @@ const LoginModal = (props) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const cart = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.user);
   // auth google
-
+  useEffect(() => {
+    if(user && user.id) {
+      props.onClose()
+    }
+  }, [user])
   useEffect(() => {
     function start() {
       gapi.client.init({
