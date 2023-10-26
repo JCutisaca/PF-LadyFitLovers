@@ -15,17 +15,20 @@ const ChatBot = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate();
 
+  const emailLink = () => {
+    const email = "ladyfitlovers@gmail.com";
+
+    return <a href={`mailto:${email}`}>ladyfitlovers@gmail.com</a>;
+  };
+
+
   
   const handleGoToCategory = (category) => {
     dispatch(filtByCategory(category));
     navigate(`/products/${category}`);
   };
 
-  const emailLink = () => {
-    const email = "ladyfitlovers@gmail.com";
 
-    return <a href={`mailto:${email}`}>ladyfitlovers@gmail.com</a>;
-  };
 
   const [messages, setMessages] = useState([
     {
