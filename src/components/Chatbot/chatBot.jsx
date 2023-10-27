@@ -505,7 +505,7 @@ const ChatBot = () => {
                   style={{
                     display: "flex",
                     justifyContent: message.isUser ? "flex-end" : "flex-start",
-                    marginBottom: "10px",
+                    // marginBottom: "10px",
                     textAlign: message.isUser ? "right" : "left",
                     // marginBottom: "10px",
                     // color: message.isUser ? "#ba338a" : "rgb(135 8 98)",
