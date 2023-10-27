@@ -15,6 +15,9 @@
   opacity: 1;
   visibility: visible;
 }
+.div-render-chat{
+  max-height: 100%;
+}
 
 .chat-box {
   width: 80%;
