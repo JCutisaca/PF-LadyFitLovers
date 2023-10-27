@@ -462,7 +462,7 @@ const ChatBot = () => {
       <Box
         sx={{
           width: "100%",
-          // height: "60vh",
+          // height: "auto",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
