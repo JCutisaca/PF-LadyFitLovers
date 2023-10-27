@@ -96,8 +96,11 @@ const Contac = () => {
     <div className={style.continer}>
       {menuBurger ? <MenuBurger></MenuBurger> : null}
       <div className={style.continercontac}>
+      <img src="/img/contact3.png"/>
         <h1>CONTACTO</h1>
+        
         <div>
+
           <div className={style.message}>
             <label className={style.editinput2}>
               <Input

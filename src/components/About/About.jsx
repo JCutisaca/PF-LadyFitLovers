@@ -74,7 +74,7 @@ const About = () => {
     <div className="aboutContainer">
       {menuBurger ? <MenuBurger></MenuBurger> : null}
       <div className="barra">
-          <h1 className="titleAbout">Grupo de desarrollo web</h1>
+          <h1 className="titleAbout" >Grupo de desarrollo web</h1>
           <p className="pAbout">
             Somos un grupo de desarrolladores web, egresados del bootcamp "Soy Henry" que nos unimos para crear un e-commerce para una tienda de ropa deportiva femenina. Brindandoles el servicio de asesoramiento, maquetación del diseño de su marca y funcionalidades según especificaciones requeridas. Realizamos un proyecto integro con trabajo en equipo el cual está comprometido a brindarte un servicio de alta calidad, desde el asesoramiento inicial hasta el desarrollo final del proyecto. </p>
       </div>

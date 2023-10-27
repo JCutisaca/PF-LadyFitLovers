@@ -1,80 +1,90 @@
-.aboutContainer{
-    margin-top: 80px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 80vh;
-    background-color: #f5f5f5;
-    /* width: 100vw; */
+.aboutContainer {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  background-color: #f5f5f5;
+  /* width: 100vw; */
 }
 
-.iconAbout{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    gap:16px;
-    margin-top:10px;
-    font-size: 30px;
-    color:#ba338a
+.iconAbout {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 10px;
+  font-size: 30px;
+  color: #ba338a;
 }
 
-.iconAbout a{
-    color:#ba338a;
-    text-decoration: none;
+.iconAbout a {
+  color: #ba338a;
+  text-decoration: none;
 }
-.iconAbout a :hover{
-    color:#80215f;
-    text-decoration: none;
-}
-
-.barra{
-    /* height: 400px; */
-    background-color: #ba338a;
-    padding: 0 1rem;
-
-}
-.aboutCardsContainer{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 32px;
-    /* margin: 0px 200px; */
-    position: relative;
-    top: 6rem;
-    margin: 50px 100px;
-    background-color: #f5f5f5;
-    transform:translateY(-100px);
+.iconAbout a :hover {
+  color: #80215f;
+  text-decoration: none;
 }
 
-.titleAbout{
-    font-size: 40px;
-    color: #f5f5f5;
-    font-weight: 700;
-    padding:0px 90px;
+.barra {
+  /* height: 400px; */
+  background-color: #ba338a;
+  padding: 0 6rem;
+}
+.barra p {
+  font-size: medium;
+  text-align: center;
+}
+.aboutCardsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 32px;
+  /* margin: 0px 200px; */
+  position: relative;
+  top: 6rem;
+  margin: 50px 100px;
+  background-color: #f5f5f5;
+  transform: translateY(-100px);
 }
 
-.pAbout{
-    font-size: 20px;
-    color: #f5f5f5;
-    font-weight: 400;
-    padding:0px 90px;
-    font-family: "Poppins", sans-serif;
-    padding: 0 1rem;
+.titleAbout {
+  font-size: 40px;
+  color: #f5f5f5;
+  font-weight: 600;
+  padding: 0px 90px;
+  margin-top: 40px;
+}
+
+.pAbout {
+  font-size: 20px;
+  color: #f5f5f5;
+  font-weight: 400;
+  padding: 0px 90px;
+  font-family: "Poppins", sans-serif;
+  padding: 0 1rem;
 }
 
 @media (max-width: 858px) {
-    .aboutCardsContainer {
-        justify-content: center;
-    }
-    .barra {
-        /* height: 27rem; */
-        padding: inherit;
-    }
-    .pAbout {
-        padding: 0px 30px;
-        text-align: center;
-    }
+  .aboutCardsContainer {
+    justify-content: center;
+  }
+  .barra {
+    /* height: 27rem; */
+    padding: inherit;
+  }
+  .pAbout {
+    padding: 0px 30px;
+    text-align: center;
+  }
+}
+@media (min-width: 1000px) {
+  .aboutCardsContainer {
+    padding-left: 4em;
+    padding-right: 4em;
+  }
 }

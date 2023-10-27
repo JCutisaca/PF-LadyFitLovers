@@ -469,19 +469,21 @@ const ChatBot = () => {
           justifyContent: "center",
           textAlign: "center",
           borderColor: "#ba338a",
-          marginTop: "25vh",
+          // marginTop: "25vh",
         }}
       >
         <Box
           sx={{
             width: "90%",
-            maxWidth: 800,
+            // maxWidth: 800,
+            height:"90%",
             p: 2,
             border: "1px inset #ccc",
             borderRadius: 5,
             marginBottom: "1vh",
             borderColor: "#ba338a",
             background: "white",
+            
           }}
         >
           <Button
@@ -494,7 +496,7 @@ const ChatBot = () => {
           <div
             className="div-render-chat"
             ref={chatContainerRef}
-            style={{ height: "500px", overflowY: "auto", marginBottom: "10px" }}
+            style={{ height: "500px", overflowY: "auto", marginBottom: "10px", width: "100%",}}
           >
             <div claaName="chat-messages" ref={chatContainerRef}>
               {messages.map((message, index) => (
