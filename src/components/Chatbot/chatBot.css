@@ -1,42 +1,29 @@
 .chat-bot-container {
   display: flex;
   flex-direction: column;
-  justify-content: end;
   align-items: center;
-  height: 100%;
   background-color: transparent;
-  transition: 0.5s ease-in-out;
   opacity: 0;
   visibility: hidden;
   transition: opacity 1s, visibility 1s;
+  position: fixed;
+  bottom: 0;
+  width: 45%;
+  max-width: 500px;
+}
+
+.div-render-chat {
+  max-height: 60vh;
+  overflow-y: auto;
+  width: 90%;
+  max-width: 800px;
+  margin-bottom: 10px;
 }
 
 .chat-bot-container.visible {
   opacity: 1;
   visibility: visible;
 }
-.div-render-chat{
-  max-height: 100%;
-}
-
-.chat-box {
-  width: 80%;
-  max-width: 800px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 20px;
-
-
-}
-
-.chat-messages {
-  flex: 1;
-  overflow-y: auto;
-} 
 
 .user-message {
   background-color: #ba338a;
@@ -45,7 +32,6 @@
   padding: 10px;
   max-width: 70%;
   align-self: flex-end;
-  /* margin-top: 10px; */
   margin-right: 5px;
   margin-bottom: 10px;
   text-align: right;
@@ -58,31 +44,26 @@
   padding: 10px;
   max-width: 70%;
   align-self: flex-start;
-  /* margin-top: 10px; */
-
   margin-left: 5px;
-  /* margin-bottom: 10px; */
   font-size: small;
 }
 
 .input-container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
   margin-top: 10px;
-}
-.input-conta{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  width: 90%; /* Adjust the width as needed */
 }
 
 .input-text {
   flex: 1;
+  width: 70%;
+  max-width: 500px;
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 10px;
+  margin-right: 10px;
 }
 
 .input-button {
@@ -92,8 +73,28 @@
   border-radius: 5px;
   padding: 10px 20px;
   cursor: pointer;
+  margin-left: 10px;
 }
 
 .input-button:hover {
   background-color: #af2e82;
+}
+
+.botResponseInouts input,
+.categoriesPlus input, .orderInputChatbot Input {
+  border: 1px solid #ccc;
+  font-family: "Poppins", sans-serif;
+  margin: 3px;
+  border-radius: 5px;
+}
+.botResponseInouts input:hover,
+.categoriesPlus input:hover, .orderInputChatbot:hover{
+  border-color: #af2e82;
+  color: #af2e82;
+}
+
+@media (max-width: 768px) {
+  .chat-bot-container {
+    width: 90%;
+  }
 }
