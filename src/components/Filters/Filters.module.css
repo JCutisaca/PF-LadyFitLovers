@@ -26,8 +26,17 @@
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
+    .subcontainer {
+        flex-wrap: wrap;
+        gap: 3px;
+        text-align: center;
+        justify-content: center;
+        width: 80%;
+    }
+}
+/* @media (max-width: 400px) {
     .subcontainer {
         gap: 3px;
     }
-}
+} */
