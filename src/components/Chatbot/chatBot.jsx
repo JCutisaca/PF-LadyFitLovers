@@ -147,56 +147,58 @@ const ChatBot = () => {
           break;
         case "productos disponibles":
           botResponse = (
-            <div>
+            <div className="botResponseInouts">
               Tenemos una amplia gama de productos disponibles, incluyendo
-              <input
-                type="button"
-                name="categoria"
-                onClick={orderHandler}
-                value="remeras"
-              ></input>
-              <input
-                type="button"
-                name="categoria"
-                onClick={orderHandler}
-                value="buzos"
-              ></input>
-              <input
-                type="button"
-                name="categoria"
-                onClick={orderHandler}
-                value="bikers"
-              ></input>
-              <input
-                type="button"
-                name="categoria"
-                onClick={orderHandler}
-                value="pantalones"
-              ></input>
-              <input
-                type="button"
-                name="categoria"
-                onClick={orderHandler}
-                value="calzas"
-              ></input>
-              <input
-                type="button"
-                name="categoria"
-                onClick={orderHandler}
-                value="shorts"
-              ></input>
-              <input
-                type="button"
-                name="categoria"
-                onClick={orderHandler}
-                value="vestidos"
-              ></input>
-              <input
-                type="button"
-                name="categoria"
-                onClick={orderHandler}
-                value="bikinis"
-              ></input>
+              <div>
+                <input
+                  type="button"
+                  name="categoria"
+                  onClick={orderHandler}
+                  value="remeras"
+                ></input>
+                <input
+                  type="button"
+                  name="categoria"
+                  onClick={orderHandler}
+                  value="buzos"
+                ></input>
+                <input
+                  type="button"
+                  name="categoria"
+                  onClick={orderHandler}
+                  value="bikers"
+                ></input>
+                <input
+                  type="button"
+                  name="categoria"
+                  onClick={orderHandler}
+                  value="pantalones"
+                ></input>
+                <input
+                  type="button"
+                  name="categoria"
+                  onClick={orderHandler}
+                  value="calzas"
+                ></input>
+                <input
+                  type="button"
+                  name="categoria"
+                  onClick={orderHandler}
+                  value="shorts"
+                ></input>
+                <input
+                  type="button"
+                  name="categoria"
+                  onClick={orderHandler}
+                  value="vestidos"
+                ></input>
+                <input
+                  type="button"
+                  name="categoria"
+                  onClick={orderHandler}
+                  value="bikinis"
+                ></input>
+              </div>
               <br />
               ¿Puedo ayudarte en algo mas?
               <br />
@@ -213,54 +215,56 @@ const ChatBot = () => {
               Estos son los/as {event.target.value} disponibles. También puedes
               ver:
               <br />
-              <input
-                type="button"
-                name="categoria"
-                onClick={orderHandler}
-                value="remeras"
-              ></input>
-              <input
-                type="button"
-                name="categoria"
-                onClick={orderHandler}
-                value="buzos"
-              ></input>
-              <input
-                type="button"
-                name="categoria"
-                onClick={orderHandler}
-                value="bikers"
-              ></input>
-              <input
-                type="button"
-                name="categoria"
-                onClick={orderHandler}
-                value="pantalones"
-              ></input>
-              <input
-                type="button"
-                name="categoria"
-                onClick={orderHandler}
-                value="calzas"
-              ></input>
-              <input
-                type="button"
-                name="categoria"
-                onClick={orderHandler}
-                value="shorts"
-              ></input>
-              <input
-                type="button"
-                name="categoria"
-                onClick={orderHandler}
-                value="vestidos"
-              ></input>
-              <input
-                type="button"
-                name="categoria"
-                onClick={orderHandler}
-                value="bikinis"
-              ></input>
+              <div className="categoriesPlus">
+                <input
+                  type="button"
+                  name="categoria"
+                  onClick={orderHandler}
+                  value="remeras"
+                ></input>
+                <input
+                  type="button"
+                  name="categoria"
+                  onClick={orderHandler}
+                  value="buzos"
+                ></input>
+                <input
+                  type="button"
+                  name="categoria"
+                  onClick={orderHandler}
+                  value="bikers"
+                ></input>
+                <input
+                  type="button"
+                  name="categoria"
+                  onClick={orderHandler}
+                  value="pantalones"
+                ></input>
+                <input
+                  type="button"
+                  name="categoria"
+                  onClick={orderHandler}
+                  value="calzas"
+                ></input>
+                <input
+                  type="button"
+                  name="categoria"
+                  onClick={orderHandler}
+                  value="shorts"
+                ></input>
+                <input
+                  type="button"
+                  name="categoria"
+                  onClick={orderHandler}
+                  value="vestidos"
+                ></input>
+                <input
+                  type="button"
+                  name="categoria"
+                  onClick={orderHandler}
+                  value="bikinis"
+                ></input>
+              </div>
               <br /> ¿Puedo ayudarte en algo mas?
               <br />
               Puedes responder con <strong>si</strong> o <strong>no</strong>
@@ -357,7 +361,7 @@ const ChatBot = () => {
                     <div>
                       Elije con cual pedido tienes dudas
                       {ordersUser?.map((order) => (
-                        <div>
+                        <div className="orderInputChatbot">
                           <Input
                             name="order"
                             type="button"
@@ -476,14 +480,13 @@ const ChatBot = () => {
           sx={{
             width: "90%",
             // maxWidth: 800,
-            height:"90%",
+            height: "auto",
             p: 2,
             border: "1px inset #ccc",
             borderRadius: 5,
             marginBottom: "1vh",
             borderColor: "#ba338a",
             background: "white",
-            
           }}
         >
           <Button
@@ -496,7 +499,7 @@ const ChatBot = () => {
           <div
             className="div-render-chat"
             ref={chatContainerRef}
-            style={{ overflowY: "auto", marginBottom: "10px", width: "100%",}}
+            style={{ overflowY: "auto", marginBottom: "10px", width: "100%" }}
           >
             <div claaName="chat-messages" ref={chatContainerRef}>
               {messages.map((message, index) => (
