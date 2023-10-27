@@ -17,6 +17,7 @@ export const FILT_BY_CATEGORY = "FILT_BY_CATEGORY";
 export const FILT_BY_COLOR = "FILT_BY_COLOR";
 export const FILT_BY_SIZE = "FILT_BY_SIZE";
 export const SAVE_FILTERS = "SAVE_FILTERS";
+export const ORDER = "ORDER"
 
 //PURCHASE
 export const GET_PURCHASES = "GET_PURCHASES";

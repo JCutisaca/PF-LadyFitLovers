@@ -7,23 +7,25 @@ import { saveFilter } from "../../redux/Actions/Filter/saveFilter";
 import getProductByName from "../../redux/Actions/Product/getProductByName";
 import setCurrentPage from "../../redux/Actions/Filter/setCurrentPage";
 import style from "./Filters.module.css";
-import { Select, Button} from "antd";
-import {ReloadOutlined } from "@ant-design/icons";
-
+import { Select, Button } from "antd";
+import { ReloadOutlined } from "@ant-design/icons";
+import order from "../../redux/Actions/Filter/order";
+import { getColorName } from "../../utils/getColorName";
 
 const Filters = () => {
   const size = ["S", "M", "L", "XL"];
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.allProducts);
   const filtersave = useSelector((state) => state.saveFilters);
+  console.log(filtersave);
   
-  // Cambiar de dos estados locales a un solo estado local
   const [uniqueFilters, setUniqueFilters] = useState({
     category: [],
     color: [],
     selectCategory: "",
     selectColor: "",
     selectSize: "",
+    selectOrdered: "",
   });
 
   useEffect(() => {
@@ -32,6 +34,7 @@ const Filters = () => {
     handleChangeCategory;
     handleChangeColor;
     handleSize;
+    handleOrder;
   }, [allProducts, uniqueFilters]);
   useEffect(() => {
     if (uniqueFilters.selectCategory !== "") {
@@ -43,10 +46,15 @@ const Filters = () => {
     if (uniqueFilters.selectSize !== "") {
       dispatch(filtBySize(uniqueFilters.selectSize));
     }
+    if(uniqueFilters.selectOrdered !== "") {
+      dispatch(order(uniqueFilters.selectOrdered))
+    }
+
   }, [
     uniqueFilters.selectCategory,
     uniqueFilters.selectColor,
     uniqueFilters.selectSize,
+    uniqueFilters.selectOrdered 
   ]);
 
   useEffect(() => {
@@ -73,6 +81,7 @@ const Filters = () => {
         selectCategory: filtersave.selectCategory,
         selectColor: filtersave.selectColor,
         selectSize: filtersave.selectSize,
+        selectOrdered: filtersave.selectOrdered
       });
     }
   }, [allProducts]);
@@ -98,6 +107,13 @@ const Filters = () => {
     });
   };
 
+  const handleOrder = (value) => {
+    setUniqueFilters({
+      ...uniqueFilters,
+      selectOrdered: value
+    })
+  }
+
   const categoryOptions = [
     { value: "TA", label: "CATEGORIA" },
     ...filtersave.category.map((categoria) => {
@@ -106,17 +122,23 @@ const Filters = () => {
   ];
   const colorOptions = [
     { value: "", label: "COLOR" },
-    ...filtersave.color.map((categoria) => {
-      return { value: categoria, label: categoria };
+    ...filtersave.color.map((color) => {
+      return { value: color, label: getColorName(color)};
     })
   ];
 
-  const sizeOptions =[
-    {value: "", label:"TALLA"},
+  const sizeOptions = [
+    { value: "", label: "TALLA" },
     ...size.map((size) => {
       return { value: size, label: size };
     })
-  ] 
+  ]
+
+  const orderOptions = [
+    { value: "", label: "PRECIO" },
+    { value: "A", label: "Menor a Mayor" },
+    { value: "D", label: "Mayor a Menor" },
+  ]
 
   const handleClick = () => {
     setUniqueFilters({
@@ -124,40 +146,51 @@ const Filters = () => {
       selectCategory: "TA",
       selectColor: "",
       selectSize: "",
+      selectOrdered: "",
     });
   };
-
+ 
   return (
     <div className={style.containerFilter}>
       <div className={style.subcontainer}>
-        <Button className={style.buttonReload} onClick={()=>handleClick()}><ReloadOutlined /></Button>
+        <Button className={style.buttonReload} onClick={() => handleClick()}><ReloadOutlined /></Button>
         <div className={style.contenselect}>
-        <Select 
-          defaultValue={"CATEGORIA"}
-          value={!uniqueFilters.selectCategory? "CATEGORIA": uniqueFilters.selectCategory}
-          options={categoryOptions}
-          style={{ width: "100%" }}
-          onChange={handleChangeCategory}
+          <Select
+            defaultValue={"CATEGORIA"}
+            value={!uniqueFilters.selectCategory ? "CATEGORIA" : uniqueFilters.selectCategory}
+            options={categoryOptions}
+            style={{ width: "100%" }}
+            onChange={handleChangeCategory}
           />
         </div>
         <div className={style.contenselect}>
-        <Select 
-          defaultValue={""}
-          value={uniqueFilters.selectColor}
-          options={colorOptions}
-          style={{ width: "100%" }}
-          onChange={handleChangeColor}
+          <Select
+            defaultValue={""}
+            value={uniqueFilters.selectColor}
+            options={colorOptions}
+            style={{ width: "100%" }}
+            onChange={handleChangeColor}
           />
         </div>
         <div className={style.contenselect}>
-          <Select 
-          defaultValue={"TA"}
-          value={!uniqueFilters.selectSize? "TALLA": uniqueFilters.selectSize}
-          options={sizeOptions}
-          style={{ width: "100%" }}
-          onChange={handleSize}
+          <Select
+            defaultValue={"TA"}
+            value={!uniqueFilters.selectSize ? "TALLA" : uniqueFilters.selectSize}
+            options={sizeOptions}
+            style={{ width: "100%" }}
+            onChange={handleSize}
           />
-          
+
+        </div>
+        <div className={style.contenselect}>
+          <Select
+            defaultValue={"OR"}
+            value={!uniqueFilters.selectOrdered ? "PRECIO" : uniqueFilters.selectOrdered}
+            options={orderOptions}
+            style={{ width: "100%" }}
+            onChange={handleOrder}
+          />
+
         </div>
       </div>
     </div>

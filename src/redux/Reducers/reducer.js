@@ -18,6 +18,7 @@ import {
   FILT_BY_COLOR,
   FILT_BY_SIZE,
   SAVE_FILTERS,
+  ORDER,
   //category
   GET_CATEGORIES,
   POST_CATEGORY,
@@ -74,6 +75,7 @@ const initialState = {
     selectCategory: "",
     selectColor: "",
     selectSize: "",
+    selectOrdered: ""
   },
   //cart
   cart: [],
@@ -206,6 +208,35 @@ const reducer = (state = initialState, action) => {
         ...state,
         allProducts: filteredSize,
       };
+    case ORDER:
+      console.log(action.payload);
+      return {
+        ...state,
+        allProducts: action.payload !== "" || state.saveFilters.selectOrdered !== "" ? state.allProducts.sort((a, b) => {
+          if (state.saveFilters.selectOrdered === "A" || action.payload === "A") {
+            if (a.priceOnSale && b.priceOnSale) {
+              return a.priceOnSale - b.priceOnSale;
+            } else if(a.priceOnSale && b.price) {
+              return a.priceOnSale - b.price;
+            }else if(a.price && b.priceOnSale) {
+              return a.price - b.priceOnSale;
+            }else{
+              return a.price - b.price;
+            }
+          } else if (state.saveFilters.selectOrdered === "D" || action.payload === "D") {
+            if (a.priceOnSale && b.priceOnSale) {
+              return b.priceOnSale - a.priceOnSale;
+            } else if(b.priceOnSale && a.price) {
+              return b.priceOnSale - a.price;
+            } else if(b.price && a.priceOnSale) {
+              return b.price - a.priceOnSale;
+            } else {
+              return b.price - a.price;
+            }
+          }
+        }) : state.savePivot.length > 0 ? state.savePivot : state.saveProducts,
+      };
+      ;
     case GET_CATEGORIES:
       return {
         ...state,
@@ -258,13 +289,15 @@ const reducer = (state = initialState, action) => {
       } else if (
         action.payload.selectCategory ||
         action.payload.selectColor ||
-        action.payload.selectSize
+        action.payload.selectSize ||
+        action.payload.selectOrdered
       ) {
         newSaveFilters = {
           ...newSaveFilters,
           selectCategory: action.payload.selectCategory,
           selectColor: action.payload.selectColor,
           selectSize: action.payload.selectSize,
+          selectOrdered: action.payload.selectOrdered,
         };
       }
 

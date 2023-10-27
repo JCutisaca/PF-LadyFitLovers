@@ -1,25 +1,29 @@
 export const getColorName = (color) => {
   switch (color) {
     case "red":
-      return "Rojo";
+      return "ROJO";
     case "blue":
-      return "Azul";
+      return "AZUL";
     case "green":
-      return "Verde";
+      return "VERDE";
     case "yellow":
-      return "Amarillo";
+      return "AMARRILLO";
     case "violet":
-      return "Violeta";
+      return "VIOLETA";
     case "orange":
-      return "Naranja";
+      return "NARANJA";
     case "pink":
-      return "Rosado";
+      return "ROSA";
     case "black":
-      return "Negro";
+      return "NEGRO";
     case "white":
-      return "Blanco";
+      return "BLANCO";
     case "gray":
-        return "Gris"
+        return "GRIS"
+    case "purple":
+      return "MORADO"
+    case "brown":
+      return "MARRON"
     default:
       return "Unknown";
   }
