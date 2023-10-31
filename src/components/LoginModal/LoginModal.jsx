@@ -17,7 +17,7 @@ import FacebookAuth from "../FacebookAuth/FacebookAuth";
 
 //Enviar a una variable de entorno!!!!!!!!!!!!!!!!!!!!!!!!!!!
 const clientId =
-  "107029689912-07ud1ph5sjpbatvv046di3k2q6ajn566.apps.googleusercontent.com";
+  "535498492745-917t7ggrohm2okgfr46aj9rl52fh91eg.apps.googleusercontent.com";
 
 const LoginModal = (props) => {
   const dispatch = useDispatch();
