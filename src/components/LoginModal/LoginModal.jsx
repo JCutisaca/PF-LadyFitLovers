@@ -17,7 +17,7 @@ import FacebookAuth from "../FacebookAuth/FacebookAuth";
 
 //Enviar a una variable de entorno!!!!!!!!!!!!!!!!!!!!!!!!!!!
 const clientId =
-  "535498492745-917t7ggrohm2okgfr46aj9rl52fh91eg.apps.googleusercontent.com";
+  "580974311123-nc3kg5o1m7v086iev09g1tm2thlp2pv3.apps.googleusercontent.com";
 
 const LoginModal = (props) => {
   const dispatch = useDispatch();
@@ -159,50 +159,3 @@ const LoginModal = (props) => {
 };
 
 export default LoginModal;
-
-// const handleLogin = async () => {
-//   try {
-//     const values = await form.validateFields();
-//     const { email, password } = values;
-
-//     setLoading(true);
-
-//     dispatch(loginUser(email, password))
-//       .then(() => {
-//         dispatch(userById()).then(() => {
-//           setLoading(false);
-//           props.onClose();
-//         });
-//       })
-//       .catch((error) => {
-//         console.error("Login failed:", error);
-//         setLoading(false);
-//       });
-//   } catch (error) {
-//     console.error("Validation failed:", error);
-//   }
-// };
-
-// const handleLogin = async () => {
-//   try {
-//     const values = await form.validateFields();
-//     const { email, password } = values;
-//     console.log(email, password);
-//     // Dispatch loginUser action
-//     dispatch(loginUser(email, password)).then((response) => {
-//       console.log("Server response:", response.data);
-//       // Check if the login was successful and idUser is available
-//       if (response && response.idUser) {
-//         // Dispatch getUserById action with the obtained idUser
-//         dispatch(userById(response.idUser));
-//         console.log(response.idUser);
-//         // Close the modal if needed
-//         props.onClose();
-//       } else {
-//         console.error("Login failed or id is missing.");
-//       }
-//     });
-//   } catch (error) {
-//     console.error("Validation failed:", error);
-//   }
-// };

@@ -9,7 +9,7 @@ import { GoogleLoginButton } from "react-social-login-buttons";
 
 
 const clientId =
-  "535498492745-917t7ggrohm2okgfr46aj9rl52fh91eg.apps.googleusercontent.com";
+  "580974311123-nc3kg5o1m7v086iev09g1tm2thlp2pv3.apps.googleusercontent.com";
 
 const GoogleAuth = ({ onGoogleLoginSuccess }) => {
   const dispatch = useDispatch();
@@ -22,12 +22,13 @@ const GoogleAuth = ({ onGoogleLoginSuccess }) => {
     }
   }, [userId]);
   const onSuccess = (data) => {
+    console.log(data);
     let profileObj = data;
     let accessToken = data.access_token;
     if (profileObj.family_name == undefined) {
       profileObj.family_name = "No definido";
     }
-    //userId, token, profileObj
+
     dispatch(authUser(profileObj, accessToken))
     onGoogleLoginSuccess();
   };
@@ -36,14 +37,10 @@ const GoogleAuth = ({ onGoogleLoginSuccess }) => {
     console.log("Login Failed: res: ", res);
   };
 
-
-  // const onLogoutSuccess = useCallback(() => {
-  //   setProfile(null)
-  //   setProvider('')
-  // }, [])
   return (
     <LoginSocialGoogle
       client_id={clientId}
+      scope="email profile openid https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
       onResolve={({ provider, data }) => {
         onSuccess(data)
       }}
