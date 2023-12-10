@@ -1,8 +1,7 @@
 const { Category } = require('../../db')
 
 const getAllCategories = async () => {
-    const allCategories = await Category.findAll()
-    console.log(allCategories);
+    const allCategories = await Category.findAll();
     return allCategories;
 }
 
