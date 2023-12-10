@@ -8,7 +8,7 @@ const { DB_DEPLOY } = process.env;
 
 
 const sequelize = new Sequelize(DB_DEPLOY, {
-//const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/pf`, {
+// const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/prueba`, {
   logging: false,
   native: false,
 });
@@ -43,9 +43,6 @@ Review.belongsToMany(Product, { through: "productreview", as: "Product" });
 Product.belongsTo(Category);
 Category.hasMany(Product);
 
-User.hasOne(PurchaseHistory);
-PurchaseHistory.belongsTo(User);
-
 Cart.belongsTo(User)
 User.hasOne(Cart)
 
@@ -54,9 +51,6 @@ Product.belongsToMany(User, { through: 'FavoriteProduct', as: 'FavoritedBy' });
 
 Order.belongsTo(User);
 User.hasMany(Order);
-
-// User.belongsTo(Product, { foreignKey: 'productId' });
-// Category.belongsTo(Product, { foreignKey: 'categoryId' }); // Una categoría puede tener muchos productos
 
 module.exports = {
   ...sequelize.models,

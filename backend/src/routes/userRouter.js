@@ -2,12 +2,13 @@ const { Router } = require("express");
 const verifyTokenAdmin = require("../middlewares/verifyTokenAdmin");
 const verifyToken = require('../middlewares/verifyToken');
 const verifyTokenParams = require("../middlewares/verifyTokenParams");
-const { postUserHandler, getUserHandler, getUserByIDHandler, deleteUserHandler, updateUserHandler, loginUserHandler, userLoginGoogleHandler, userPasswordRecovery, updateUserPassword } = require("../handlers/userHandler");
+const { postUserHandler, getUserHandler, getUserByIDHandler, deleteUserHandler, updateUserHandler, loginUserHandler, userLoginGoogleHandler, userPasswordRecovery, updateUserPassword, userLoginFacebookHandler } = require("../handlers/userHandler");
 
 const userRouter = Router()
 
 userRouter.post("/login", loginUserHandler)
 userRouter.post("/loginGoogle", userLoginGoogleHandler)
+userRouter.post("/loginFacebook", userLoginFacebookHandler)
 userRouter.post("/create", postUserHandler)
 userRouter.get("/allUsers", verifyTokenAdmin, getUserHandler)
 userRouter.put("/update", verifyToken, updateUserHandler)

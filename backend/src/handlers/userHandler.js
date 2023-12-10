@@ -7,7 +7,7 @@ const { updatePassword } = require("../controllers/UserController/updatePassword
 const loginUser = require("../controllers/UserController/loginUser");
 const getUserByID = require("../controllers/UserController/getUserById");
 const userLoginGoogle = require("../controllers/UserController/userLoginGoogle");
-const mailRecoverPassword = require("../helpers/mailRecoverPassword")
+const userLoginFacebook = require("../controllers/UserController/userLoginFacebook");
 
 const postUserHandler = async (req, res) => {
     try {
@@ -30,6 +30,14 @@ const loginUserHandler = async (req, res) => {
 const userLoginGoogleHandler = async (req, res) => {
     try {
         const user = await userLoginGoogle(req.body)
+        res.status(200).json(user)
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+}
+const userLoginFacebookHandler = async (req, res) => {
+    try {
+        const user = await userLoginFacebook(req.body)
         res.status(200).json(user)
     } catch (error) {
         res.status(400).json({ error: error.message })
@@ -105,4 +113,5 @@ module.exports = {
     userLoginGoogleHandler,
     userPasswordRecovery,
     updateUserPassword,
+    userLoginFacebookHandler
 }

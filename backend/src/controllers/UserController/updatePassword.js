@@ -1,6 +1,6 @@
+const mailUpdatedPassword = require('../../config/mailUpdatedPassword');
 const { User } = require('../../db');
 const bcrypt = require('bcryptjs')
-const mailUpdatedPassword = require("../../helpers/mailUpdatedPassword")
 
 const updatePassword = async ({email, password}) => {
     if (!password) throw Error("There is no password submitted.")

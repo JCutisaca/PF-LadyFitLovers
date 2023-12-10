@@ -1,6 +1,6 @@
+const mailRecoverPassword = require("../../config/mailRecoverPassword");
 const { User } = require("../../db")
 const bcrypt = require("bcryptjs");
-const mailRecoverPassword = require("../../helpers/mailRecoverPassword")
 
 const passwordRecovery = async ({ email, code }) => {
     
@@ -32,7 +32,6 @@ const passwordRecovery = async ({ email, code }) => {
         },
             {where: { email }}
         )
-        
         mailRecoverPassword(email, recoveryCode)
     }
     

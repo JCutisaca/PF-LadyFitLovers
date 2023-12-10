@@ -3,7 +3,7 @@ const { postProductHandler, getProductHandler, getProductByIdHandler, deleteProd
 const verifyTokenAdmin = require("../middlewares/verifyTokenAdmin");
 const productRouter = Router()
 
-productRouter.post("/category", verifyTokenAdmin, postCategoryHandler)
+productRouter.post("/category", postCategoryHandler)
 productRouter.get("/allCategories", getAllCategoriesHandler)
 productRouter.put("/updateCategory", verifyTokenAdmin, updateCategoryNameHandler)
 
