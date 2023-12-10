@@ -208,7 +208,6 @@ const ChatBot = () => {
           break;
         case "categoria":
           const category = event.target.value.toUpperCase();
-          console.log(category);
           handleGoToCategory(category);
           botResponse = (
             <div>
@@ -436,7 +435,6 @@ const ChatBot = () => {
             <br />
           </div>
         );
-        console.log("aca");
         let array = [
           { text: prevMessage, isUser: false },
           { text: userResponse, isUser: true },

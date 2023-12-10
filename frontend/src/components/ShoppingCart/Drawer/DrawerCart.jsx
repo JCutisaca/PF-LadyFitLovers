@@ -37,7 +37,6 @@ const DrawerCart = ({ openDrawer, onClose }) => {
   const [openCheckout, setOpenCheckout] = useState(false);
   const onCloseCheckout = (boolean) => {
     setOpenCheckout(boolean);
-    console.log(openCheckout);
   };
   const showDefaultDrawer = () => {
     setOpen(openDrawer);

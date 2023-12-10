@@ -10,7 +10,6 @@ const authUser = (profileObj, accessToken) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.post(endpoint, { profileObj, accessToken });
-      console.log(data.token)
       const id = data.idUser;
       const config = {
         headers: {

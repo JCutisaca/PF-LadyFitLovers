@@ -4,8 +4,6 @@ const endpoint = `${API_URL_BASE}/user/recoverPassword/reset`;
 
 
 const resetPassword = async (email,newPassword ) => {
-    console.log(email);
-    console.log(newPassword);
   try {
     const response = await axios.put(endpoint, {email: email, password:newPassword});
     return response.data

@@ -22,7 +22,6 @@ const GoogleAuth = ({ onGoogleLoginSuccess }) => {
     }
   }, [userId]);
   const onSuccess = (data) => {
-    console.log(data);
     let profileObj = data;
     let accessToken = data.access_token;
     if (profileObj.family_name == undefined) {

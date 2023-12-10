@@ -7,14 +7,11 @@ const endpoint = `${API_URL_BASE}/product/name?name=`;
 const getProductByName = (name) => {
   return async (dispatch) => {
     try {
-      // const response = await axios.get(`${endpoint}?name=${name}`);
-      // const response = await axios.get(`${endpoint}?name_like=${name}`);
       const response = await axios.get(endpoint + name);
       dispatch({
         type: GET_PRODUCT_BY_NAME,
         payload: response.data,
       });
-      //   console.log(response.data);
     } catch (error) {
       if (error.response) {
         console.error(

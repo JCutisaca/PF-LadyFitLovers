@@ -9,14 +9,12 @@ import { useSelector } from "react-redux";
 
 const CodeRequirer = () => {
   const saveEmail = useSelector((state) => state.email);
-  console.log(saveEmail);
   const navigate = useNavigate()
   const [ModalVisible, setModalVisible] = useState(false);
   const [code, setCode] = useState({
     code: 0,
     recovery: false
   });
-  console.log(code);
 
   const handleCode = (event) => {
     setCode({
@@ -30,7 +28,6 @@ const CodeRequirer = () => {
 
     if (code.code.length === 6) {
       const response = await verifyCode(saveEmail, code.code);
-      console.log(response);
       if (response.success === true) {
 
 

@@ -13,7 +13,6 @@ import "./OrderTable.css";
 const OrdersTable = () => {
   const isMobile = useMediaQuery({ maxWidth: 1023 });
   const allOrders = useSelector((state) => state.allOrders);
-  console.log(allOrders);
   const tableOrders = allOrders.map((order) => {
     return {
       ...order,

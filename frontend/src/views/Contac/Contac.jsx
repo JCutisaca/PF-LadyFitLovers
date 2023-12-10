@@ -69,7 +69,6 @@ const Contac = () => {
       formData.email !== "" &&
       formData.message !== ""
     ) {
-      console.log("Datos del formulario:", formData);
       const form = document.createElement("form");
       form.innerHTML = `
             <input type="text" name="name" value="${formData.name}">

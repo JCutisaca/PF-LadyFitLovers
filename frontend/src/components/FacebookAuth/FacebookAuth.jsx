@@ -29,7 +29,7 @@ const FacebookAuth = ({ handleFacebookLoginSuccess }) => {
                 onSuccess(profileObj)
             }}
             onReject={(error) => {
-                // console.log(error);
+                console.log(error);
             }}
         >
             <FacebookLoginButton className={style.containerButton} text="Ingresar con Facebook"></FacebookLoginButton>

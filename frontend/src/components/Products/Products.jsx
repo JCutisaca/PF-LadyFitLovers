@@ -11,7 +11,6 @@ const Products = () => {
   const allProducts = useSelector((state) => state.allProducts);
   const filteredProducts = useSelector((state) => state.products);
   const dispatch = useDispatch();
-  // console.log(productsPerPage)
 
   return (
             <div className={style.cardsContainer}>

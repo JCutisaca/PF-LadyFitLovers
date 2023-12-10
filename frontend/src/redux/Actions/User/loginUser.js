@@ -5,11 +5,9 @@ const API_URL_BASE = import.meta.env.VITE_VERCEL_API_URL_BASE;
 const endpoint = `${API_URL_BASE}/user/login/`;
 
 const loginUser = (email, password) => {
-  console.log(email, password);
   return async (dispatch) => {
     try {
       const response = await axios.post(endpoint, { email, password });
-      console.log(response.data);
       return dispatch({
         type: LOGIN_USER,
         payload: response.data,

@@ -5,7 +5,6 @@ const API_URL_BASE = import.meta.env.VITE_VERCEL_API_URL_BASE;
 const endpoint = `${API_URL_BASE}/user/`;
 
 const userById = (id, accessToken) => {
-  console.log(id);
   return async (dispatch) => {
     try {
       const config = {

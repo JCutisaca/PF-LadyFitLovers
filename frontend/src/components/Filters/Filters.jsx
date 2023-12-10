@@ -17,7 +17,6 @@ const Filters = () => {
   const dispatch = useDispatch();
   const allProducts = useSelector((state) => state.allProducts);
   const filtersave = useSelector((state) => state.saveFilters);
-  console.log(filtersave);
   
   const [uniqueFilters, setUniqueFilters] = useState({
     category: [],

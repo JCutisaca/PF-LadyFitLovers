@@ -37,16 +37,6 @@ const ReviewForm = ({ productData, userId, accessToken }) => {
       const { reviewText, rating } = values;
       const productId = productData.id;
 
-      // console.log("Form values:", values);
-
-      // console.log("Data a enviar", {
-      //   userId,
-      //   productId,
-      //   reviewText,
-      //   rating,
-      //   accessToken,
-      // });
-
       //datos a enviar   review -> userId, productId, reviewText, rating, // accessToken
       dispatch(
         postReview({ userId, productId, reviewText, rating }, accessToken)

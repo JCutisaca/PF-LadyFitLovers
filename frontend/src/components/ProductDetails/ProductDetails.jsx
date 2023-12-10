@@ -181,8 +181,6 @@ const ProductDetails = ({ productData }) => {
     if (user.email) {
       dispatch(getOrdersByUser({ userId, accessToken })).then(
         (ordersByUser) => {
-          // console.log("entro al then");
-          // console.log("ordersByUser:", ordersByUser.payload);
           const hasPurchased =
             Array.isArray(ordersByUser.payload) &&
             ordersByUser.payload.length > 0
@@ -192,8 +190,6 @@ const ProductDetails = ({ productData }) => {
                   )
                 )
               : false;
-          // console.log(ordersByUser);
-          // console.log(hasPurchased, "hasPurchased");
           setUserHasPurchased(hasPurchased);
         }
       );

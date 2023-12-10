@@ -72,7 +72,6 @@ const UpdatePassword = ({onClose, pivotbander, email}) => {
     if(typeof pivotbander === "number" && email !== ""){
       const response = await resetPassword(email, updatePassword.newPassword)
       if (response.success === true) {
-        console.log(response.success);
         message.success("Nueva contraseña actualizada")
         navigate("/")
         setUpdatePassword({})

@@ -51,7 +51,6 @@ const RecoveryPassword = () => {
     try {
       if (email.errorEmail === "") {
         const response = await recoveryCode(email.email);
-        console.log(response);
         if (response.success === true) {
           dispatch(saveEmail(email.email));
           navigate("codigo-requerido")

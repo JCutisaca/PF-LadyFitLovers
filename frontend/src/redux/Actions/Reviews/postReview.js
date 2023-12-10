@@ -5,7 +5,6 @@ const API_URL_BASE = import.meta.env.VITE_VERCEL_API_URL_BASE;
 const endpoint = `${API_URL_BASE}/review`;
 
 const postReview = ({ userId, productId, reviewText, rating, accessToken }) => {
-  console.log(userId, productId, reviewText, rating, accessToken);
   return async (dispatch) => {
     try {
       const config = {

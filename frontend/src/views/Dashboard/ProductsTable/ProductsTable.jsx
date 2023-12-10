@@ -18,7 +18,6 @@ const ProductsTable = () => {
   const minMobile = useMediaQuery({ maxWidth: 500 });
   const dispatch = useDispatch();
   const products = useSelector((state) => state.allProductsAdmin);
-  console.log(products);
   const allCatgories = useSelector((state) => state.allCategories);
   const accessToken = useSelector((state) => state.accessToken);
   const [showEditModal, setShowEditModal] = useState(false);

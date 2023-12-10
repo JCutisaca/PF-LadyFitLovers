@@ -4,7 +4,6 @@ const endpoint = `${API_URL_BASE}/user/recoverPassword`;
 
 
 const recoveryCode = async (email) => {
- console.log(email);
   try {
     const response = await axios.put(endpoint, {email:email});
     return response.data

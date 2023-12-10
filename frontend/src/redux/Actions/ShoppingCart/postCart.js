@@ -18,7 +18,6 @@ const postCart = ({ userId, products, accessToken }) => {
       },
       config
       );
-      console.log(data);
       return {
         message: "Compra realizada correctamente",
       };

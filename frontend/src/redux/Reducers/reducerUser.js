@@ -24,7 +24,6 @@ const reducerUser = (state = initialState, action) => {
         user: null,
       };
     case SAVE_EMAIL:
-      console.log(action.payload);
       return {
         ...state,
         email: action.payload,

@@ -64,7 +64,6 @@ const CreateProductForm = ({ errors, isEditing }) => {
           accessToken
         )
       );
-      console.log(response.message);
 
       if (response.message === "Products have been created.") {
         message.success("Producto creado exitosamente", [2]);

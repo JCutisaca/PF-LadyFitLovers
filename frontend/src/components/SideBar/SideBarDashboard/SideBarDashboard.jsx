@@ -80,7 +80,6 @@ const SideBarDashboard = () => {
         break;
     
       default:
-        console.log("default");
         break;
     }
   };

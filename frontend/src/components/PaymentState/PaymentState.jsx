@@ -43,7 +43,6 @@ const PaymentState = () => {
             })
           );
           if (response.message === "Compra realizada correctamente") {
-            console.log("Order added");
             dispatch(cleanCart({ userId, accessToken }));
           }
         }

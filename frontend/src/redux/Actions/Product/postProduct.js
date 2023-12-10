@@ -6,7 +6,6 @@ const endpoint = `${API_URL_BASE}/product/create`;
 
 const postProduct = (product, accessToken) => {
   return async (dispatch) => {
-    console.log(accessToken);
     try {
       const config = {
         headers: {

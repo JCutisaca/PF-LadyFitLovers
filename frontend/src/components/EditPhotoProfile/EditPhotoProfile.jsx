@@ -25,7 +25,6 @@ const EditPhotoProfile = ({ visible, onClose, idUser }) => {
         }
         if(response){
             const response = await dispatch(updateUser(valuesToSend, accessToken));
-            console.log(response);
             if (response.message === "Usuario editado correctamente") {
                 dispatch(getUserById(valuesToSend.id, accessToken));
                 message.success("Imagen de perfil actualizada");

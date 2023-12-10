@@ -17,7 +17,6 @@ import {
 const { Option } = Select;
 
 const ProductReviews = ({ productData }) => {
-  // console.log(productData);
 
   //reviews
   const reviews = productData.Reviews;
@@ -49,8 +48,6 @@ const ProductReviews = ({ productData }) => {
     return totalRating / reviews.length;
   };
   const averageProductRating = calculateAverageProductRating();
-
-  // console.log(averageProductRating);
 
   //funcion porcentajes
   const calculateRatingPercentages = (reviews) => {
